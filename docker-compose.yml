@@ -1,0 +1,24 @@
+services:
+  api:
+    container_name: watchit_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      PORT: 3000
+    depends_on:
+      - mongo
+
+  mongo:
+    container_name: watchit_mongo
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME-root}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD-password}
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

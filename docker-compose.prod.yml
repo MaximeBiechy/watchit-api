@@ -1,0 +1,11 @@
+services:
+  api:
+    container_name: watchit_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=production
+    environment:
+      - NODE_ENV=production
+    command: npm start

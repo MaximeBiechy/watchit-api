@@ -1,0 +1,75 @@
+openapi: 3.0.0
+info:
+  title: WatchIt API
+  version: 1.0.0
+  description: This is the WatchIt API
+  contact:
+    name: Maxime Biechy
+    email: biechymaxime@gmail.com
+servers:
+  - url: http://localhost:3000
+    description: Development server (uses docker-compose.dev.yml)
+paths:
+  /api-docs:
+    get:
+      summary: Get the OpenAPI documentation
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  openapi:
+                    type: string
+                    example: 3.0.0
+                  info:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        example: WatchIt API
+                      version:
+                        type: string
+                        example: 1.0.0
+                      description:
+                        type: string
+                        example: This is the WatchIt API
+                      contact:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: Maxime Biechy
+                          email:
+                            type: string
+                            example: biechymaxime@gmail.com
+  /debug-sentry:
+    get:
+      summary: Test Sentry error handling
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Sentry is working
+  /api/v1/:
+    get:
+      summary: Check if the API is working
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: API is working
