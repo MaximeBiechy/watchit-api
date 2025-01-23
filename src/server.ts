@@ -1,7 +1,7 @@
 import app from './app/app.js';
 import { config } from './config/config.js';
 import * as mongoose from 'mongoose';
-import logger from './utils/logger.js';
+import logger from './shared/utils/logger.js';
 
 const PORT = config.PORT;
 

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { BadRequest, HttpError } from 'express-openapi-validator/dist/framework/types.js';
-import logger from '../../utils/logger.js';
+import logger from '../../shared/utils/logger.js';
 
 export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof HttpError) {
