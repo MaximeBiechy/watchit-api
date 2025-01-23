@@ -20,7 +20,7 @@ For development, you will need [Docker](https://www.docker.com/) installed on yo
 
 ## Usage
 
-You can access the API at `http://localhost:3000/api/v1/`.
-You can also access the documentation at `http://localhost:3000/api-docs`.
+- You can access the API at `http://localhost:3000/api/v1/`.
+- You can also access the documentation at `http://localhost:3000/api-docs`.
 
 ---
