@@ -1,7 +1,7 @@
 import '../config/instrument.js';
 import * as Sentry from '@sentry/node';
 import express, { Request, Response } from 'express';
-import routes from './routes/v1/index.js';
+import routes from '../interface/routes/v1/index.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import swaggerUi from 'swagger-ui-express';
