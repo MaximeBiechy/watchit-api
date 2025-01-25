@@ -1,6 +1,6 @@
 import UserRepositoryInterface from '../../domain/repositories/UserRepositoryInterface.js';
 import UserDTO from '../dtos/UserDTO.js';
-import DatabaseError from '../../shared/errors/DatabaseError';
+import DatabaseError from '../../shared/errors/DatabaseError.js';
 
 class GetAllUsersUseCase {
   constructor(private userRepository: UserRepositoryInterface) {}
