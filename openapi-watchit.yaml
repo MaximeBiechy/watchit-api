@@ -73,3 +73,36 @@ paths:
                   message:
                     type: string
                     example: API is working
+  /api/v1/users:
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      type: array
+                      properties:
+                        id:
+                          type: string
+                          example: f39f05de-b29e-4e98-8d92-8129d07c9ad7
+                        username:
+                          type: string
+                          example: Maxime12304
+                        email:
+                          type: string
+                          example: biechymaxime@gmail.com
+                        createdAt:
+                          type: string
+                          format: date-time
+                          example: 2021-07-01T00:00:00.000Z
+                        updatedAt:
+                          type: string
+                          format: date-time
+                          example: 2021-07-01T00:00:00.000Z
