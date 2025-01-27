@@ -3,18 +3,15 @@ import * as Sentry from '@sentry/node';
 import express, { Request, Response } from 'express';
 import routes from '../interface/routes/v1/index.js';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 import { openApiValidator, errorHandler } from './middlewares/index.js';
+import { __dirname } from '../shared/utils/path.js';
 
 const app = express();
 app.use(express.json());
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const swaggerDocument = YAML.load(path.resolve(__dirname, '../../openapi-watchit.yaml'));
+const swaggerDocument = YAML.load(path.resolve(__dirname, '../../../openapi-watchit.yaml'));
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 

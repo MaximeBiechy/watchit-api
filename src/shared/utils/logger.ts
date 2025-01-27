@@ -2,15 +2,12 @@ import pino from 'pino';
 import pinoPretty from 'pino-pretty';
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'url';
+import { __dirname } from './path.js';
 
 const logLevel = process.env.LOG_LEVEL || 'info';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 // ? Create a logs directory if it doesn't exist
-const logDirectory = path.resolve(__dirname, '../../logs');
+const logDirectory = path.resolve(__dirname, '../../../logs');
 if (!fs.existsSync(logDirectory)) {
   fs.mkdirSync(logDirectory);
 }

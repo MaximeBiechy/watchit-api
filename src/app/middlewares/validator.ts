@@ -1,10 +1,7 @@
 import * as OpenApiValidator from 'express-openapi-validator';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import logger from '../../shared/utils/logger.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { __dirname } from '../../shared/utils/path.js';
 
 export const openApiValidator = OpenApiValidator.middleware({
   apiSpec: path.resolve(__dirname, '../../../openapi-watchit.yaml'),
