@@ -1,8 +1,17 @@
 export default {
-  testEnvironment: 'node',
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        useESM: true,
+      },
+    ],
   },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  testMatch: ['**/tests/**/*.test.ts'],
+  extensionsToTreatAsEsm: ['.ts', '.tsx'],
+  testEnvironment: 'node',
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+  },
+  setupFilesAfterEnv: ['<rootDir>/src/__tests__/helpers/jest.setup.ts'],
+  testPathIgnorePatterns: ['/node_modules/', '/dist/', '__tests__/helpers/'],
 };
