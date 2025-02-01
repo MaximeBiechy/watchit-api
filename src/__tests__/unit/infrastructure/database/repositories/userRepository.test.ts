@@ -33,24 +33,32 @@ describe('UserRepositoryImpl', () => {
   it('should create a user', async () => {
     const fakeUser = generateFakeUserWithId();
     const user = {
+      id: faker.database.mongodbObjectId(),
       username: fakeUser.username,
       email: fakeUser.email,
       password: fakeUser.password,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
 
     const createdUser = await userRepository.createUser(user);
 
     expect(createdUser).toHaveProperty('username', user.username);
     expect(createdUser).toHaveProperty('email', user.email);
+    expect(createdUser).toHaveProperty('createdAt', user.createdAt);
+    expect(createdUser).toHaveProperty('updatedAt', user.updatedAt);
     expect(createdUser).not.toHaveProperty('password');
   });
 
   it('should throw a error if user is duplicated', async () => {
     const fakeUser = generateFakeUserWithId();
     const user = {
+      id: faker.database.mongodbObjectId(),
       username: fakeUser.username,
       email: fakeUser.email,
       password: fakeUser.password,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
 
     await userRepository.createUser(user);
