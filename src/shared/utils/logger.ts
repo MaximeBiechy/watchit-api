@@ -1,4 +1,4 @@
-import pino from 'pino';
+import { pino } from 'pino';
 import pinoPretty from 'pino-pretty';
 import fs from 'node:fs';
 import path from 'node:path';
