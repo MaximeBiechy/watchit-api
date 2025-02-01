@@ -103,6 +103,9 @@ paths:
                       type: string
                       format: date-time
                       example: 2021-01-01T00:00:00.000Z
+
+        '500':
+          $ref: '#/components/responses/DatabaseError'
     post:
       summary: Create a new user
       requestBody:
@@ -147,8 +150,61 @@ paths:
                     format: date-time
                     example: 2025-01-01T00:00:00.000Z
         '400':
-          description: Validation error
-          content:
-            application/json:
-              schema:
-                type: object
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/DatabaseError'
+
+components:
+  responses:
+    ValidationError:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Missing required fields
+              code:
+                type: string
+                example: ValidationError
+    DatabaseError:
+      description: Database error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Database error occurred
+              code:
+                type: string
+                example: DatabaseError
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Resource not found
+              code:
+                type: string
+                example: NotFoundError
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Internal Server Error
+              code:
+                type: string
+                example: InternalServerError
