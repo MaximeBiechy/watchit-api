@@ -59,7 +59,7 @@ paths:
                   message:
                     type: string
                     example: Sentry is working
-  /api/v1/:
+  /api/v1:
     get:
       summary: Check if the API is working
       responses:
