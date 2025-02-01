@@ -23,7 +23,7 @@ class UserRepositoryImpl implements UserRepositoryInterface {
   async createUser(user: User): Promise<UserDTO> {
     const userDoc = await UserModel.create(user);
     return new UserDTO({
-      _id: userDoc._id.toString(),
+      _id: userDoc.id,
       username: userDoc.username,
       email: userDoc.email,
       createdAt: userDoc.createdAt,
