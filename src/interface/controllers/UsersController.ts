@@ -3,6 +3,7 @@ import GetAllUsersUseCase from '../../application/use-cases/GetAllUsersUseCase.j
 import CreateUserUseCase from '../../application/use-cases/CreateUserUseCase.js';
 import { inject } from 'inversify';
 import { TYPES } from '../../config/types.js';
+import CreateUserDTO from '../../domain/dtos/CreateUserDTO.js';
 
 class UsersController {
   constructor(
@@ -21,7 +22,7 @@ class UsersController {
 
   async createUser(req: Request, res: Response, next: NextFunction) {
     try {
-      const user = req.body;
+      const user: CreateUserDTO = req.body;
       const createdUser = await this.createUserUseCase.execute(user);
       return res.status(201).json(createdUser);
     } catch (error: any) {

@@ -1,8 +1,8 @@
 import UserRepositoryInterface from '../../../domain/repositories/UserRepositoryInterface.js';
 import { UserModel } from '../models/index.js';
 import UserDTO from '../../../domain/dtos/UserDTO.js';
-import User from '../../../domain/entities/User.js';
 import { injectable } from 'inversify';
+import CreateUserDTO from '../../../domain/dtos/CreateUserDTO.js';
 
 @injectable()
 class UserRepositoryImpl implements UserRepositoryInterface {
@@ -20,7 +20,7 @@ class UserRepositoryImpl implements UserRepositoryInterface {
     );
   }
 
-  async createUser(user: User): Promise<UserDTO> {
+  async createUser(user: CreateUserDTO): Promise<UserDTO> {
     const userDoc = await UserModel.create(user);
     return new UserDTO({
       _id: userDoc.id,

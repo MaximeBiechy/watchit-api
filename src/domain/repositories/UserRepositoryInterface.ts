@@ -1,9 +1,9 @@
 import UserDTO from '../dtos/UserDTO.js';
-import User from '../entities/User.js';
+import CreateUserDTO from '../dtos/CreateUserDTO.js';
 
 interface UserRepositoryInterface {
   getAllUsers(): Promise<UserDTO[]>;
-  createUser(user: User): Promise<UserDTO>;
+  createUser(user: CreateUserDTO): Promise<UserDTO>;
 }
 
 export default UserRepositoryInterface;
