@@ -5,13 +5,13 @@ FROM node:22
 WORKDIR /usr/src/app
 
 # Copy package.json to install dependencies
-COPY package.json ./
+COPY package*.json ./
 
 # Install dependencies based on the NODE_ENV environment variable
 ARG NODE_ENV
 RUN if [ "$NODE_ENV" = "development" ]; \
     then npm install; \
-    else npm install --only=production; \
+    else npm ci --only=production; \
     fi
 
 # Copy the rest of the source code

@@ -12,9 +12,3 @@ services:
     environment:
       - NODE_ENV=development
     command: npm run dev
-
-  mongo:
-    container_name: watchit_mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME-root}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD-password}
