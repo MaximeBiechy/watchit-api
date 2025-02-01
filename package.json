@@ -11,7 +11,7 @@
     "lint": "eslint 'src/**/*.{js,ts}'",
     "lint:fix": "eslint 'src/**/*.{js,ts}' --fix",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
-    "test:watch": "jest --watch",
+    "test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watch",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org maxime-06 --project node-express ./dist && sentry-cli sourcemaps upload --org maxime-06 --project node-express ./dist"
   },
   "keywords": [],
