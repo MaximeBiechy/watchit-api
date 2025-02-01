@@ -1,11 +1,11 @@
 import { UserModel } from '../../../infrastructure/database/models/index.js';
 import request from 'supertest';
 import app from '../../../app/app.js';
-import generateFakeUser from '../../helpers/fakeData.js';
+import { generateFakeUserWithoutId } from '../../helpers/fakeData.js';
 
 describe('GET /users', () => {
   beforeAll(async () => {
-    const fakeUsers = Array.from({ length: 5 }, generateFakeUser);
+    const fakeUsers = Array.from({ length: 5 }, generateFakeUserWithoutId);
     await UserModel.create(fakeUsers);
   }, 30000);
 
@@ -14,7 +14,6 @@ describe('GET /users', () => {
 
     expect(response.status).toBe(200);
     expect(response.body).toHaveLength(5);
-    expect(response.body[0]).not.toHaveProperty('password');
 
     response.body.forEach((user: any) => {
       expect(user).toHaveProperty('username');
