@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-const generateFakeUser = () => ({
+const generateFakeUserWithoutId = () => ({
   username: faker.internet.username(),
   email: faker.internet.email(),
   password: faker.internet.password(),
@@ -8,4 +8,13 @@ const generateFakeUser = () => ({
   updatedAt: faker.date.recent(),
 });
 
-export default generateFakeUser;
+const generateFakeUserWithId = () => ({
+  _id: faker.database.mongodbObjectId(),
+  username: faker.internet.username(),
+  email: faker.internet.email(),
+  password: faker.internet.password(),
+  createdAt: faker.date.past(),
+  updatedAt: faker.date.recent(),
+});
+
+export { generateFakeUserWithoutId, generateFakeUserWithId };
