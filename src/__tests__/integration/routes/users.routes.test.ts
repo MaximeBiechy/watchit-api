@@ -1,7 +1,7 @@
-import { UserModel } from '../../../infrastructure/database/models';
+import { UserModel } from '../../../infrastructure/database/models/index.js';
 import request from 'supertest';
-import app from '../../../app/app';
-import generateFakeUser from '../../helpers/fakeData';
+import app from '../../../app/app.js';
+import generateFakeUser from '../../helpers/fakeData.js';
 
 describe('GET /users', () => {
   beforeAll(async () => {
