@@ -34,3 +34,31 @@ describe('GET /users', () => {
     expect(response.body).toEqual([]);
   });
 });
+
+describe('POST /users', () => {
+  afterEach(async () => {
+    await UserModel.deleteMany({});
+  });
+
+  it('should create a new user and return it without password', async () => {
+    const newUser = generateFakeUserWithoutId();
+
+    const response = await request(app).post('/api/v1/users').send(newUser);
+
+    expect(response.status).toBe(201);
+    expect(response.body).toHaveProperty('username', newUser.username);
+    expect(response.body).toHaveProperty('email', newUser.email);
+    expect(response.body).not.toHaveProperty('password');
+    expect(response.body).toHaveProperty('createdAt');
+    expect(response.body).toHaveProperty('updatedAt');
+
+    const userInDb = await UserModel.findOne({ email: newUser.email }).lean();
+    expect(userInDb).toBeTruthy();
+  });
+
+  it('should return 400 if required fields are missing', async () => {
+    const response = await request(app).post('/api/v1/users').send({});
+
+    expect(response.status).toBe(400);
+  });
+});
