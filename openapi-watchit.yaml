@@ -139,10 +139,16 @@ paths:
                     type: string
                     example: biechymaxime@gmail.com
                   createdAt:
-                      type: string
-                      format: date-time
-                      example: 2025-01-01T00:00:00.000Z
+                    type: string
+                    format: date-time
+                    example: 2025-01-01T00:00:00.000Z
                   updatedAt:
-                      type: string
-                      format: date-time
-                      example: 2025-01-01T00:00:00.000Z
+                    type: string
+                    format: date-time
+                    example: 2025-01-01T00:00:00.000Z
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                type: object

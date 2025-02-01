@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { BadRequest, HttpError } from 'express-openapi-validator/dist/framework/types.js';
 import logger from '../../shared/utils/logger.js';
-import { DatabaseError, NotFoundError } from '../../shared/errors/index.js';
+import { DatabaseError, NotFoundError, ValidationError } from '../../shared/errors/index.js';
 
 export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
   switch (true) {
@@ -23,6 +23,11 @@ export const errorHandler = (err: any, req: Request, res: Response, next: NextFu
       return res.status(404).json({
         message: err.message,
         code: 'NotFoundError',
+      });
+    case err instanceof ValidationError:
+      return res.status(400).json({
+        message: err.message,
+        code: 'ValidationError',
       });
     default:
       break;
