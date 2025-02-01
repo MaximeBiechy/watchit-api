@@ -22,9 +22,9 @@ class UsersController {
 
   async createUser(req: Request, res: Response, next: NextFunction) {
     try {
-      const user: CreateUserDTO = req.body;
-      const createdUser = await this.createUserUseCase.execute(user);
-      return res.status(201).json(createdUser);
+      const createUserDTO = new CreateUserDTO(req.body);
+      const userDTO = await this.createUserUseCase.execute(createUserDTO);
+      return res.status(201).json(userDTO);
     } catch (error: any) {
       next(error);
     }
