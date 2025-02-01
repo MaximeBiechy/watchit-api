@@ -3,9 +3,9 @@ import UserRepositoryInterface from '../../../domain/repositories/UserRepository
 import UserDTO from '../../../domain/dtos/UserDTO.js';
 import DatabaseError from '../../../shared/errors/DatabaseError.js';
 import GetAllUsersUseCase from '../../../application/use-cases/GetAllUsersUseCase.js';
-import { generateFakeUserWithId } from '../../helpers/fakeData';
+import { generateFakeUserWithId } from '../../helpers/fakeData.js';
 
-const mockUserRepository: jest.Mocked<UserRepositoryInterface> = {
+const mockUserRepository: Partial<jest.Mocked<UserRepositoryInterface>> = {
   getAllUsers: jest.fn(),
 };
 
@@ -13,14 +13,14 @@ describe('GetAllUsersUseCase', () => {
   let getAllUsersUseCase: GetAllUsersUseCase;
 
   beforeEach(() => {
-    getAllUsersUseCase = new GetAllUsersUseCase(mockUserRepository);
+    getAllUsersUseCase = new GetAllUsersUseCase(mockUserRepository as UserRepositoryInterface);
     jest.clearAllMocks();
   });
 
   it('should return a list of users', async () => {
     const fakeUsers: UserDTO[] = Array.from({ length: 3 }, () => new UserDTO(generateFakeUserWithId()));
 
-    mockUserRepository.getAllUsers.mockResolvedValue(fakeUsers);
+    mockUserRepository.getAllUsers!.mockResolvedValue(fakeUsers);
 
     const users = await getAllUsersUseCase.execute();
 
@@ -30,7 +30,7 @@ describe('GetAllUsersUseCase', () => {
   });
 
   it('should throw a DatabaseError if repository fails', async () => {
-    mockUserRepository.getAllUsers.mockRejectedValue(new Error('Database is down'));
+    mockUserRepository.getAllUsers!.mockRejectedValue(new Error('Database is down'));
 
     const promise = getAllUsersUseCase.execute();
 

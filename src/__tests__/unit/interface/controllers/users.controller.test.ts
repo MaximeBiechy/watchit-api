@@ -1,20 +1,23 @@
 import { Request, Response, NextFunction } from 'express';
 import { jest } from '@jest/globals';
-import UsersController from '../../../../interface/controllers/UsersController';
-import GetAllUsersUseCase from '../../../../application/use-cases/GetAllUsersUseCase';
-import UserDTO from '../../../../domain/dtos/UserDTO';
+import UsersController from '../../../../interface/controllers/UsersController.js';
+import GetAllUsersUseCase from '../../../../application/use-cases/GetAllUsersUseCase.js';
+import UserDTO from '../../../../domain/dtos/UserDTO.js';
 import { generateFakeUserWithId } from '../../../helpers/fakeData.js';
+import CreateUserUseCase from '../../../../application/use-cases/CreateUserUseCase.js';
 
 describe('UsersController', () => {
   let usersController: UsersController;
   let getAllUsersUseCase: GetAllUsersUseCase;
+  let createUserUseCase: CreateUserUseCase;
   let req: Partial<Request>;
   let res: Partial<Response>;
   let next: NextFunction;
 
   beforeEach(() => {
     getAllUsersUseCase = new GetAllUsersUseCase({} as any);
-    usersController = new UsersController(getAllUsersUseCase);
+    createUserUseCase = new CreateUserUseCase({} as any);
+    usersController = new UsersController(getAllUsersUseCase, createUserUseCase);
 
     req = {};
     res = {
