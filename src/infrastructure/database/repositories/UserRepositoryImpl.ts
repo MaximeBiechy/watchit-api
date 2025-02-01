@@ -1,6 +1,6 @@
 import UserRepositoryInterface from '../../../domain/repositories/UserRepositoryInterface.js';
 import { UserModel } from '../models/index.js';
-import UserDTO from '../../../application/dtos/UserDTO.js';
+import UserDTO from '../../../domain/dtos/UserDTO.js';
 
 class UserRepositoryImpl implements UserRepositoryInterface {
   async getAllUsers(): Promise<UserDTO[]> {
