@@ -1,4 +1,3 @@
-import UserRepositoryInterface from '../../domain/repositories/UserRepositoryInterface.js';
 import UserDTO from '../../domain/dtos/UserDTO.js';
 import DatabaseError from '../../shared/errors/DatabaseError.js';
 import bcrypt from 'bcrypt';
@@ -7,10 +6,11 @@ import { TYPES } from '../../config/types.js';
 import { ValidationError } from '../../shared/errors/index.js';
 import CreateUserDTO from '../../domain/dtos/CreateUserDTO.js';
 import User from '../../domain/entities/User.js';
+import AuthRepositoryInterface from '../../domain/repositories/AuthRepositoryInterface.js';
 
 @injectable()
 class CreateUserUseCase {
-  constructor(@inject(TYPES.UserRepository) private userRepository: UserRepositoryInterface) {}
+  constructor(@inject(TYPES.AuthRepository) private authRepository: AuthRepositoryInterface) {}
 
   async execute(createUserDTO: CreateUserDTO): Promise<UserDTO> {
     if (!createUserDTO.username || !createUserDTO.email || !createUserDTO.password) {
@@ -37,7 +37,7 @@ class CreateUserUseCase {
     const user = new User('', createUserDTO.username, createUserDTO.email, hashedPassword, new Date(), new Date());
 
     try {
-      return await this.userRepository.createUser(user);
+      return await this.authRepository.createUser(user);
     } catch (error: any) {
       throw new DatabaseError(error.message);
     }

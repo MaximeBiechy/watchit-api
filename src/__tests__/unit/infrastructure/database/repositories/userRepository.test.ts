@@ -1,15 +1,15 @@
 import { faker } from '@faker-js/faker';
 import { UserModel } from '../../../../../infrastructure/database/models/index.js';
-import UserRepositoryImpl from '../../../../../infrastructure/database/repositories/UserRepositoryImpl.js';
+import UsersRepositoryImpl from '../../../../../infrastructure/database/repositories/UsersRepositoryImpl';
 import { generateFakeUserWithId } from '../../../../helpers/fakeData.js';
 import { Error } from 'mongoose';
 import ValidationError = Error.ValidationError;
 
 describe('UserRepositoryImpl', () => {
-  let userRepository: UserRepositoryImpl;
+  let userRepository: UsersRepositoryImpl;
 
   beforeAll(() => {
-    userRepository = new UserRepositoryImpl();
+    userRepository = new UsersRepositoryImpl();
   });
 
   it('should return all users without password', async () => {

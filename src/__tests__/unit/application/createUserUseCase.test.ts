@@ -1,10 +1,10 @@
 import { jest } from '@jest/globals';
-import UserRepositoryInterface from '../../../domain/repositories/UserRepositoryInterface.js';
+import UsersRepositoryInterface from '../../../domain/repositories/UsersRepositoryInterface';
 import { CreateUserUseCase } from '../../../application/use-cases/index.js';
 import { generateFakeUserWithId } from '../../helpers/fakeData';
 import { ValidationError } from '../../../shared/errors/index.js';
 
-const mockUserRepository: Partial<jest.Mocked<UserRepositoryInterface>> = {
+const mockUserRepository: Partial<jest.Mocked<UsersRepositoryInterface>> = {
   createUser: jest.fn(),
 };
 
@@ -12,7 +12,7 @@ describe('CreateUserUseCase', () => {
   let createUserUseCase: CreateUserUseCase;
 
   beforeEach(() => {
-    createUserUseCase = new CreateUserUseCase(mockUserRepository as UserRepositoryInterface);
+    createUserUseCase = new CreateUserUseCase(mockUserRepository as UsersRepositoryInterface);
     jest.clearAllMocks();
   });
 

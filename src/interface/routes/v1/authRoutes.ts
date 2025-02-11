@@ -1,23 +1,13 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { TYPES } from '../../../config/types.js';
 import container from '../../../config/inversify.js';
-import UsersController from '../../controllers/UsersController.js';
 import AuthController from '../../controllers/AuthController.js';
 
 const router = Router();
 
-const usersController = container.get<UsersController>(TYPES.UsersController);
 const authController = container.get<AuthController>(TYPES.AuthController);
 
-router.get('/', async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    await usersController.getAllUsers(req, res, next);
-  } catch (error) {
-    next(error);
-  }
-});
-
-router.post('/', async (req: Request, res: Response, next: NextFunction) => {
+router.post('/register', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await authController.createUser(req, res, next);
   } catch (error) {
@@ -25,4 +15,4 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
   }
 });
 
-export { router as usersRoutes };
+export { router as authRoutes };

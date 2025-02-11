@@ -1,11 +1,11 @@
 import { jest } from '@jest/globals';
-import UserRepositoryInterface from '../../../domain/repositories/UserRepositoryInterface.js';
+import UsersRepositoryInterface from '../../../domain/repositories/UsersRepositoryInterface';
 import UserDTO from '../../../domain/dtos/UserDTO.js';
 import DatabaseError from '../../../shared/errors/DatabaseError.js';
 import GetAllUsersUseCase from '../../../application/use-cases/GetAllUsersUseCase.js';
 import { generateFakeUserWithId } from '../../helpers/fakeData.js';
 
-const mockUserRepository: Partial<jest.Mocked<UserRepositoryInterface>> = {
+const mockUserRepository: Partial<jest.Mocked<UsersRepositoryInterface>> = {
   getAllUsers: jest.fn(),
 };
 
@@ -13,7 +13,7 @@ describe('GetAllUsersUseCase', () => {
   let getAllUsersUseCase: GetAllUsersUseCase;
 
   beforeEach(() => {
-    getAllUsersUseCase = new GetAllUsersUseCase(mockUserRepository as UserRepositoryInterface);
+    getAllUsersUseCase = new GetAllUsersUseCase(mockUserRepository as UsersRepositoryInterface);
     jest.clearAllMocks();
   });
 

@@ -1,6 +1,7 @@
 export const TYPES = {
   // ? Repositories
-  UserRepository: Symbol.for('UserRepository'),
+  UsersRepository: Symbol.for('UsersRepository'),
+  AuthRepository: Symbol.for('AuthRepository'),
 
   // ? Use Cases
   GetAllUsersUseCase: Symbol.for('GetAllUsersUseCase'),
@@ -8,4 +9,5 @@ export const TYPES = {
 
   // ? Controllers
   UsersController: Symbol.for('UsersController'),
+  AuthController: Symbol.for('AuthController'),
 };
