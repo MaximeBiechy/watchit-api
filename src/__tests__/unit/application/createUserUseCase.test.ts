@@ -1,10 +1,10 @@
 import { jest } from '@jest/globals';
-import UsersRepositoryInterface from '../../../domain/repositories/UsersRepositoryInterface';
 import { CreateUserUseCase } from '../../../application/use-cases/index.js';
-import { generateFakeUserWithId } from '../../helpers/fakeData';
+import { generateFakeUserWithId } from '../../helpers/fakeData.js';
 import { ValidationError } from '../../../shared/errors/index.js';
+import AuthRepositoryInterface from '../../../domain/repositories/AuthRepositoryInterface.js';
 
-const mockUserRepository: Partial<jest.Mocked<UsersRepositoryInterface>> = {
+const mockAuthRepository: Partial<jest.Mocked<AuthRepositoryInterface>> = {
   createUser: jest.fn(),
 };
 
@@ -12,7 +12,7 @@ describe('CreateUserUseCase', () => {
   let createUserUseCase: CreateUserUseCase;
 
   beforeEach(() => {
-    createUserUseCase = new CreateUserUseCase(mockUserRepository as UsersRepositoryInterface);
+    createUserUseCase = new CreateUserUseCase(mockAuthRepository as AuthRepositoryInterface);
     jest.clearAllMocks();
   });
 
@@ -32,14 +32,14 @@ describe('CreateUserUseCase', () => {
       updatedAt: fakeUser.updatedAt,
     };
 
-    mockUserRepository.createUser!.mockResolvedValue(createdUser);
+    mockAuthRepository.createUser!.mockResolvedValue(createdUser);
 
     const result = await createUserUseCase.execute(user);
 
     expect(result).toHaveProperty('username', user.username);
     expect(result).toHaveProperty('email', user.email);
     expect(result).not.toHaveProperty('password');
-    expect(mockUserRepository.createUser).toHaveBeenCalledTimes(1);
+    expect(mockAuthRepository.createUser).toHaveBeenCalledTimes(1);
   });
 
   it('should throw a DatabaseError if repository fails', async () => {
@@ -53,13 +53,13 @@ describe('CreateUserUseCase', () => {
       updatedAt: fakeUser.updatedAt,
     };
 
-    mockUserRepository.createUser!.mockRejectedValue(new Error('Database is down'));
+    mockAuthRepository.createUser!.mockRejectedValue(new Error('Database is down'));
 
     const promise = createUserUseCase.execute(user);
 
     await expect(promise).rejects.toThrow('Database is down');
 
-    expect(mockUserRepository.createUser).toHaveBeenCalledTimes(1);
+    expect(mockAuthRepository.createUser).toHaveBeenCalledTimes(1);
   });
 
   it('should throw a ValidationError if user is missing required fields', async () => {
@@ -76,6 +76,6 @@ describe('CreateUserUseCase', () => {
 
     await expect(promise).rejects.toThrow(ValidationError);
 
-    expect(mockUserRepository.createUser).toHaveBeenCalledTimes(0);
+    expect(mockAuthRepository.createUser).toHaveBeenCalledTimes(0);
   });
 });

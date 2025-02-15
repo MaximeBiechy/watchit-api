@@ -4,20 +4,17 @@ import UsersController from '../../../../interface/controllers/UsersController.j
 import GetAllUsersUseCase from '../../../../application/use-cases/GetAllUsersUseCase.js';
 import UserDTO from '../../../../domain/dtos/UserDTO.js';
 import { generateFakeUserWithId } from '../../../helpers/fakeData.js';
-import CreateUserUseCase from '../../../../application/use-cases/CreateUserUseCase.js';
 
 describe('UsersController', () => {
   let usersController: UsersController;
   let getAllUsersUseCase: GetAllUsersUseCase;
-  let createUserUseCase: CreateUserUseCase;
   let req: Partial<Request>;
   let res: Partial<Response>;
   let next: NextFunction;
 
   beforeEach(() => {
-    getAllUsersUseCase = new GetAllUsersUseCase({} as any);
-    createUserUseCase = new CreateUserUseCase({} as any);
-    usersController = new UsersController(getAllUsersUseCase, createUserUseCase);
+    getAllUsersUseCase = new GetAllUsersUseCase({} as never);
+    usersController = new UsersController(getAllUsersUseCase);
 
     req = {};
     res = {

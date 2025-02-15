@@ -15,7 +15,7 @@ describe('GET /users', () => {
     expect(response.status).toBe(200);
     expect(response.body).toHaveLength(5);
 
-    response.body.forEach((user: any) => {
+    response.body.forEach((user: never) => {
       expect(user).toHaveProperty('username');
       expect(user).toHaveProperty('email');
       expect(user).not.toHaveProperty('password');
@@ -43,7 +43,7 @@ describe('POST /users', () => {
   it('should create a new user and return it without password', async () => {
     const newUser = generateFakeUserWithoutId();
 
-    const response = await request(app).post('/api/v1/users').send(newUser);
+    const response = await request(app).post('/api/v1/auth/register').send(newUser);
 
     expect(response.status).toBe(201);
     expect(response.body).toHaveProperty('username', newUser.username);
@@ -57,7 +57,7 @@ describe('POST /users', () => {
   });
 
   it('should return 400 if required fields are missing', async () => {
-    const response = await request(app).post('/api/v1/users').send({});
+    const response = await request(app).post('/api/v1/auth/register').send({});
 
     expect(response.status).toBe(400);
   });
