@@ -33,6 +33,12 @@ class CreateUserUseCase {
       throw new ValidationError('Invalid email');
     }
 
+    // ! Important to not expose that the user already exists (security issue).
+    const userExists = await this.authRepository.userExists(createUserDTO.username, createUserDTO.email);
+    if (userExists) {
+      throw new ValidationError('Unable to create account with provided credentials');
+    }
+
     const hashedPassword = await bcrypt.hash(createUserDTO.password, 10);
     const user = new User('', createUserDTO.username, createUserDTO.email, hashedPassword, new Date(), new Date());
 
