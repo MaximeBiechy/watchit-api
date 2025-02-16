@@ -16,6 +16,11 @@ class AuthRepositoryImpl implements AuthRepositoryInterface {
       updatedAt: userDoc.updatedAt,
     });
   }
+
+  async userExists(username: string, email: string): Promise<boolean> {
+    const user = await UserModel.findOne({ $or: [{ username }, { email }] });
+    return !!user;
+  }
 }
 
 export default AuthRepositoryImpl;
