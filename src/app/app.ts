@@ -1,5 +1,6 @@
 import '../config/instrument.js';
 import * as Sentry from '@sentry/node';
+import cors from 'cors';
 import express, { Request, Response } from 'express';
 import routes from '../interface/routes/v1/index.js';
 import path from 'path';
@@ -9,6 +10,7 @@ import { openApiValidator, errorHandler } from './middlewares/index.js';
 import { __dirname } from '../shared/utils/path.js';
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 const swaggerDocument = YAML.load(path.resolve(__dirname, '../../../openapi-watchit.yaml'));
