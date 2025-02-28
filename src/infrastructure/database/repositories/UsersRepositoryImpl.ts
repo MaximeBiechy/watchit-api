@@ -1,22 +1,15 @@
 import UsersRepositoryInterface from '../../../domain/repositories/UsersRepositoryInterface';
 import { UserModel } from '../models/index.js';
-import UserDTO from '../../../domain/dtos/UserDTO.js';
 import { injectable } from 'inversify';
+import User from '../../../domain/entities/User.js';
 
 @injectable()
 class UsersRepositoryImpl implements UsersRepositoryInterface {
-  async getAllUsers(): Promise<UserDTO[]> {
+  async getAllUsers(): Promise<User[]> {
     const usersDocs = await UserModel.find().select('-password').lean();
-    return usersDocs.map(
-      (userDoc) =>
-        new UserDTO({
-          _id: userDoc._id.toString(),
-          username: userDoc.username,
-          email: userDoc.email,
-          createdAt: userDoc.createdAt,
-          updatedAt: userDoc.updatedAt,
-        }),
-    );
+    return usersDocs.map((userDoc) => {
+      return new User(userDoc.id, userDoc.username, userDoc.email, userDoc.createdAt, userDoc.updatedAt);
+    });
   }
 }
 

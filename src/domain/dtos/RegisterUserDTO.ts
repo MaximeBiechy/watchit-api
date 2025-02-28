@@ -1,4 +1,4 @@
-class CreateUserDTO {
+class RegisterUserDTO {
   username: string;
   email: string;
   password: string;
@@ -10,4 +10,4 @@ class CreateUserDTO {
   }
 }
 
-export default CreateUserDTO;
+export default RegisterUserDTO;

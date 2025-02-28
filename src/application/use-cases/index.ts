@@ -1,4 +1,4 @@
 import GetAllUsersUseCase from './GetAllUsersUseCase.js';
-import CreateUserUseCase from './CreateUserUseCase.js';
+import RegisterUserUseCase from './RegisterUserUseCase.js';
 
-export { GetAllUsersUseCase, CreateUserUseCase };
+export { GetAllUsersUseCase, RegisterUserUseCase };
