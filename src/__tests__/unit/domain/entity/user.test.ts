@@ -8,16 +8,16 @@ describe('User Entity', () => {
       fakeUserData._id,
       fakeUserData.username,
       fakeUserData.email,
-      fakeUserData.password,
       fakeUserData.createdAt,
       fakeUserData.updatedAt,
+      fakeUserData.password,
     );
     expect(user).toBeInstanceOf(User);
     expect(user.id).toBe(fakeUserData._id);
     expect(user.username).toBe(fakeUserData.username);
     expect(user.email).toBe(fakeUserData.email);
-    expect(user.password).toBe(fakeUserData.password);
     expect(user.createdAt).toBe(fakeUserData.createdAt);
     expect(user.updatedAt).toBe(fakeUserData.updatedAt);
+    expect(user.passwordHash).toBe(fakeUserData.password);
   });
 });

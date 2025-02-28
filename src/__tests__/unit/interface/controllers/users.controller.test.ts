@@ -31,7 +31,11 @@ describe('UsersController', () => {
     await usersController.getAllUsers(req as Request, res as Response, next);
 
     expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith(users);
+    expect(res.json).toHaveBeenCalledWith({
+      status: 'success',
+      users,
+      message: 'Users fetched successfully',
+    });
   });
 
   it('should call next with an error if the use case throws', async () => {

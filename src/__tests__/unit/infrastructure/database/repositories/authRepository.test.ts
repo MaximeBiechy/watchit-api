@@ -26,9 +26,9 @@ describe('AuthRepositoryImpl', () => {
 
     expect(createdUser).toHaveProperty('username', user.username);
     expect(createdUser).toHaveProperty('email', user.email);
+    expect(createdUser).toHaveProperty('password', user.password);
     expect(createdUser).toHaveProperty('createdAt', user.createdAt);
     expect(createdUser).toHaveProperty('updatedAt', user.updatedAt);
-    expect(createdUser).not.toHaveProperty('password');
   });
 
   it('should throw a error if user is duplicated', async () => {

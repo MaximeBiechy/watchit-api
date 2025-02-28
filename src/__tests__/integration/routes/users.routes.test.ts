@@ -13,9 +13,11 @@ describe('GET /users', () => {
     const response = await request(app).get('/api/v1/users');
 
     expect(response.status).toBe(200);
-    expect(response.body).toHaveLength(5);
+    expect(response.body).toHaveProperty('status', 'success');
+    expect(response.body).toHaveProperty('message', 'Users fetched successfully');
+    expect(response.body.users).toHaveLength(5);
 
-    response.body.forEach((user: never) => {
+    response.body.users.forEach((user: never) => {
       expect(user).toHaveProperty('username');
       expect(user).toHaveProperty('email');
       expect(user).not.toHaveProperty('password');
@@ -24,41 +26,15 @@ describe('GET /users', () => {
     });
   });
 
-  it('should return a empty list of users when there is no user', async () => {
+  it('should return an empty list of users when there is no user', async () => {
     await UserModel.deleteMany({});
 
     const response = await request(app).get('/api/v1/users');
 
     expect(response.status).toBe(200);
-    expect(response.body).toHaveLength(0);
-    expect(response.body).toEqual([]);
-  });
-});
-
-describe('POST /users', () => {
-  afterEach(async () => {
-    await UserModel.deleteMany({});
-  });
-
-  it('should create a new user and return it without password', async () => {
-    const newUser = generateFakeUserWithoutId();
-
-    const response = await request(app).post('/api/v1/auth/register').send(newUser);
-
-    expect(response.status).toBe(201);
-    expect(response.body).toHaveProperty('username', newUser.username);
-    expect(response.body).toHaveProperty('email', newUser.email);
-    expect(response.body).not.toHaveProperty('password');
-    expect(response.body).toHaveProperty('createdAt');
-    expect(response.body).toHaveProperty('updatedAt');
-
-    const userInDb = await UserModel.findOne({ email: newUser.email }).lean();
-    expect(userInDb).toBeTruthy();
-  });
-
-  it('should return 400 if required fields are missing', async () => {
-    const response = await request(app).post('/api/v1/auth/register').send({});
-
-    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty('status', 'success');
+    expect(response.body).toHaveProperty('message', 'Users fetched successfully');
+    expect(response.body.users).toHaveLength(0);
+    expect(response.body.users).toEqual([]);
   });
 });

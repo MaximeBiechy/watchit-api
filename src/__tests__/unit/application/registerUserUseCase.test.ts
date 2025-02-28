@@ -1,18 +1,19 @@
 import { jest } from '@jest/globals';
-import { CreateUserUseCase } from '../../../application/use-cases/index.js';
+import { RegisterUserUseCase } from '../../../application/use-cases/index.js';
 import { generateFakeUserWithId } from '../../helpers/fakeData.js';
 import { ValidationError } from '../../../shared/errors/index.js';
 import AuthRepositoryInterface from '../../../domain/repositories/AuthRepositoryInterface.js';
 
 const mockAuthRepository: Partial<jest.Mocked<AuthRepositoryInterface>> = {
   createUser: jest.fn(),
+  findByEmail: jest.fn(),
 };
 
-describe('CreateUserUseCase', () => {
-  let createUserUseCase: CreateUserUseCase;
+describe('RegisterUserUseCase', () => {
+  let createUserUseCase: RegisterUserUseCase;
 
   beforeEach(() => {
-    createUserUseCase = new CreateUserUseCase(mockAuthRepository as AuthRepositoryInterface);
+    createUserUseCase = new RegisterUserUseCase(mockAuthRepository as AuthRepositoryInterface);
     jest.clearAllMocks();
   });
 

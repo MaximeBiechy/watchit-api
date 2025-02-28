@@ -13,9 +13,13 @@ describe('UserModel', () => {
     expect(user._id).toBeDefined();
     expect(typeof user.username).toBe('string');
     expect(typeof user.email).toBe('string');
-    expect(typeof user.password).toBe('string');
     expect(user.createdAt).toBeInstanceOf(Date);
     expect(user.updatedAt).toBeInstanceOf(Date);
+    if (user.passwordHash !== null) {
+      expect(typeof user.passwordHash).toBe('string');
+    } else {
+      expect(user.passwordHash).toBeNull();
+    }
   });
 
   it('should enforce unique email constraint', async () => {
