@@ -1,25 +1,20 @@
 import { UserModel } from '../models/index.js';
-import UserDTO from '../../../domain/dtos/UserDTO.js';
 import { injectable } from 'inversify';
 import User from '../../../domain/entities/User.js';
 import AuthRepositoryInterface from '../../../domain/repositories/AuthRepositoryInterface.js';
 
 @injectable()
 class AuthRepositoryImpl implements AuthRepositoryInterface {
-  async createUser(user: User): Promise<UserDTO> {
-    const userDoc = await UserModel.create(user);
-    return new UserDTO({
-      _id: userDoc.id,
-      username: userDoc.username,
-      email: userDoc.email,
-      createdAt: userDoc.createdAt,
-      updatedAt: userDoc.updatedAt,
-    });
+  async createUser(user: User): Promise<User> {
+    await UserModel.create(user);
+    return user;
   }
 
-  async userExists(username: string, email: string): Promise<boolean> {
-    const user = await UserModel.findOne({ $or: [{ username }, { email }] });
-    return !!user;
+  async findByEmail(email: string): Promise<User | null> {
+    const user = await UserModel.findOne({
+      email,
+    });
+    return user ? new User(user.id, user.username, user.email, user.createdAt, user.updatedAt, user.passwordHash) : null;
   }
 }
 

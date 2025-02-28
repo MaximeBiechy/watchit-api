@@ -1,7 +1,7 @@
 import { Container } from 'inversify';
 import { TYPES } from './types.js';
 // Use Cases
-import { CreateUserUseCase, GetAllUsersUseCase } from '../application/use-cases/index.js';
+import { RegisterUserUseCase, GetAllUsersUseCase } from '../application/use-cases/index.js';
 // Controllers
 import AuthController from '../interface/controllers/AuthController.js';
 import UsersController from '../interface/controllers/UsersController.js';
@@ -17,7 +17,7 @@ container.bind(TYPES.AuthRepository).to(AuthRepositoryImpl);
 
 // ? Use Cases
 container.bind(TYPES.GetAllUsersUseCase).to(GetAllUsersUseCase);
-container.bind(TYPES.CreateUserUseCase).to(CreateUserUseCase);
+container.bind(TYPES.CreateUserUseCase).to(RegisterUserUseCase);
 
 // ? Controllers
 container.bind(TYPES.UsersController).to(UsersController);
