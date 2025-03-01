@@ -5,7 +5,8 @@ export const TYPES = {
 
   // ? Use Cases
   GetAllUsersUseCase: Symbol.for('GetAllUsersUseCase'),
-  CreateUserUseCase: Symbol.for('CreateUserUseCase'),
+  RegisterUserUseCase: Symbol.for('RegisterUserUseCase'),
+  SigninUserUseCase: Symbol.for('SigninUserUseCase'),
 
   // ? Controllers
   UsersController: Symbol.for('UsersController'),
