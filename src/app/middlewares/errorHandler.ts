@@ -41,17 +41,17 @@ export const errorHandler = (err: any, req: Request, res: Response, next: NextFu
       break;
     case err instanceof DatabaseError:
       statusCode = err.status || 500;
-      errorResponse = formatError(err, req, statusCode, 'DatabaseError');
+      errorResponse = formatError(err, req, statusCode, err.code);
       logger.error(err, 'Database Error');
       break;
     case err instanceof NotFoundError:
       statusCode = err.status || 404;
-      errorResponse = formatError(err, req, statusCode, 'NotFoundError');
+      errorResponse = formatError(err, req, statusCode, err.code);
       logger.warn(err, 'Not Found Error');
       break;
     case err instanceof ValidationError:
       statusCode = err.status || 400;
-      errorResponse = formatError(err, req, statusCode, 'ValidationError');
+      errorResponse = formatError(err, req, statusCode, err.code);
       logger.warn(err, 'Validation Error');
       break;
     default:

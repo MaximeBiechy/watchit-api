@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator';
+import { IsEmail, IsString } from 'class-validator';
 
 class RegisterUserDTO {
   @IsString()
@@ -8,7 +8,6 @@ class RegisterUserDTO {
   email: string;
 
   @IsString()
-  @MinLength(6)
   password: string;
 
   constructor(username: string, email: string, password: string) {
