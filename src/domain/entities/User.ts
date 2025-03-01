@@ -15,10 +15,6 @@ class User {
       throw new ValidationError('Username must have between 3 and 20 characters');
     }
 
-    if (!email.includes('@') || !email.includes('.')) {
-      throw new ValidationError('Invalid email');
-    }
-
     if (!passwordHash) {
       throw new ValidationError('Password hash is required');
     }
