@@ -18,7 +18,7 @@ const formatError = (err: any, req: Request, status: number, code: string, error
     message: err.message,
     code,
     errors,
-    timestamp: new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' }).split(',').join(''),
+    timestamp: new Date().toISOString(),
     path: req.originalUrl,
   };
 };

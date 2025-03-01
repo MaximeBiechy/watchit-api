@@ -27,7 +27,7 @@ class RegisterUserUseCase {
     }
 
     if (existingUser) {
-      throw new ValidationError('Unable to create account with provided credentials');
+      throw new ValidationError('Unable to create account with provided credentials', 'AccountCreationError');
     }
 
     if (password.length < 6) {

@@ -10,7 +10,7 @@ interface UserDocument extends Document {
 
 const UserSchema = new Schema(
   {
-    username: { type: String, required: true, unique: true },
+    username: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     passwordHash: { type: String, default: null }, // ! Password can be null when user registers with OAuth (Google, Facebook, Apple)
     createdAt: { type: Date, required: true, default: Date.now },

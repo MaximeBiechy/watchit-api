@@ -10,7 +10,7 @@ import SigninUserResponseDTO from '../../domain/dtos/SigninUserResponseDTO.js';
 
 class AuthController {
   constructor(
-    @inject(TYPES.RegisterUserUseCase) private createUserUseCase: RegisterUserUseCase,
+    @inject(TYPES.RegisterUserUseCase) private registerUserUseCase: RegisterUserUseCase,
     @inject(TYPES.SigninUserUseCase) private signinUserUseCase: SigninUserUseCase,
   ) {}
 
@@ -22,7 +22,7 @@ class AuthController {
         password: req.body.password,
       };
 
-      const user: UserDTO = await this.createUserUseCase.execute(registerUserDTO);
+      const user: UserDTO = await this.registerUserUseCase.execute(registerUserDTO);
 
       return res.status(201).json({
         status: 'success',
@@ -42,6 +42,7 @@ class AuthController {
       };
 
       const user: SigninUserResponseDTO = await this.signinUserUseCase.execute(signinUserDTO);
+
       return res.status(200).json({
         status: 'success',
         message: 'User signed in successfully',
