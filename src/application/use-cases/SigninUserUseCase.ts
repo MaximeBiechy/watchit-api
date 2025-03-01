@@ -22,13 +22,13 @@ class SigninUserUseCase {
     }
 
     if (!existingUser) {
-      throw new ValidationError('Invalid credentials', 'InvalidCredential');
+      throw new ValidationError('Invalid credentials', 'InvalidCredentials');
     }
 
     if (existingUser.passwordHash) {
       const passwordMatch = await bcrypt.compare(password, existingUser.passwordHash);
       if (!passwordMatch) {
-        throw new ValidationError('Invalid credentials', 'InvalidCredential');
+        throw new ValidationError('Invalid credentials', 'InvalidCredentials');
       }
     }
 
