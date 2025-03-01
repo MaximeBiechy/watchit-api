@@ -1,2 +1,2 @@
-export * from './validator.js';
+export * from './validatorOpenApi.js';
 export * from './errorHandler.js';

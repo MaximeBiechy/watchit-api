@@ -4,7 +4,7 @@ import logger from '../../shared/utils/logger.js';
 import { DatabaseError, NotFoundError, ValidationError } from '../../shared/errors/index.js';
 
 interface ErrorResponse {
-  status: 'error';
+  status: string;
   message: string;
   code: string;
   errors?: any;
@@ -14,11 +14,11 @@ interface ErrorResponse {
 
 const formatError = (err: any, req: Request, status: number, code: string, errors?: any): ErrorResponse => {
   return {
-    status: 'error',
+    status: `Error: ${status}`,
     message: err.message,
     code,
     errors,
-    timestamp: new Date().toISOString(),
+    timestamp: new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' }).split(',').join(''),
     path: req.originalUrl,
   };
 };
@@ -29,28 +29,28 @@ export const errorHandler = (err: any, req: Request, res: Response, next: NextFu
 
   switch (true) {
     case err instanceof HttpError:
-      statusCode = err.status || 500;
+      statusCode = err.status || 400;
       errorResponse = formatError(
         err,
         req,
         statusCode,
-        err?.constructor?.name || 'UnknownError',
+        err?.constructor?.name || 'OpenAPIValidationError',
         err instanceof BadRequest ? err.errors : undefined,
       );
       logger.error(err, 'OpenAPI Error Validator');
       break;
     case err instanceof DatabaseError:
-      statusCode = 500;
+      statusCode = err.status || 500;
       errorResponse = formatError(err, req, statusCode, 'DatabaseError');
       logger.error(err, 'Database Error');
       break;
     case err instanceof NotFoundError:
-      statusCode = 404;
+      statusCode = err.status || 404;
       errorResponse = formatError(err, req, statusCode, 'NotFoundError');
       logger.warn(err, 'Not Found Error');
       break;
     case err instanceof ValidationError:
-      statusCode = 400;
+      statusCode = err.status || 400;
       errorResponse = formatError(err, req, statusCode, 'ValidationError');
       logger.warn(err, 'Validation Error');
       break;

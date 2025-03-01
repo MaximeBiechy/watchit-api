@@ -90,22 +90,7 @@ paths:
                   users:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        username:
-                          type: string
-                          example: john_doe
-                        email:
-                          type: string
-                          example: john.doe@example.com
-                        createdAt:
-                          type: string
-                          format: date-time
-                          example: 2025-02-01T16:37:48.343Z
-                        updatedAt:
-                          type: string
-                          format: date-time
-                          example: 2025-02-01T16:37:48.343Z
+                      $ref: '#/components/schemas/User'
                   message:
                     type: string
                     example: Users fetched successfully
@@ -119,51 +104,34 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                username:
-                  type: string
-                  example: Maxime
-                email:
-                  type: string
-                  example: biechymaxime@gmail.com
-                password:
-                  type: string
-                  example: mypassword
+              $ref: '#/components/schemas/RegisterDTO'
       responses:
         '201':
           description: Created
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: success
-                  user:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                        example: 34843a90-2ee8-463f-8b41-0153e97bdbee
-                      username:
-                        type: string
-                        example: Maxime
-                      email:
-                        type: string
-                        example: biechymaxime@gmail.com
-                      createdAt:
-                        type: string
-                        format: date-time
-                        example: 2025-01-01T00:00:00.000Z
-                      updatedAt:
-                        type: string
-                        format: date-time
-                        example: 2025-01-01T00:00:00.000Z
-                  message:
-                    type: string
-                    example: User created successfully
+                $ref: '#/components/schemas/UserRegisterResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/DatabaseError'
+  /api/v1/auth/signin:
+    post:
+      summary: Sign in a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SigninDTO'
+      responses:
+        '200':
+          description: Logged in
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSigninResponse'
         '400':
           $ref: '#/components/responses/ValidationError'
         '500':
@@ -171,55 +139,167 @@ paths:
 
 components:
   responses:
+    GeneralError:
+      description: A general error with a consistent structure
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     ValidationError:
       description: Validation error
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              message:
-                type: string
-                example: Missing required fields
-              code:
-                type: string
-                example: ValidationError
+            $ref: '#/components/schemas/ErrorResponse'
     DatabaseError:
       description: Database error
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              message:
-                type: string
-                example: Database error occurred
-              code:
-                type: string
-                example: DatabaseError
+            $ref: '#/components/schemas/ErrorResponse'
     NotFoundError:
       description: Resource not found
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              message:
-                type: string
-                example: Resource not found
-              code:
-                type: string
-                example: NotFoundError
+            $ref: '#/components/schemas/ErrorResponse'
     InternalServerError:
       description: Internal server error
       content:
         application/json:
           schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 209e7497-a7ce-4a6e-92b7-75bb0deb9a15
+        username:
+          type: string
+          example: john_doe
+        email:
+          type: string
+          example: john.doe@example.com
+        createdAt:
+          type: string
+          format: date-time
+          example: 2025-02-01T16:37:48.343Z
+        updatedAt:
+          type: string
+          format: date-time
+          example: 2025-02-01T16:37:48.343Z
+
+    RegisterDTO:
+      type: object
+      properties:
+        username:
+          type: string
+          example: Maxime
+        email:
+          type: string
+          example: biechymaxime@gmail.com
+        password:
+          type: string
+          example: mypassword
+
+    SigninDTO:
+      type: object
+      properties:
+        email:
+          type: string
+          example: biechymaxime@gmail.com
+        password:
+          type: string
+          example: mypassword
+
+    UserRegisterResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: User registered successfully
+        user:
+          type: object
+          properties:
+            id:
+              type: string
+              example: 209e7497-a7ce-4a6e-92b7-75bb0deb9a15
+            username:
+              type: string
+              example: Maxime
+            email:
+              type: string
+              example: biechymaxime@gmail.com
+            createdAt:
+              type: string
+              format: date-time
+              example: 2025-02-01T16:37:48.343Z
+            updatedAt:
+              type: string
+              format: date-time
+              example: 2025-02-01T16:37:48.343Z
+
+    UserSigninResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: User logged in successfully
+        user:
+          type: object
+          properties:
+            id:
+              type: string
+              example: 209e7497-a7ce-4a6e-92b7-75bb0deb9a15
+            username:
+              type: string
+              example: Maxime
+            email:
+              type: string
+              example:
+            accessToken:
+              type: string
+              example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1heGltZSIsImlhdCI6MTYxMzUwNjQwMCwiZXhwIjoxNjEzNTEyMDAwfQ.7
+            refreshToken:
+              type: string
+              example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1heGltZSIsImlhdCI6MTYxMzUwNjQwMCwiZXhwIjoxNjEzNTEyMDAwfQ.7
+
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Validation error
+        code:
+          type: string
+          example: ValidationError
+        errors:
+          type: array
+          items:
             type: object
             properties:
-              message:
+              field:
                 type: string
-                example: Internal Server Error
-              code:
-                type: string
-                example: InternalServerError
+                example: email
+              constraints:
+                type: object
+                example: { isEmail: "email must be a valid email" }
+        timestamp:
+          type: string
+          format: date-time
+          example: 2025-03-01T12:00:00.000Z
+        path:
+          type: string
+          example: /api/v1/auth/register
