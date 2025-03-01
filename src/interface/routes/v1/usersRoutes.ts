@@ -17,12 +17,4 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   }
 });
 
-router.post('/', async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    await authController.createUser(req, res, next);
-  } catch (error) {
-    next(error);
-  }
-});
-
 export { router as usersRoutes };
