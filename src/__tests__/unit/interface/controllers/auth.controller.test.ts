@@ -1,20 +1,22 @@
 import { Request, Response, NextFunction } from 'express';
 import { jest } from '@jest/globals';
 import AuthController from '../../../../interface/controllers/AuthController.js';
-import RegisterUserUseCase from '../../../../application/use-cases/RegisterUserUseCase.js';
 import UserDTO from '../../../../domain/dtos/UserDTO.js';
 import { generateFakeUserWithId } from '../../../helpers/fakeData.js';
+import { SigninUserUseCase, RegisterUserUseCase } from '../../../../application/use-cases/index.js';
 
 describe('AuthController', () => {
   let authController: AuthController;
   let registerUserUseCase: RegisterUserUseCase;
+  let signinUserUseCase: SigninUserUseCase;
   let req: Partial<Request>;
   let res: Partial<Response>;
   let next: NextFunction;
 
   beforeEach(() => {
     registerUserUseCase = new RegisterUserUseCase({} as never);
-    authController = new AuthController(registerUserUseCase);
+    signinUserUseCase = new SigninUserUseCase({} as never);
+    authController = new AuthController(registerUserUseCase, signinUserUseCase);
 
     req = {
       body: {
@@ -31,7 +33,8 @@ describe('AuthController', () => {
   });
 
   it('should create a new user and return it without password', async () => {
-    const user: UserDTO = new UserDTO(generateFakeUserWithId());
+    const fakeUser = generateFakeUserWithId();
+    const user: UserDTO = new UserDTO(fakeUser._id, fakeUser.username, fakeUser.email, fakeUser.createdAt, fakeUser.updatedAt);
     jest.spyOn(registerUserUseCase, 'execute').mockResolvedValue(user);
 
     await authController.createUser(req as Request, res as Response, next);
@@ -39,8 +42,8 @@ describe('AuthController', () => {
     expect(res.status).toHaveBeenCalledWith(201);
     expect(res.json).toHaveBeenCalledWith({
       status: 'success',
-      user,
       message: 'User created successfully',
+      user,
     });
   });
 

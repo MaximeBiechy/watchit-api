@@ -25,7 +25,10 @@ describe('UsersController', () => {
   });
 
   it('should return 200 and the list of users', async () => {
-    const users: UserDTO[] = [new UserDTO(generateFakeUserWithId())];
+    const fakeUser = generateFakeUserWithId();
+    const users: UserDTO[] = [
+      new UserDTO(fakeUser._id, fakeUser.username, fakeUser.email, fakeUser.createdAt, fakeUser.updatedAt),
+    ];
     jest.spyOn(getAllUsersUseCase, 'execute').mockResolvedValue(users);
 
     await usersController.getAllUsers(req as Request, res as Response, next);

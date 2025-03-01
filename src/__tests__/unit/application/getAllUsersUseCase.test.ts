@@ -1,7 +1,7 @@
 import { jest } from '@jest/globals';
 import UsersRepositoryInterface from '../../../domain/repositories/UsersRepositoryInterface';
 import UserDTO from '../../../domain/dtos/UserDTO.js';
-import DatabaseError from '../../../shared/errors/DatabaseError.js';
+import { DatabaseError } from '../../../shared/errors/DatabaseError.js';
 import GetAllUsersUseCase from '../../../application/use-cases/GetAllUsersUseCase.js';
 import { generateFakeUserWithId } from '../../helpers/fakeData.js';
 
@@ -18,8 +18,10 @@ describe('GetAllUsersUseCase', () => {
   });
 
   it('should return a list of users', async () => {
-    const fakeUsers: UserDTO[] = Array.from({ length: 3 }, () => new UserDTO(generateFakeUserWithId()));
-
+    const fakeUsers: UserDTO[] = Array.from({ length: 3 }, () => {
+      const fakeUser = generateFakeUserWithId();
+      return new UserDTO(fakeUser._id, fakeUser.username, fakeUser.email, fakeUser.createdAt, fakeUser.updatedAt);
+    });
     mockUserRepository.getAllUsers!.mockResolvedValue(fakeUsers);
 
     const users = await getAllUsersUseCase.execute();
