@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { BadRequest, HttpError } from 'express-openapi-validator/dist/framework/types.js';
 import logger from '../../shared/utils/logger.js';
-import { DatabaseError, NotFoundError, ValidationError } from '../../shared/errors/index.js';
+import { DatabaseError, NotFoundError, TMDBServerError, ValidationError } from '../../shared/errors/index.js';
 
 interface ErrorResponse {
   status: string;
@@ -53,6 +53,11 @@ export const errorHandler = (err: any, req: Request, res: Response, next: NextFu
       statusCode = err.status || 400;
       errorResponse = formatError(err, req, statusCode, err.code);
       logger.warn(err, 'Validation Error');
+      break;
+    case err instanceof TMDBServerError:
+      statusCode = err.status || 500;
+      errorResponse = formatError(err, req, statusCode, err.code);
+      logger.error(err, 'Server Error');
       break;
     default:
       logger.error(err, 'Unhandled Internal Server Error');
