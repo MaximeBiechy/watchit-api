@@ -14,5 +14,6 @@ export const config = {
   TMDB: {
     API_KEY: process.env.WATCHIT_TMDB_API_KEY,
     BASE_URL: process.env.WATCHIT_TMDB_BASE_URL || 'https://api.themoviedb.org/3',
+    IMAGE_BASE_URL: process.env.WATCHIT_TMDB_IMAGE_BASE_URL || 'https://image.tmdb.org/t/p/w500',
   },
 };
