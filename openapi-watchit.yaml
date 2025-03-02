@@ -90,7 +90,7 @@ paths:
                   users:
                     type: array
                     items:
-                      $ref: '#/components/schemas/User'
+                      $ref: '#/components/schemas/UserDTO'
                   message:
                     type: string
                     example: Users fetched successfully
@@ -136,6 +136,23 @@ paths:
           $ref: '#/components/responses/ValidationError'
         '500':
           $ref: '#/components/responses/DatabaseError'
+  /api/v1/movies/{id}:
+    get:
+      summary: Get movie details by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: The movie ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovieDTO'
 
 components:
   responses:
@@ -171,7 +188,7 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
 
   schemas:
-    User:
+    UserDTO:
       type: object
       properties:
         id:
@@ -272,6 +289,38 @@ components:
             refreshToken:
               type: string
               example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1heGltZSIsImlhdCI6MTYxMzUwNjQwMCwiZXhwIjoxNjEzNTEyMDAwfQ.7
+
+    MovieDTO:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: User logged in successfully
+        movie:
+          type: object
+          properties:
+            id:
+              type: number
+              example: 500
+            title:
+              type: string
+              example: The Shawshank Redemption
+            overview:
+              type: string
+              example: Two imprisoned
+            posterPath:
+              type: string
+              example: /9O7gLzmreU0nGkIB6K3BsJbzvNv.jpg
+            director:
+              type: string
+              example: Frank Darabont
+            releaseDate:
+              type: string
+              format: date
+              example: 1994-09-23
 
     ErrorResponse:
       type: object
