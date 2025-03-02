@@ -11,4 +11,8 @@ export const config = {
     MONGO_USER: process.env.MONGO_INITDB_ROOT_USERNAME || 'root',
     MONGO_PASSWORD: process.env.MONGO_INITDB_ROOT_PASSWORD || 'password',
   },
+  TMDB: {
+    API_KEY: process.env.WATCHIT_TMDB_API_KEY,
+    BASE_URL: process.env.WATCHIT_TMDB_BASE_URL || 'https://api.themoviedb.org/3',
+  },
 };
