@@ -2,22 +2,49 @@ import { inject, injectable } from 'inversify';
 import { TYPES } from '../../config/types.js';
 import MovieRepositoryInterface from '../../domain/repositories/MovieRepositoryInterface.js';
 import MovieDTO from '../../domain/dtos/MovieDTO.js';
-import { ValidationError } from '../../shared/errors/index.js';
+import { ValidationError, TMDBServerError } from '../../shared/errors/index.js';
+import { config } from '../../config/config.js';
 
 @injectable()
 class GetMovieDetailsUseCase {
   constructor(@inject(TYPES.MovieRepository) private movieRepository: MovieRepositoryInterface) {}
 
-  async execute(movieId: string): Promise<MovieDTO> {
+  async execute(movieId: string, countryCode: string = 'FR'): Promise<MovieDTO> {
     if (!movieId) {
       throw new ValidationError('Invalid movieId', 'InvalidMovieId');
     }
 
     try {
-      const movie = await this.movieRepository.getMovieDetails(movieId);
-      return new MovieDTO(movie.id, movie.title, movie.overview, movie.posterPath, movie.director, movie.releaseDate);
+      const [details, credits, watchProviders] = await Promise.all([
+        this.movieRepository.getMovieDetails(movieId),
+        this.movieRepository.getMovieCredits(movieId),
+        this.movieRepository.getMovieWatchProviders(movieId),
+      ]);
+
+      const actors = credits.cast.slice(0, 10).map((actor: any) => ({
+        id: actor.id,
+        name: actor.name,
+        character: actor.character,
+        profilePath: actor.profile_path ? `${config.TMDB.IMAGE_BASE_URL}${actor.profile_path}` : null,
+      }));
+
+      const streamingProviders =
+        watchProviders.results?.[countryCode]?.flatrate.map((provider: any) => provider.provider_name) || [];
+
+      return new MovieDTO(
+        details.id,
+        details.title,
+        details.genres.map((genre: any) => genre.name),
+        details.runtime,
+        details.overview,
+        details.poster_path ? `${config.TMDB.IMAGE_BASE_URL}${details.poster_path}` : null,
+        credits.crew.find((crewMember: any) => crewMember.job === 'Director')?.name || 'Unknown',
+        new Date(details.release_date),
+        actors,
+        streamingProviders,
+      );
     } catch (error: any) {
-      throw new ValidationError(error.message, error.name);
+      throw new TMDBServerError(error.message, 'ServerError');
     }
   }
 }
