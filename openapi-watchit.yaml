@@ -153,6 +153,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MovieDTO'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/TMDBServerError'
+  /api/v1/movies/now_playing:
+    get:
+      summary: Get Now Playing Movies
+      parameters:
+        - in: query
+          name: region
+          required: true
+          schema:
+            type: string
+          description: The region code
+        - in: query
+          name: language
+          required: true
+          schema:
+            type: string
+          description: The language code
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NowPlayingMovieDTO'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/TMDBServerError'
 
 components:
   responses:
@@ -182,6 +213,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     InternalServerError:
       description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TMDBServerError:
+      description: Server Error
       content:
         application/json:
           schema:
@@ -308,6 +345,14 @@ components:
             title:
               type: string
               example: The Shawshank Redemption
+            genres:
+              type: array
+              items:
+                type: string
+              example: [ "Drama", "Crime" ]
+            duration:
+              type: number
+              example: 142
             overview:
               type: string
               example: Two imprisoned
@@ -321,6 +366,52 @@ components:
               type: string
               format: date
               example: 1994-09-23
+            actors:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    example: 62
+                  name:
+                    type: string
+                    example: Morgan Freeman
+                  character:
+                    type: string
+                    example: Ellis Boyd 'Red' Redding
+                  profilePath:
+                    type: string
+                    example: /oGJQhOpT8S1M56tvX0aCkXzv5F4.jpg
+            streamingProviders:
+              type: array
+              items:
+                type: object
+                properties:
+                  provider_name:
+                    type: string
+                    example: Netflix
+
+    NowPlayingMovieDTO:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: User logged in successfully
+        movies:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: number
+                example: 500
+              posterPath:
+                type: string
+                example: /9O7gLzmreU0nGkIB6K3BsJbzvNv.jpg
 
     ErrorResponse:
       type: object

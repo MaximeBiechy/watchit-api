@@ -1,11 +1,15 @@
 import { Request, Response, NextFunction } from 'express';
 import { inject } from 'inversify';
 import { TYPES } from '../../config/types.js';
-import GetMovieDetailsUseCase from '../../application/use-cases/GetMovieDetailsUseCase.js';
-import MovieDTO from '../../domain/dtos/MovieDTO';
+import MovieDTO from '../../domain/dtos/MovieDTO.js';
+import { GetMovieDetailsUseCase, GetNowPlayingMoviesUseCase } from '../../application/use-cases/index.js';
+import NowPlayingMovieDTO from '../../domain/dtos/NowPlayingMovieDTO.js';
 
 class MovieController {
-  constructor(@inject(TYPES.GetMovieDetailsUseCase) private getMovieDetailsUseCase: GetMovieDetailsUseCase) {}
+  constructor(
+    @inject(TYPES.GetMovieDetailsUseCase) private getMovieDetailsUseCase: GetMovieDetailsUseCase,
+    @inject(TYPES.GetNowPlayingMoviesUseCase) private getNowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase,
+  ) {}
 
   async getMovieDetails(req: Request, res: Response, next: NextFunction) {
     try {
@@ -16,6 +20,23 @@ class MovieController {
         status: 'success',
         message: 'Movie details retrieved successfully',
         movie,
+      });
+    } catch (error: any) {
+      next(error);
+    }
+  }
+
+  async getNowPlayingMovies(req: Request, res: Response, next: NextFunction) {
+    try {
+      const region = req.query.region as string;
+      const language = req.query.language as string;
+
+      const movies: NowPlayingMovieDTO[] = await this.getNowPlayingMoviesUseCase.execute(region, language);
+
+      return res.status(200).json({
+        status: 'success',
+        message: 'Now Playing Movies retrieved successfully',
+        movies,
       });
     } catch (error: any) {
       next(error);

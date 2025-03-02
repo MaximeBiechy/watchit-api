@@ -11,6 +11,7 @@ import UsersRepositoryImpl from '../infrastructure/database/repositories/UsersRe
 import MovieRepositoryImpl from '../infrastructure/tmdb/repositories/MovieRepositoryImpl.js';
 import GetMovieDetailsUseCase from '../application/use-cases/GetMovieDetailsUseCase.js';
 import MovieController from '../interface/controllers/MovieController.js';
+import GetNowPlayingMoviesUseCase from '../application/use-cases/GetNowPlayingMoviesUseCase.js';
 
 const container = new Container();
 
@@ -24,6 +25,7 @@ container.bind(TYPES.GetAllUsersUseCase).to(GetAllUsersUseCase);
 container.bind(TYPES.RegisterUserUseCase).to(RegisterUserUseCase);
 container.bind(TYPES.SigninUserUseCase).to(SigninUserUseCase);
 container.bind(TYPES.GetMovieDetailsUseCase).to(GetMovieDetailsUseCase);
+container.bind(TYPES.GetNowPlayingMoviesUseCase).to(GetNowPlayingMoviesUseCase);
 
 // ? Controllers
 container.bind(TYPES.UsersController).to(UsersController);

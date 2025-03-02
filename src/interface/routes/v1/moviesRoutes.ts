@@ -7,10 +7,17 @@ const router = Router();
 
 const movieController = container.get<MovieController>(TYPES.MovieController);
 
+router.get('/now_playing', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await movieController.getNowPlayingMovies(req, res, next);
+  } catch (error: any) {
+    next(error);
+  }
+});
 router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await movieController.getMovieDetails(req, res, next);
-  } catch (error) {
+  } catch (error: any) {
     next(error);
   }
 });

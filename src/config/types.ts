@@ -9,6 +9,7 @@ export const TYPES = {
   RegisterUserUseCase: Symbol.for('RegisterUserUseCase'),
   SigninUserUseCase: Symbol.for('SigninUserUseCase'),
   GetMovieDetailsUseCase: Symbol.for('GetMovieDetailsUseCase'),
+  GetNowPlayingMoviesUseCase: Symbol.for('GetNowPlayingMoviesUseCase'),
 
   // ? Controllers
   UsersController: Symbol.for('UsersController'),
