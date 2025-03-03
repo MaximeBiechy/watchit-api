@@ -7,6 +7,7 @@ import SigninUserUseCase from './auth/SigninUserUseCase.js';
 import GetMovieDetailsUseCase from './movies/GetMovieDetailsUseCase.js';
 import GetNowPlayingMoviesUseCase from './movies/GetNowPlayingMoviesUseCase.js';
 import GetUpcomingMoviesUseCase from './movies/GetUpcomingMoviesUseCase.js';
+import GetPopularMoviesUseCase from './movies/GetPopularMoviesUseCase.js';
 
 export {
   GetAllUsersUseCase,
@@ -15,4 +16,5 @@ export {
   GetMovieDetailsUseCase,
   GetNowPlayingMoviesUseCase,
   GetUpcomingMoviesUseCase,
+  GetPopularMoviesUseCase,
 };

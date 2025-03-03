@@ -10,6 +10,8 @@ interface MovieRepositoryInterface {
   getNowPlayingMovies(region: string, language: string): Promise<any>;
 
   getUpcomingMovies(region: string, language: string): Promise<any>;
+
+  getPopularMovies(region: string, language: string): Promise<any>;
 }
 
 export default MovieRepositoryInterface;

@@ -22,6 +22,14 @@ router.get('/upcoming', async (req: Request, res: Response, next: NextFunction) 
     next(error);
   }
 });
+
+router.get('/popular', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await movieController.getPopularMovies(req, res, next);
+  } catch (error: any) {
+    next(error);
+  }
+});
 router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await movieController.getMovieDetails(req, res, next);
