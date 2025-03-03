@@ -19,7 +19,11 @@ class GetUpcomingMoviesUseCase {
 
       return movies.map(
         (movie: any) =>
-          new HomePageMovieDTO(movie.id, movie.poster_path ? `${config.TMDB.IMAGE_BASE_URL}${movie.poster_path}` : null),
+          new HomePageMovieDTO(
+            movie.id,
+            movie.title,
+            movie.poster_path ? `${config.TMDB.IMAGE_BASE_URL}${movie.poster_path}` : null,
+          ),
       );
     } catch (error: any) {
       throw new TMDBServerError(error.message, 'ServerError');

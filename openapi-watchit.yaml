@@ -512,6 +512,9 @@ components:
               id:
                 type: number
                 example: 500
+              title:
+                type: string
+                example: The Shawshank Redemption
               posterPath:
                 type: string
                 example: /9O7gLzmreU0nGkIB6K3BsJbzvNv.jpg

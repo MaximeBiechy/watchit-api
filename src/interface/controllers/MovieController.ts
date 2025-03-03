@@ -41,7 +41,6 @@ class MovieController {
       const region = req.query.region as string;
       const language = req.query.language as string;
       const page = parseInt(req.query.page as string) || 1;
-      console.log('page', page);
 
       const movies: HomePageMovieDTO[] = await this.getNowPlayingMoviesUseCase.execute(region, language, page);
 
