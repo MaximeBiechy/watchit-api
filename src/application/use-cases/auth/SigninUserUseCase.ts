@@ -1,6 +1,6 @@
 import { inject, injectable } from 'inversify';
 import { TYPES } from '../../../config/types.js';
-import AuthRepositoryInterface from '../../../domain/repositories/AuthRepositoryInterface.js';
+import { AuthRepositoryInterface } from '../../../domain/repositories/index.js';
 import bcrypt from 'bcrypt';
 import TokenService from '../../../infrastructure/security/TokenService.js';
 import { DatabaseError, ValidationError } from '../../../shared/errors/index.js';

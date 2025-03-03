@@ -3,7 +3,7 @@ import { inject, injectable } from 'inversify';
 import { TYPES } from '../../../config/types.js';
 import { ValidationError, DatabaseError } from '../../../shared/errors/index.js';
 import User from '../../../domain/entities/User.js';
-import AuthRepositoryInterface from '../../../domain/repositories/AuthRepositoryInterface.js';
+import { AuthRepositoryInterface } from '../../../domain/repositories/index.js';
 import { RegisterUserDTO, UserDTO } from '../../../domain/dtos/index.js';
 
 @injectable()
