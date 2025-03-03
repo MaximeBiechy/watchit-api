@@ -40,8 +40,10 @@ class MovieController {
     try {
       const region = req.query.region as string;
       const language = req.query.language as string;
+      const page = parseInt(req.query.page as string) || 1;
+      console.log('page', page);
 
-      const movies: HomePageMovieDTO[] = await this.getNowPlayingMoviesUseCase.execute(region, language);
+      const movies: HomePageMovieDTO[] = await this.getNowPlayingMoviesUseCase.execute(region, language, page);
 
       return res.status(200).json({
         status: 'success',
@@ -57,8 +59,9 @@ class MovieController {
     try {
       const region = req.query.region as string;
       const language = req.query.language as string;
+      const page = parseInt(req.query.page as string) || 1;
 
-      const movies: HomePageMovieDTO[] = await this.getUpcomingMoviesUseCase.execute(region, language);
+      const movies: HomePageMovieDTO[] = await this.getUpcomingMoviesUseCase.execute(region, language, page);
 
       return res.status(200).json({
         status: 'success',
@@ -74,8 +77,9 @@ class MovieController {
     try {
       const region = req.query.region as string;
       const language = req.query.language as string;
+      const page = parseInt(req.query.page as string) || 1;
 
-      const movies: HomePageMovieDTO[] = await this.getPopularMoviesUseCase.execute(region, language);
+      const movies: HomePageMovieDTO[] = await this.getPopularMoviesUseCase.execute(region, language, page);
 
       return res.status(200).json({
         status: 'success',
@@ -91,8 +95,9 @@ class MovieController {
     try {
       const region = req.query.region as string;
       const language = req.query.language as string;
+      const page = parseInt(req.query.page as string) || 1;
 
-      const movies: HomePageMovieDTO[] = await this.getTopRatedMoviesUseCase.execute(region, language);
+      const movies: HomePageMovieDTO[] = await this.getTopRatedMoviesUseCase.execute(region, language, page);
 
       return res.status(200).json({
         status: 'success',

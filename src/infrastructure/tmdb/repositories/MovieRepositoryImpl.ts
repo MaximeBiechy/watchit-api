@@ -24,12 +24,12 @@ class MovieRepositoryImpl implements MovieRepositoryInterface {
     return response.data;
   }
 
-  async getNowPlayingMovies(region: string, language: string): Promise<any> {
+  async getNowPlayingMovies(region: string, language: string, page: number): Promise<any> {
     const response = await axiosInstance.get('/movie/now_playing', {
       params: {
         region,
         language,
-        page: 1,
+        page,
       },
     });
 
@@ -37,12 +37,12 @@ class MovieRepositoryImpl implements MovieRepositoryInterface {
     return response.data?.results;
   }
 
-  async getUpcomingMovies(region: string, language: string): Promise<any> {
+  async getUpcomingMovies(region: string, language: string, page: number): Promise<any> {
     const response = await axiosInstance.get('/movie/upcoming', {
       params: {
         language,
         region,
-        page: 1,
+        page,
       },
     });
 
@@ -50,12 +50,12 @@ class MovieRepositoryImpl implements MovieRepositoryInterface {
     return response.data?.results;
   }
 
-  async getPopularMovies(region: string, language: string): Promise<any> {
+  async getPopularMovies(region: string, language: string, page: number): Promise<any> {
     const response = await axiosInstance.get('/movie/popular', {
       params: {
         language,
         region,
-        page: 1,
+        page,
       },
     });
 
@@ -63,12 +63,12 @@ class MovieRepositoryImpl implements MovieRepositoryInterface {
     return response.data?.results;
   }
 
-  async getTopRatedMovies(region: string, language: string): Promise<any> {
+  async getTopRatedMovies(region: string, language: string, page: number): Promise<any> {
     const response = await axiosInstance.get('/movie/top_rated', {
       params: {
         language,
         region,
-        page: 1,
+        page,
       },
     });
 

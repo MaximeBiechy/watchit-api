@@ -173,6 +173,12 @@ paths:
           schema:
             type: string
           description: The language code
+        - in: query
+          name: page
+          required: false
+          schema:
+            type: number
+          description: The page number
       responses:
         '200':
           description: OK
@@ -200,6 +206,12 @@ paths:
           schema:
             type: string
           description: The language code
+        - in: query
+          name: page
+          required: false
+          schema:
+            type: number
+          description: The page number
       responses:
         '200':
           description: OK
@@ -227,6 +239,12 @@ paths:
           schema:
             type: string
           description: The language code
+        - in: query
+          name: page
+          required: false
+          schema:
+            type: number
+          description: The page number
       responses:
         '200':
           description: OK
@@ -254,6 +272,12 @@ paths:
           schema:
             type: string
           description: The language code
+        - in: query
+          name: page
+          required: false
+          schema:
+            type: number
+          description: The page number
       responses:
         '200':
           description: OK

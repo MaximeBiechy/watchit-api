@@ -9,13 +9,13 @@ import { HomePageMovieDTO } from '../../../domain/dtos/index.js';
 class GetNowPlayingMoviesUseCase {
   constructor(@inject(TYPES.MovieRepository) private movieRepository: MovieRepositoryInterface) {}
 
-  async execute(region: string, language: string): Promise<HomePageMovieDTO[]> {
+  async execute(region: string, language: string, page: number = 1): Promise<HomePageMovieDTO[]> {
     if (!region || !language) {
       throw new ValidationError('Invalid region or language', 'InvalidRegionOrLanguage');
     }
 
     try {
-      const movies = await this.movieRepository.getNowPlayingMovies(region, language);
+      const movies = await this.movieRepository.getNowPlayingMovies(region, language, page);
 
       return movies.map(
         (movie: any) =>

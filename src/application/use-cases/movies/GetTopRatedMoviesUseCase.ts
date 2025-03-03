@@ -9,13 +9,13 @@ import { config } from '../../../config/config.js';
 class GetPopularMoviesUseCase {
   constructor(@inject(TYPES.MovieRepository) private movieRepository: MovieRepositoryInterface) {}
 
-  async execute(region: string, language: string): Promise<any> {
+  async execute(region: string, language: string, page: number = 1): Promise<any> {
     if (!region || !language) {
       throw new ValidationError('Invalid region or language', 'InvalidRegionOrLanguage');
     }
 
     try {
-      const movies = await this.movieRepository.getTopRatedMovies(region, language);
+      const movies = await this.movieRepository.getTopRatedMovies(region, language, page);
 
       return movies.map(
         (movie: any) =>
