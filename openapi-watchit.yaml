@@ -386,11 +386,9 @@ components:
             streamingProviders:
               type: array
               items:
-                type: object
-                properties:
-                  provider_name:
-                    type: string
-                    example: Netflix
+                type: string
+                example: [ "Netflix", "Amazon Prime" ]
+
 
     NowPlayingMovieDTO:
       type: object
