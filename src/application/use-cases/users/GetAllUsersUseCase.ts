@@ -1,4 +1,4 @@
-import UsersRepositoryInterface from '../../../domain/repositories/UsersRepositoryInterface.js';
+import { UsersRepositoryInterface } from '../../../domain/repositories/index.js';
 import { DatabaseError } from '../../../shared/errors/index.js';
 import { inject, injectable } from 'inversify';
 import { TYPES } from '../../../config/types.js';
