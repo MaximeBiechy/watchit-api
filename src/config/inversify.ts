@@ -9,6 +9,7 @@ import {
   GetNowPlayingMoviesUseCase,
   GetUpcomingMoviesUseCase,
   GetPopularMoviesUseCase,
+  GetTopRatedMoviesUseCase,
 } from '../application/use-cases/index.js';
 // Controllers
 import { UsersController, AuthController, MovieController } from '../interface/controllers/index.js';
@@ -31,6 +32,7 @@ container.bind(TYPES.GetMovieDetailsUseCase).to(GetMovieDetailsUseCase);
 container.bind(TYPES.GetNowPlayingMoviesUseCase).to(GetNowPlayingMoviesUseCase);
 container.bind(TYPES.GetUpcomingMoviesUseCase).to(GetUpcomingMoviesUseCase);
 container.bind(TYPES.GetPopularMoviesUseCase).to(GetPopularMoviesUseCase);
+container.bind(TYPES.GetTopRatedMoviesUseCase).to(GetTopRatedMoviesUseCase);
 
 // ? Controllers
 container.bind(TYPES.UsersController).to(UsersController);

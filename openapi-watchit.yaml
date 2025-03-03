@@ -238,6 +238,33 @@ paths:
           $ref: '#/components/responses/ValidationError'
         '500':
           $ref: '#/components/responses/TMDBServerError'
+  /api/v1/movies/top_rated:
+    get:
+      summary: Get Top Rated Movies
+      parameters:
+        - in: query
+          name: region
+          required: true
+          schema:
+            type: string
+          description: The region code
+        - in: query
+          name: language
+          required: true
+          schema:
+            type: string
+          description: The language code
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HomePageMovieDTO'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/TMDBServerError'
 
 components:
   responses:

@@ -62,6 +62,19 @@ class MovieRepositoryImpl implements MovieRepositoryInterface {
     // @ts-ignore: Results exist in TMDB
     return response.data?.results;
   }
+
+  async getTopRatedMovies(region: string, language: string): Promise<any> {
+    const response = await axiosInstance.get('/movie/top_rated', {
+      params: {
+        language,
+        region,
+        page: 1,
+      },
+    });
+
+    // @ts-ignore: Results exist in TMDB
+    return response.data?.results;
+  }
 }
 
 export default MovieRepositoryImpl;
