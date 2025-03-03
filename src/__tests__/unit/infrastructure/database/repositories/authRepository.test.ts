@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker';
 import { generateFakeUserWithId } from '../../../../helpers/fakeData.js';
 import { Error } from 'mongoose';
 import ValidationError = Error.ValidationError;
-import AuthRepositoryImpl from '../../../../../infrastructure/database/repositories/AuthRepositoryImpl';
+import { AuthRepositoryImpl } from '../../../../../infrastructure/database/repositories/index.js';
 
 describe('AuthRepositoryImpl', () => {
   let authRepository: AuthRepositoryImpl;

@@ -1,11 +1,10 @@
-import UserDTO from '../../domain/dtos/UserDTO.js';
 import bcrypt from 'bcrypt';
 import { inject, injectable } from 'inversify';
-import { TYPES } from '../../config/types.js';
-import { ValidationError, DatabaseError } from '../../shared/errors/index.js';
-import RegisterUserDTO from '../../domain/dtos/RegisterUserDTO';
-import User from '../../domain/entities/User.js';
-import AuthRepositoryInterface from '../../domain/repositories/AuthRepositoryInterface.js';
+import { TYPES } from '../../../config/types.js';
+import { ValidationError, DatabaseError } from '../../../shared/errors/index.js';
+import User from '../../../domain/entities/User.js';
+import AuthRepositoryInterface from '../../../domain/repositories/AuthRepositoryInterface.js';
+import { RegisterUserDTO, UserDTO } from '../../../domain/dtos/index.js';
 
 @injectable()
 class RegisterUserUseCase {

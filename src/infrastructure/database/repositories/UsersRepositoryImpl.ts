@@ -1,7 +1,7 @@
-import UsersRepositoryInterface from '../../../domain/repositories/UsersRepositoryInterface';
+import { UsersRepositoryInterface } from '../../../domain/repositories/index.js';
 import { UserModel } from '../models/index.js';
 import { injectable } from 'inversify';
-import User from '../../../domain/entities/User.js';
+import { User } from '../../../domain/entities/index.js';
 
 @injectable()
 class UsersRepositoryImpl implements UsersRepositoryInterface {

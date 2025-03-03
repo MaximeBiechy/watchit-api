@@ -1,4 +1,4 @@
-import User from '../entities/User.js';
+import { User } from '../entities/index.js';
 
 interface UsersRepositoryInterface {
   getAllUsers(): Promise<User[]>;

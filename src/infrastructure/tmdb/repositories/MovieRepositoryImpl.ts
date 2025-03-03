@@ -1,4 +1,4 @@
-import MovieRepositoryInterface from '../../../domain/repositories/MovieRepositoryInterface.js';
+import { MovieRepositoryInterface } from '../../../domain/repositories/index.js';
 import { injectable } from 'inversify';
 import { axiosInstance } from '../axiosInstance.js';
 

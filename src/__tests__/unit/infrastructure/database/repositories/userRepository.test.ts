@@ -1,5 +1,5 @@
 import { UserModel } from '../../../../../infrastructure/database/models/index.js';
-import UsersRepositoryImpl from '../../../../../infrastructure/database/repositories/UsersRepositoryImpl';
+import { UsersRepositoryImpl } from '../../../../../infrastructure/database/repositories/index.js';
 import { generateFakeUserWithId } from '../../../../helpers/fakeData.js';
 
 describe('UserRepositoryImpl', () => {

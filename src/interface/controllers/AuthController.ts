@@ -1,12 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import RegisterUserUseCase from '../../application/use-cases/RegisterUserUseCase.js';
 import { inject } from 'inversify';
 import { TYPES } from '../../config/types.js';
-import RegisterUserDTO from '../../domain/dtos/RegisterUserDTO.js';
-import UserDTO from '../../domain/dtos/UserDTO.js';
-import SigninUserDTO from '../../domain/dtos/SigninUserDTO.js';
-import { SigninUserUseCase } from '../../application/use-cases/index.js';
-import SigninUserResponseDTO from '../../domain/dtos/SigninUserResponseDTO.js';
+import { SigninUserUseCase, RegisterUserUseCase } from '../../application/use-cases/index.js';
+import { RegisterUserDTO, SigninUserDTO, SigninUserResponseDTO, UserDTO } from '../../domain/dtos/index.js';
 
 class AuthController {
   constructor(

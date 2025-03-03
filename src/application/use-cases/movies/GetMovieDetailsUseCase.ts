@@ -1,9 +1,9 @@
 import { inject, injectable } from 'inversify';
-import { TYPES } from '../../config/types.js';
-import MovieRepositoryInterface from '../../domain/repositories/MovieRepositoryInterface.js';
-import MovieDTO from '../../domain/dtos/MovieDTO.js';
-import { ValidationError, TMDBServerError } from '../../shared/errors/index.js';
-import { config } from '../../config/config.js';
+import { TYPES } from '../../../config/types.js';
+import MovieRepositoryInterface from '../../../domain/repositories/MovieRepositoryInterface.js';
+import { ValidationError, TMDBServerError } from '../../../shared/errors/index.js';
+import { config } from '../../../config/config.js';
+import { MovieDTO } from '../../../domain/dtos/index.js';
 
 @injectable()
 class GetMovieDetailsUseCase {

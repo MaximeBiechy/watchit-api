@@ -1,4 +1,4 @@
-import Actor from '../entities/Actor';
+import Actor from '../../entities/Actor';
 
 class MovieDTO {
   id: number;

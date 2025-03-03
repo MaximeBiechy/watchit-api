@@ -1,10 +1,9 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { TYPES } from '../../../config/types.js';
 import container from '../../../config/inversify.js';
-import AuthController from '../../controllers/AuthController.js';
 import { validateDTO } from '../../../app/middlewares/validateDTO.js';
-import SigninUserDTO from '../../../domain/dtos/SigninUserDTO.js';
-import RegisterUserDTO from '../../../domain/dtos/RegisterUserDTO.js';
+import { AuthController } from '../../../interface/controllers/index.js';
+import { RegisterUserDTO, SigninUserDTO } from '../../../domain/dtos/index.js';
 
 const router = Router();
 

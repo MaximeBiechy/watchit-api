@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { jest } from '@jest/globals';
 import UsersController from '../../../../interface/controllers/UsersController.js';
-import GetAllUsersUseCase from '../../../../application/use-cases/GetAllUsersUseCase.js';
-import UserDTO from '../../../../domain/dtos/UserDTO.js';
+import GetAllUsersUseCase from '../../../../application/use-cases/users/GetAllUsersUseCase';
+import UserDTO from '../../../../domain/dtos/users/UserDTO';
 import { generateFakeUserWithId } from '../../../helpers/fakeData.js';
 
 describe('UsersController', () => {

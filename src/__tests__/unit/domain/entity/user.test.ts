@@ -1,4 +1,4 @@
-import User from '../../../../domain/entities/User.js';
+import { User } from '../../../../domain/entities/index.js';
 import { generateFakeUserWithId } from '../../../helpers/fakeData.js';
 
 describe('User Entity', () => {

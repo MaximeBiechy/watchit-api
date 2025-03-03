@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import GetAllUsersUseCase from '../../application/use-cases/GetAllUsersUseCase.js';
 import { inject } from 'inversify';
 import { TYPES } from '../../config/types.js';
-import UserDTO from '../../domain/dtos/UserDTO.js';
+import { GetAllUsersUseCase } from '../../application/use-cases/index.js';
+import { UserDTO } from '../../domain/dtos/index.js';
 
 class UsersController {
   constructor(@inject(TYPES.GetAllUsersUseCase) private getAllUsersUseCase: GetAllUsersUseCase) {}

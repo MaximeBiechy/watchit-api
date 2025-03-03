@@ -1,9 +1,9 @@
-import UsersRepositoryInterface from '../../domain/repositories/UsersRepositoryInterface';
-import UserDTO from '../../domain/dtos/UserDTO.js';
-import { DatabaseError } from '../../shared/errors/DatabaseError.js';
+import UsersRepositoryInterface from '../../../domain/repositories/UsersRepositoryInterface.js';
+import { DatabaseError } from '../../../shared/errors/index.js';
 import { inject, injectable } from 'inversify';
-import { TYPES } from '../../config/types.js';
-import User from '../../domain/entities/User.js';
+import { TYPES } from '../../../config/types.js';
+import User from '../../../domain/entities/User.js';
+import { UserDTO } from '../../../domain/dtos/index.js';
 
 @injectable()
 class GetAllUsersUseCase {

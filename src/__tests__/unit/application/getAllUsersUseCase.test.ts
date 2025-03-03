@@ -1,8 +1,8 @@
 import { jest } from '@jest/globals';
-import UsersRepositoryInterface from '../../../domain/repositories/UsersRepositoryInterface';
-import UserDTO from '../../../domain/dtos/UserDTO.js';
-import { DatabaseError } from '../../../shared/errors/DatabaseError.js';
-import GetAllUsersUseCase from '../../../application/use-cases/GetAllUsersUseCase.js';
+import { UsersRepositoryInterface } from '../../../domain/repositories/index.js';
+import { DatabaseError } from '../../../shared/errors/index.js';
+import { UserDTO } from '../../../domain/dtos/index.js';
+import { GetAllUsersUseCase } from '../../../application/use-cases/index.js';
 import { generateFakeUserWithId } from '../../helpers/fakeData.js';
 
 const mockUserRepository: Partial<jest.Mocked<UsersRepositoryInterface>> = {

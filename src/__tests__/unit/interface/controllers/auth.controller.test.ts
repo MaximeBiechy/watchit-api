@@ -1,10 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import { jest } from '@jest/globals';
-import AuthController from '../../../../interface/controllers/AuthController.js';
-import UserDTO from '../../../../domain/dtos/UserDTO.js';
 import { generateFakeUserWithId } from '../../../helpers/fakeData.js';
 import { SigninUserUseCase, RegisterUserUseCase } from '../../../../application/use-cases/index.js';
-import SigninUserResponseDTO from '../../../../domain/dtos/SigninUserResponseDTO.js';
+import { AuthController } from '../../../../interface/controllers/index.js';
+import { SigninUserResponseDTO, UserDTO } from '../../../../domain/dtos/index.js';
 
 describe('AuthController', () => {
   let authController: AuthController;

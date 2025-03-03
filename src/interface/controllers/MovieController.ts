@@ -1,9 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { inject } from 'inversify';
 import { TYPES } from '../../config/types.js';
-import MovieDTO from '../../domain/dtos/MovieDTO.js';
 import { GetMovieDetailsUseCase, GetNowPlayingMoviesUseCase } from '../../application/use-cases/index.js';
-import NowPlayingMovieDTO from '../../domain/dtos/NowPlayingMovieDTO.js';
+import { MovieDTO, NowPlayingMovieDTO } from '../../domain/dtos/index.js';
 
 class MovieController {
   constructor(

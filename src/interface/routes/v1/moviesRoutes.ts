@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import MovieController from '../../controllers/MovieController.js';
 import { TYPES } from '../../../config/types.js';
+import { MovieController } from '../../../interface/controllers/index.js';
 import container from '../../../config/inversify.js';
 
 const router = Router();

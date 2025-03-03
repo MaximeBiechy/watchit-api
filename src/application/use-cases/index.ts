@@ -1,7 +1,7 @@
-import GetAllUsersUseCase from './GetAllUsersUseCase.js';
-import RegisterUserUseCase from './RegisterUserUseCase.js';
-import SigninUserUseCase from './SigninUserUseCase.js';
-import GetMovieDetailsUseCase from './GetMovieDetailsUseCase.js';
-import GetNowPlayingMoviesUseCase from './GetNowPlayingMoviesUseCase.js';
+import GetAllUsersUseCase from './users/GetAllUsersUseCase.js';
+import RegisterUserUseCase from './auth/RegisterUserUseCase.js';
+import SigninUserUseCase from './auth/SigninUserUseCase.js';
+import GetMovieDetailsUseCase from './movies/GetMovieDetailsUseCase.js';
+import GetNowPlayingMoviesUseCase from './movies/GetNowPlayingMoviesUseCase.js';
 
 export { GetAllUsersUseCase, RegisterUserUseCase, SigninUserUseCase, GetMovieDetailsUseCase, GetNowPlayingMoviesUseCase };

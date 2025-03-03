@@ -1,9 +1,9 @@
 import { inject, injectable } from 'inversify';
-import { TYPES } from '../../config/types.js';
-import MovieRepositoryInterface from '../../domain/repositories/MovieRepositoryInterface.js';
-import { ValidationError, TMDBServerError } from '../../shared/errors/index.js';
-import NowPlayingMovieDTO from '../../domain/dtos/NowPlayingMovieDTO.js';
-import { config } from '../../config/config.js';
+import { TYPES } from '../../../config/types.js';
+import MovieRepositoryInterface from '../../../domain/repositories/MovieRepositoryInterface.js';
+import { ValidationError, TMDBServerError } from '../../../shared/errors/index.js';
+import { config } from '../../../config/config.js';
+import { NowPlayingMovieDTO } from '../../../domain/dtos/index.js';
 
 @injectable()
 class GetNowPlayingMoviesUseCase {

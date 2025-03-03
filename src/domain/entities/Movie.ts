@@ -1,4 +1,4 @@
-import Actor from './Actor';
+import { Actor } from './index.js';
 
 class Movie {
   constructor(

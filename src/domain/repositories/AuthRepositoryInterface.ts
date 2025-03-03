@@ -1,5 +1,4 @@
-import UserDTO from '../dtos/UserDTO.js';
-import User from '../entities/User.js';
+import { User } from '../entities/index.js';
 
 interface UserRepositoryInterface {
   createUser(user: User): Promise<User>;

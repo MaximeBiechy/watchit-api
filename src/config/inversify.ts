@@ -1,17 +1,18 @@
 import { Container } from 'inversify';
 import { TYPES } from './types.js';
 // Use Cases
-import { RegisterUserUseCase, GetAllUsersUseCase, SigninUserUseCase } from '../application/use-cases/index.js';
+import {
+  RegisterUserUseCase,
+  GetAllUsersUseCase,
+  SigninUserUseCase,
+  GetMovieDetailsUseCase,
+  GetNowPlayingMoviesUseCase,
+} from '../application/use-cases/index.js';
 // Controllers
-import AuthController from '../interface/controllers/AuthController.js';
-import UsersController from '../interface/controllers/UsersController.js';
+import { UsersController, AuthController, MovieController } from '../interface/controllers/index.js';
 // Repositories
-import AuthRepositoryImpl from '../infrastructure/database/repositories/AuthRepositoryImpl.js';
-import UsersRepositoryImpl from '../infrastructure/database/repositories/UsersRepositoryImpl.js';
-import MovieRepositoryImpl from '../infrastructure/tmdb/repositories/MovieRepositoryImpl.js';
-import GetMovieDetailsUseCase from '../application/use-cases/GetMovieDetailsUseCase.js';
-import MovieController from '../interface/controllers/MovieController.js';
-import GetNowPlayingMoviesUseCase from '../application/use-cases/GetNowPlayingMoviesUseCase.js';
+import { UsersRepositoryImpl, AuthRepositoryImpl } from '../infrastructure/database/repositories/index.js';
+import { MovieRepositoryImpl } from '../infrastructure/tmdb/repositories/index.js';
 
 const container = new Container();
 
