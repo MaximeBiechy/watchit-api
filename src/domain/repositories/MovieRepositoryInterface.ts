@@ -8,6 +8,8 @@ interface MovieRepositoryInterface {
   getMovieWatchProviders(movieId: string): Promise<any>;
 
   getNowPlayingMovies(region: string, language: string): Promise<any>;
+
+  getUpcomingMovies(region: string, language: string): Promise<any>;
 }
 
 export default MovieRepositoryInterface;

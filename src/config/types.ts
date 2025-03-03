@@ -10,6 +10,7 @@ export const TYPES = {
   SigninUserUseCase: Symbol.for('SigninUserUseCase'),
   GetMovieDetailsUseCase: Symbol.for('GetMovieDetailsUseCase'),
   GetNowPlayingMoviesUseCase: Symbol.for('GetNowPlayingMoviesUseCase'),
+  GetUpcomingMoviesUseCase: Symbol.for('GetUpcomingMoviesUseCase'),
 
   // ? Controllers
   UsersController: Symbol.for('UsersController'),

@@ -14,6 +14,14 @@ router.get('/now_playing', async (req: Request, res: Response, next: NextFunctio
     next(error);
   }
 });
+
+router.get('/upcoming', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await movieController.getUpcomingMovies(req, res, next);
+  } catch (error: any) {
+    next(error);
+  }
+});
 router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await movieController.getMovieDetails(req, res, next);

@@ -7,6 +7,7 @@ import {
   SigninUserUseCase,
   GetMovieDetailsUseCase,
   GetNowPlayingMoviesUseCase,
+  GetUpcomingMoviesUseCase,
 } from '../application/use-cases/index.js';
 // Controllers
 import { UsersController, AuthController, MovieController } from '../interface/controllers/index.js';
@@ -27,6 +28,7 @@ container.bind(TYPES.RegisterUserUseCase).to(RegisterUserUseCase);
 container.bind(TYPES.SigninUserUseCase).to(SigninUserUseCase);
 container.bind(TYPES.GetMovieDetailsUseCase).to(GetMovieDetailsUseCase);
 container.bind(TYPES.GetNowPlayingMoviesUseCase).to(GetNowPlayingMoviesUseCase);
+container.bind(TYPES.GetUpcomingMoviesUseCase).to(GetUpcomingMoviesUseCase);
 
 // ? Controllers
 container.bind(TYPES.UsersController).to(UsersController);

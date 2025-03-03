@@ -1,4 +1,4 @@
-class NowPlayingMovieDTO {
+class HomePageMovieDTO {
   public id: number;
   public posterPath: string | null;
 
@@ -8,4 +8,4 @@ class NowPlayingMovieDTO {
   }
 }
 
-export default NowPlayingMovieDTO;
+export default HomePageMovieDTO;
