@@ -14,6 +14,10 @@ class GetUpcomingMoviesUseCase {
       throw new ValidationError('Invalid region or language', 'InvalidRegionOrLanguage');
     }
 
+    if (page <= 0) {
+      throw new ValidationError('Invalid page', 'InvalidPage');
+    }
+
     try {
       const movies = await this.movieRepository.getUpcomingMovies(region, language, page);
 

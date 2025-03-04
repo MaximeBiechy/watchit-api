@@ -14,6 +14,10 @@ class GetNowPlayingMoviesUseCase {
       throw new ValidationError('Invalid region or language', 'InvalidRegionOrLanguage');
     }
 
+    if (page <= 0) {
+      throw new ValidationError('Invalid page', 'InvalidPage');
+    }
+
     try {
       const movies = await this.movieRepository.getNowPlayingMovies(region, language, page);
 
