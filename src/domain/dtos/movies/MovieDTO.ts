@@ -7,6 +7,7 @@ class MovieDTO {
   duration: number;
   overview: string;
   posterPath: string | null;
+  backDropPath: string | null;
   director: string;
   releaseDate: Date;
   voteAverage: number;
@@ -20,6 +21,7 @@ class MovieDTO {
     duration: number,
     overview: string,
     posterPath: string | null,
+    backDropPath: string | null,
     director: string,
     releaseDate: Date,
     voteAverage: number,
@@ -32,6 +34,7 @@ class MovieDTO {
     this.duration = duration;
     this.overview = overview;
     this.posterPath = posterPath;
+    this.backDropPath = backDropPath;
     this.director = director;
     this.releaseDate = releaseDate;
     this.voteAverage = voteAverage;

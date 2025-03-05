@@ -45,6 +45,7 @@ class GetMovieDetailsUseCase {
         details.runtime,
         details.overview,
         details.poster_path ? `${config.TMDB.IMAGE_BASE_URL}${details.poster_path}` : null,
+        details.backdrop_path ? `${config.TMDB.IMAGE_BASE_URL}${details.backdrop_path}` : null,
         credits.crew.find((crewMember: any) => crewMember.job === 'Director')?.name || 'Unknown',
         new Date(details.release_date),
         details.vote_average,

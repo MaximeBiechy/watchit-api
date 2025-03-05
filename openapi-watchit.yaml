@@ -470,6 +470,9 @@ components:
             posterPath:
               type: string
               example: /9O7gLzmreU0nGkIB6K3BsJbzvNv.jpg
+            backDropPath:
+              type: string
+              example: /j9XKiZrVeViAixVRzCta7h1VU9W.jpg
             director:
               type: string
               example: Frank Darabont
