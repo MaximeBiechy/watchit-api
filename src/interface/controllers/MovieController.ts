@@ -24,7 +24,8 @@ class MovieController {
   async getMovieDetails(req: Request, res: Response, next: NextFunction) {
     try {
       const movieId = req.params.id;
-      const movie: MovieDTO = await this.getMovieDetailsUseCase.execute(movieId);
+      const language = req.query.language as string;
+      const movie: MovieDTO = await this.getMovieDetailsUseCase.execute(movieId, language);
 
       return res.status(200).json({
         status: 'success',

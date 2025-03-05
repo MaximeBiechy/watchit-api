@@ -9,6 +9,7 @@ class MovieDTO {
   posterPath: string | null;
   director: string;
   releaseDate: Date;
+  voteAverage: number;
   actors: Actor[];
   streamingProviders: string[];
 
@@ -21,6 +22,7 @@ class MovieDTO {
     posterPath: string | null,
     director: string,
     releaseDate: Date,
+    voteAverage: number,
     actors: Actor[],
     streamingProviders: string[],
   ) {
@@ -32,6 +34,7 @@ class MovieDTO {
     this.posterPath = posterPath;
     this.director = director;
     this.releaseDate = releaseDate;
+    this.voteAverage = voteAverage;
     this.actors = actors;
     this.streamingProviders = streamingProviders;
   }

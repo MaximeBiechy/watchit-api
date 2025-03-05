@@ -4,28 +4,40 @@ import { axiosInstance } from '../axiosInstance.js';
 
 @injectable()
 class MovieRepositoryImpl implements MovieRepositoryInterface {
-  async getMovieDetails(movieId: string): Promise<any> {
-    const response = await axiosInstance.get(`/movie/${movieId}`);
+  async getMovieDetails(movieId: string, language: string): Promise<any> {
+    const response: any = await axiosInstance.get(`/movie/${movieId}`, {
+      params: {
+        language,
+      },
+    });
     return response.data;
   }
 
-  async getMovieCredits(movieId: string): Promise<any> {
-    const response = await axiosInstance.get(`/movie/${movieId}/credits`);
+  async getMovieCredits(movieId: string, language: string): Promise<any> {
+    const response: any = await axiosInstance.get(`/movie/${movieId}/credits`, {
+      params: {
+        language,
+      },
+    });
     return response.data;
   }
 
-  async getMovieVideos(movieId: string): Promise<any> {
-    const response = await axiosInstance.get(`/movie/${movieId}/videos`);
+  async getMovieVideos(movieId: string, language: string): Promise<any> {
+    const response: any = await axiosInstance.get(`/movie/${movieId}/videos`, {
+      params: {
+        language,
+      },
+    });
     return response.data;
   }
 
   async getMovieWatchProviders(movieId: string): Promise<any> {
-    const response = await axiosInstance.get(`/movie/${movieId}/watch/providers`);
+    const response: any = await axiosInstance.get(`/movie/${movieId}/watch/providers`);
     return response.data;
   }
 
   async getNowPlayingMovies(region: string, language: string, page: number): Promise<any> {
-    const response = await axiosInstance.get('/movie/now_playing', {
+    const response: any = await axiosInstance.get('/movie/now_playing', {
       params: {
         region,
         language,
@@ -33,12 +45,11 @@ class MovieRepositoryImpl implements MovieRepositoryInterface {
       },
     });
 
-    // @ts-ignore: Results exist in TMDB
     return response.data?.results;
   }
 
   async getUpcomingMovies(region: string, language: string, page: number): Promise<any> {
-    const response = await axiosInstance.get('/movie/upcoming', {
+    const response: any = await axiosInstance.get('/movie/upcoming', {
       params: {
         language,
         region,
@@ -46,12 +57,11 @@ class MovieRepositoryImpl implements MovieRepositoryInterface {
       },
     });
 
-    // @ts-ignore: Results exist in TMDB
     return response.data?.results;
   }
 
   async getPopularMovies(region: string, language: string, page: number): Promise<any> {
-    const response = await axiosInstance.get('/movie/popular', {
+    const response: any = await axiosInstance.get('/movie/popular', {
       params: {
         language,
         region,
@@ -59,12 +69,11 @@ class MovieRepositoryImpl implements MovieRepositoryInterface {
       },
     });
 
-    // @ts-ignore: Results exist in TMDB
     return response.data?.results;
   }
 
   async getTopRatedMovies(region: string, language: string, page: number): Promise<any> {
-    const response = await axiosInstance.get('/movie/top_rated', {
+    const response: any = await axiosInstance.get('/movie/top_rated', {
       params: {
         language,
         region,
@@ -72,7 +81,6 @@ class MovieRepositoryImpl implements MovieRepositoryInterface {
       },
     });
 
-    // @ts-ignore: Results exist in TMDB
     return response.data?.results;
   }
 }

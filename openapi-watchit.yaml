@@ -146,6 +146,12 @@ paths:
           schema:
             type: string
           description: The movie ID
+        - in: query
+          name: language
+          required: true
+          schema:
+            type: string
+          description: The language code
       responses:
         '200':
           description: OK
@@ -471,6 +477,9 @@ components:
               type: string
               format: date
               example: 1994-09-23
+            voteAverage:
+              type: number
+              example: 8.7
             actors:
               type: array
               items:

@@ -1,9 +1,9 @@
 interface MovieRepositoryInterface {
-  getMovieDetails(movieId: string): Promise<any>;
+  getMovieDetails(movieId: string, language: string): Promise<any>;
 
-  getMovieCredits(movieId: string): Promise<any>;
+  getMovieCredits(movieId: string, language: string): Promise<any>;
 
-  getMovieVideos(movieId: string): Promise<any>;
+  getMovieVideos(movieId: string, language: string): Promise<any>;
 
   getMovieWatchProviders(movieId: string): Promise<any>;
 
