@@ -24,5 +24,13 @@ router.delete('/watchlist', async (req: Request, res: Response, next: NextFuncti
   }
 });
 
+router.post('/watched/add', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await userController.markAsSeen(req, res, next);
+  } catch (error: any) {
+    next(error);
+  }
+});
+
 
 export { router as userRoutes };

@@ -7,6 +7,7 @@ interface MediaItem {
 
 interface SeenMedia extends MediaItem {
   rating?: number;
+  watchedAt?: Date;
 }
 
 interface UserDocument extends Document {
@@ -39,6 +40,7 @@ const UserSchema = new Schema(
           mediaId: { type: String, required: true },
           type: { type: String, enum: ['movie', 'tv'], required: true },
           rating: Number,
+          watchedAt: Date,
         },
       ],
       default: [],

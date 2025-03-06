@@ -3,6 +3,7 @@ import { UserRepositoryInterface } from '../../../domain/repositories/index.js';
 import { Promise } from 'mongoose';
 import { NotFoundError, ValidationError } from '../../../shared/errors/index.js';
 import { UserModel } from '../models/index.js';
+import user from '../../../domain/entities/User';
 
 @injectable()
 class UserRepositoryImpl implements UserRepositoryInterface {
@@ -40,6 +41,22 @@ class UserRepositoryImpl implements UserRepositoryInterface {
       throw new NotFoundError('Media not found in watchlist', 'MediaNotInWatchlist');
     }
 
+    await user.save();
+  }
+
+  async markAsSeen(userId: string, mediaId: string, type: 'movie' | 'tv', rating?: number): Promise<void> {
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      throw new NotFoundError('User not found', 'UserNotFound');
+    }
+
+    const isInSeenMedia = user.seenMedia.some((item) => item.mediaId === mediaId && item.type === type);
+
+    if (isInSeenMedia) {
+      throw new ValidationError('Media already in seen list', 'MediaAlreadyInSeenList');
+    }
+
+    user.seenMedia.push({ mediaId, type, rating });
     await user.save();
   }
 }

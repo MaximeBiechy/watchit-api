@@ -14,6 +14,7 @@ import GetMoviesByActorUseCase from './movies/GetMoviesByActorUseCase.js';
 // User
 import AddToWatchlistUseCase from './user/AddToWatchlistUseCase.js';
 import RemoveFromWatchlistUseCase from './user/RemoveFromWatchlistUseCase.js';
+import MarkAsSeenUseCase from './user/MarkAsSeenUseCase.js';
 
 export {
   GetAllUsersUseCase,
@@ -28,4 +29,5 @@ export {
   GetMoviesByActorUseCase,
   AddToWatchlistUseCase,
   RemoveFromWatchlistUseCase,
+  MarkAsSeenUseCase,
 };

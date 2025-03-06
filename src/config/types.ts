@@ -18,6 +18,7 @@ export const TYPES = {
   GetMoviesByActorUseCase: Symbol.for('GetMoviesByActorUseCase'),
   AddToWatchlistUseCase: Symbol.for('AddToWatchlistUseCase'),
   RemoveFromWatchlistUseCase: Symbol.for('RemoveFromWatchlistUseCase'),
+  MarkAsSeenUseCase: Symbol.for('MarkAsSeenUseCase'),
 
   // ? Controllers
   UsersController: Symbol.for('UsersController'),
