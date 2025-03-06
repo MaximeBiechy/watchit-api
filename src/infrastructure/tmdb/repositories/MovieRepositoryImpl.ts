@@ -97,6 +97,16 @@ class MovieRepositoryImpl implements MovieRepositoryInterface {
 
     return response.data?.results;
   }
+
+  async getMoviesByActor(actorId: string, language: string): Promise<any> {
+    const response: any = await axiosInstance.get(`/person/${actorId}/movie_credits`, {
+      params: {
+        language,
+      },
+    });
+
+    return response.data?.cast;
+  }
 }
 
 export default MovieRepositoryImpl;

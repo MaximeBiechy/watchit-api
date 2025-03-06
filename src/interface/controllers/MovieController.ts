@@ -8,9 +8,10 @@ import {
   GetUpcomingMoviesUseCase,
   GetPopularMoviesUseCase,
   GetTopRatedMoviesUseCase,
+  GetMoviesByActorUseCase,
 } from '../../application/use-cases/index.js';
 // DTOs
-import { MovieDTO, HomePageMovieDTO } from '../../domain/dtos/index.js';
+import { MovieDTO, HomePageMovieDTO, MovieSearchDTO } from '../../domain/dtos/index.js';
 
 class MovieController {
   constructor(
@@ -19,7 +20,9 @@ class MovieController {
     @inject(TYPES.GetUpcomingMoviesUseCase) private getUpcomingMoviesUseCase: GetUpcomingMoviesUseCase,
     @inject(TYPES.GetPopularMoviesUseCase) private getPopularMoviesUseCase: GetPopularMoviesUseCase,
     @inject(TYPES.GetTopRatedMoviesUseCase) private getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
-  ) {}
+    @inject(TYPES.GetMoviesByActorUseCase) private getMoviesByActorUseCase: GetMoviesByActorUseCase,
+  ) {
+  }
 
   async getMovieDetails(req: Request, res: Response, next: NextFunction) {
     try {
@@ -102,6 +105,22 @@ class MovieController {
       return res.status(200).json({
         status: 'success',
         message: 'Top Rated Movies retrieved successfully',
+        movies,
+      });
+    } catch (error: any) {
+      next(error);
+    }
+  }
+
+  async getMoviesByActor(req: Request, res: Response, next: NextFunction) {
+    try {
+      const actorId = req.params.id;
+      const language = req.query.language as string;
+      const movies: MovieSearchDTO[] = await this.getMoviesByActorUseCase.execute(actorId, language);
+
+      return res.status(200).json({
+        status: 'success',
+        message: 'Movies retrieved successfully',
         movies,
       });
     } catch (error: any) {

@@ -372,6 +372,44 @@ paths:
           $ref: '#/components/responses/ValidationError'
         '500':
           $ref: '#/components/responses/TMDBServerError'
+  /api/v1/movies/actor/{id}/movies:
+    get:
+      summary: Get movies by actor ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: number
+          description: The actor ID
+        - in: query
+          name: language
+          required: true
+          schema:
+            type: string
+          description: The language code
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Movies retrieved successfully
+                  movies:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MovieSearchDTO'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/TMDBServerError'
   /api/v1/search:
     get:
       summary: Search for movies and actors
@@ -420,8 +458,6 @@ paths:
                       oneOf:
                         - $ref: '#/components/schemas/MovieSearchDTO'
                         - $ref: '#/components/schemas/ActorDTO'
-        '400':
-          $ref: '#/components/responses/ValidationError'
         '500':
           $ref: '#/components/responses/TMDBServerError'
 

@@ -16,6 +16,8 @@ interface MovieRepositoryInterface {
   getTopRatedMovies(region: string, language: string, page: number): Promise<any>;
 
   search(query: string, language: string, include_adult: boolean, page: number): Promise<any>;
+
+  getMoviesByActor(actorId: string, language: string): Promise<any>;
 }
 
 export default MovieRepositoryInterface;

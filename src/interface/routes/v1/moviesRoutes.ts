@@ -39,6 +39,14 @@ router.get('/top_rated', async (req: Request, res: Response, next: NextFunction)
   }
 });
 
+router.get('/actor/:id/movies', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await movieController.getMoviesByActor(req, res, next);
+  } catch (error: any) {
+    next(error);
+  }
+});
+
 router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await movieController.getMovieDetails(req, res, next);
