@@ -13,6 +13,7 @@ import SearchMoviesAndActorsUseCase from './movies/SearchMoviesAndActorsUseCase.
 import GetMoviesByActorUseCase from './movies/GetMoviesByActorUseCase.js';
 // User
 import AddToWatchlistUseCase from './user/AddToWatchlistUseCase.js';
+import RemoveFromWatchlistUseCase from './user/RemoveFromWatchlistUseCase.js';
 
 export {
   GetAllUsersUseCase,
@@ -26,4 +27,5 @@ export {
   SearchMoviesAndActorsUseCase,
   GetMoviesByActorUseCase,
   AddToWatchlistUseCase,
+  RemoveFromWatchlistUseCase,
 };

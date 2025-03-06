@@ -26,6 +26,22 @@ class UserRepositoryImpl implements UserRepositoryInterface {
     user.watchlist.push({ mediaId, type });
     await user.save();
   }
+
+  async removeFromWatchList(userId: string, mediaId: string, type: 'movie' | 'tv'): Promise<void> {
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      throw new NotFoundError('User not found', 'UserNotFound');
+    }
+
+    const initialLength = user.watchlist.length;
+    user.watchlist = user.watchlist.filter((item) => !(item.mediaId === mediaId && item.type === type));
+
+    if (user.watchlist.length === initialLength) {
+      throw new NotFoundError('Media not found in watchlist', 'MediaNotInWatchlist');
+    }
+
+    await user.save();
+  }
 }
 
 export default UserRepositoryImpl;

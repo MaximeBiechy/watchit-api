@@ -13,6 +13,7 @@ import {
   SearchMoviesAndActorsUseCase,
   GetMoviesByActorUseCase,
   AddToWatchlistUseCase,
+  RemoveFromWatchlistUseCase,
 } from '../application/use-cases/index.js';
 // Controllers
 import {
@@ -50,6 +51,7 @@ container.bind(TYPES.GetTopRatedMoviesUseCase).to(GetTopRatedMoviesUseCase);
 container.bind(TYPES.SearchMoviesAndActorsUseCase).to(SearchMoviesAndActorsUseCase);
 container.bind(TYPES.GetMoviesByActorUseCase).to(GetMoviesByActorUseCase);
 container.bind(TYPES.AddToWatchlistUseCase).to(AddToWatchlistUseCase);
+container.bind(TYPES.RemoveFromWatchlistUseCase).to(RemoveFromWatchlistUseCase);
 
 // ? Controllers
 container.bind(TYPES.UsersController).to(UsersController);
