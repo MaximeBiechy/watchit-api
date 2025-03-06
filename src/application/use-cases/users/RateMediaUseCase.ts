@@ -1,14 +1,14 @@
 import { inject } from 'inversify';
 import { TYPES } from '../../../config/types.js';
-import { UserRepositoryInterface } from '../../../domain/repositories/index.js';
+import { UsersRepositoryInterface } from '../../../domain/repositories/index.js';
 import { DatabaseError, NotFoundError, ValidationError } from '../../../shared/errors/index.js';
 
-class RemoveMediaRatingUseCase {
-  constructor(@inject(TYPES.UserRepository) private userRepository: UserRepositoryInterface) {
+class RateMediaUseCase {
+  constructor(@inject(TYPES.UsersRepository) private usersRepository: UsersRepositoryInterface) {
   }
 
-  async execute(userId: string, mediaId: string, mediaType: 'movie' | 'tv'): Promise<void> {
-    if (!userId || !mediaId) {
+  async execute(userId: string, mediaId: string, mediaType: 'movie' | 'tv', rating: number): Promise<void> {
+    if (!userId || !mediaId || !rating) {
       throw new ValidationError('Missing required fields', 'MissingRequiredFields');
     }
 
@@ -17,7 +17,7 @@ class RemoveMediaRatingUseCase {
     }
 
     try {
-      await this.userRepository.removeRatingMedia(userId, String(mediaId), mediaType);
+      await this.usersRepository.rateMedia(userId, String(mediaId), mediaType, rating);
     } catch (error: any) {
       if (error instanceof NotFoundError) {
         throw new NotFoundError(error.message, error.code);
@@ -30,4 +30,4 @@ class RemoveMediaRatingUseCase {
   }
 }
 
-export default RemoveMediaRatingUseCase;
+export default RateMediaUseCase;

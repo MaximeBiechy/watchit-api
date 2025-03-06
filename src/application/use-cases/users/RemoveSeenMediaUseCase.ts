@@ -1,10 +1,10 @@
 import { inject } from 'inversify';
 import { TYPES } from '../../../config/types.js';
-import { UserRepositoryInterface } from '../../../domain/repositories/index.js';
+import { UsersRepositoryInterface } from '../../../domain/repositories/index.js';
 import { DatabaseError, NotFoundError, ValidationError } from '../../../shared/errors/index.js';
 
-class RemoveFromWatchlistUseCase {
-  constructor(@inject(TYPES.UserRepository) private userRepository: UserRepositoryInterface) {
+class RemoveSeenMediaUseCase {
+  constructor(@inject(TYPES.UsersRepository) private usersRepository: UsersRepositoryInterface) {
   }
 
   async execute(userId: string, mediaId: string, mediaType: 'movie' | 'tv'): Promise<void> {
@@ -17,13 +17,13 @@ class RemoveFromWatchlistUseCase {
     }
 
     try {
-      await this.userRepository.removeFromWatchList(userId, String(mediaId), mediaType);
+      await this.usersRepository.removeSeenMedia(userId, String(mediaId), mediaType);
     } catch (error: NotFoundError) {
       throw new NotFoundError(error.message, error.code);
     } catch (error: any) {
-      throw new DatabaseError('Error removing from watchlist' + error.message, 'RemoveFromWatchlistError');
+      throw new DatabaseError('Error removing from seen list' + error.message, 'RemoveFromSeenListError');
     }
   }
 }
 
-export default RemoveFromWatchlistUseCase;
+export default RemoveSeenMediaUseCase;

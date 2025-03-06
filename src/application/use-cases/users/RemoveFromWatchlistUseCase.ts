@@ -1,11 +1,10 @@
-import { inject, injectable } from 'inversify';
+import { inject } from 'inversify';
 import { TYPES } from '../../../config/types.js';
-import { UserRepositoryInterface } from '../../../domain/repositories/index.js';
+import { UsersRepositoryInterface } from '../../../domain/repositories/index.js';
 import { DatabaseError, NotFoundError, ValidationError } from '../../../shared/errors/index.js';
 
-@injectable()
-class AddToWatchlistUseCase {
-  constructor(@inject(TYPES.UserRepository) private userRepository: UserRepositoryInterface) {
+class RemoveFromWatchlistUseCase {
+  constructor(@inject(TYPES.UsersRepository) private usersRepository: UsersRepositoryInterface) {
   }
 
   async execute(userId: string, mediaId: string, mediaType: 'movie' | 'tv'): Promise<void> {
@@ -18,13 +17,13 @@ class AddToWatchlistUseCase {
     }
 
     try {
-      await this.userRepository.addToWatchList(userId, String(mediaId), mediaType);
+      await this.usersRepository.removeFromWatchList(userId, String(mediaId), mediaType);
     } catch (error: NotFoundError) {
       throw new NotFoundError(error.message, error.code);
     } catch (error: any) {
-      throw new DatabaseError('Error adding to watchlist' + error.message, 'AddToWatchlistError');
+      throw new DatabaseError('Error removing from watchlist' + error.message, 'RemoveFromWatchlistError');
     }
   }
 }
 
-export default AddToWatchlistUseCase;
+export default RemoveFromWatchlistUseCase;

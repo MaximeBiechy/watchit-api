@@ -12,13 +12,13 @@ import GetTopRatedMoviesUseCase from './movies/GetTopRatedMoviesUseCase.js';
 import SearchMoviesAndActorsUseCase from './movies/SearchMoviesAndActorsUseCase.js';
 import GetMoviesByActorUseCase from './movies/GetMoviesByActorUseCase.js';
 // User
-import AddToWatchlistUseCase from './user/AddToWatchlistUseCase.js';
-import RemoveFromWatchlistUseCase from './user/RemoveFromWatchlistUseCase.js';
-import MarkAsSeenUseCase from './user/MarkAsSeenUseCase.js';
-import RemoveSeenMediaUseCase from './user/RemoveSeenMediaUseCase.js';
-import RateMediaUseCase from './user/RateMediaUseCase.js';
-import UpdateRatingMediaUseCase from './user/UpdateRatingMediaUseCase.js';
-import RemoveMediaRatingUseCase from './user/RemoveMediaRatingUseCase.js';
+import AddToWatchlistUseCase from './users/AddToWatchlistUseCase.js';
+import RemoveFromWatchlistUseCase from './users/RemoveFromWatchlistUseCase.js';
+import MarkAsSeenUseCase from './users/MarkAsSeenUseCase.js';
+import RemoveSeenMediaUseCase from './users/RemoveSeenMediaUseCase.js';
+import RateMediaUseCase from './users/RateMediaUseCase.js';
+import UpdateRatingMediaUseCase from './users/UpdateRatingMediaUseCase.js';
+import RemoveMediaRatingUseCase from './users/RemoveMediaRatingUseCase.js';
 
 export {
   GetAllUsersUseCase,

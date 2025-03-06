@@ -460,7 +460,7 @@ paths:
                         - $ref: '#/components/schemas/ActorDTO'
         '500':
           $ref: '#/components/responses/TMDBServerError'
-  /api/v1/user/watchlist:
+  /api/v1/users/watchlist:
     post:
       summary: Add a media to the user's watchlist
       requestBody:
@@ -517,7 +517,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '500':
           $ref: '#/components/responses/DatabaseError'
-  /api/v1/user/watch/add:
+  /api/v1/users/watch/add:
     post:
       summary: mark a media as watched
       requestBody:
@@ -546,7 +546,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '500':
           $ref: '#/components/responses/DatabaseError'
-  /api/v1/user/watched/remove:
+  /api/v1/users/watched/remove:
     delete:
       summary: Remove a media from the user's watched list
       requestBody:
@@ -575,7 +575,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '500':
           $ref: '#/components/responses/DatabaseError'
-  /api/v1/user/watched/rate:
+  /api/v1/users/watched/rate:
     post:
       summary: Rate a media
       requestBody:
@@ -604,7 +604,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '500':
           $ref: '#/components/responses/DatabaseError'
-  /api/v1/user/watched/update:
+  /api/v1/users/watched/update:
     patch:
       summary: Update a media rate
       requestBody:
@@ -633,7 +633,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '500':
           $ref: '#/components/responses/DatabaseError'
-  /api/v1/user/watched/remove/rating:
+  /api/v1/users/watched/remove/rating:
     delete:
       summary: Remove a media rating
       requestBody:

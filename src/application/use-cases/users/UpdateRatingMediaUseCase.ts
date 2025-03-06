@@ -1,10 +1,10 @@
 import { inject } from 'inversify';
 import { TYPES } from '../../../config/types.js';
-import { UserRepositoryInterface } from '../../../domain/repositories/index.js';
+import { UsersRepositoryInterface } from '../../../domain/repositories/index.js';
 import { DatabaseError, NotFoundError, ValidationError } from '../../../shared/errors/index.js';
 
 class UpdateRatingMediaUseCase {
-  constructor(@inject(TYPES.UserRepository) private userRepository: UserRepositoryInterface) {
+  constructor(@inject(TYPES.UsersRepository) private usersRepository: UsersRepositoryInterface) {
   }
 
   async execute(userId: string, mediaId: string, mediaType: 'movie' | 'tv', rating: number): Promise<void> {
@@ -17,7 +17,7 @@ class UpdateRatingMediaUseCase {
     }
 
     try {
-      await this.userRepository.updateRatingMedia(userId, String(mediaId), mediaType, rating);
+      await this.usersRepository.updateRatingMedia(userId, String(mediaId), mediaType, rating);
     } catch (error: any) {
       if (error instanceof NotFoundError) {
         throw new NotFoundError(error.message, error.code);
