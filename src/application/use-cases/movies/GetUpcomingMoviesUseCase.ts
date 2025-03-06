@@ -9,11 +9,7 @@ import { config } from '../../../config/config.js';
 class GetUpcomingMoviesUseCase {
   constructor(@inject(TYPES.MovieRepository) private movieRepository: MovieRepositoryInterface) {}
 
-  async execute(region: string, language: string, page: number = 1): Promise<HomePageMovieDTO[]> {
-    if (!region || !language) {
-      throw new ValidationError('Invalid region or language', 'InvalidRegionOrLanguage');
-    }
-
+  async execute(region: string = 'FR', language: string = 'fr-FR', page: number = 1): Promise<HomePageMovieDTO[]> {
     if (page <= 0) {
       throw new ValidationError('Invalid page', 'InvalidPage');
     }
