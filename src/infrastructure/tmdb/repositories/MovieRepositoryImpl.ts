@@ -1,6 +1,7 @@
 import { MovieRepositoryInterface } from '../../../domain/repositories/index.js';
 import { injectable } from 'inversify';
 import { axiosInstance } from '../axiosInstance.js';
+import { Promise } from 'mongoose';
 
 @injectable()
 class MovieRepositoryImpl implements MovieRepositoryInterface {
@@ -77,6 +78,19 @@ class MovieRepositoryImpl implements MovieRepositoryInterface {
       params: {
         language,
         region,
+        page,
+      },
+    });
+
+    return response.data?.results;
+  }
+
+  async search(query: string, language: string, include_adult: boolean, page: number): Promise<any> {
+    const response: any = await axiosInstance.get('/search/multi', {
+      params: {
+        query,
+        language,
+        include_adult,
         page,
       },
     });

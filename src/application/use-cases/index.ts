@@ -9,6 +9,7 @@ import GetNowPlayingMoviesUseCase from './movies/GetNowPlayingMoviesUseCase.js';
 import GetUpcomingMoviesUseCase from './movies/GetUpcomingMoviesUseCase.js';
 import GetPopularMoviesUseCase from './movies/GetPopularMoviesUseCase.js';
 import GetTopRatedMoviesUseCase from './movies/GetTopRatedMoviesUseCase.js';
+import SearchMoviesAndActorsUseCase from './movies/SearchMoviesAndActorsUseCase.js';
 
 export {
   GetAllUsersUseCase,
@@ -19,4 +20,5 @@ export {
   GetUpcomingMoviesUseCase,
   GetPopularMoviesUseCase,
   GetTopRatedMoviesUseCase,
+  SearchMoviesAndActorsUseCase,
 };

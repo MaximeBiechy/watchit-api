@@ -10,9 +10,10 @@ import {
   GetUpcomingMoviesUseCase,
   GetPopularMoviesUseCase,
   GetTopRatedMoviesUseCase,
+  SearchMoviesAndActorsUseCase,
 } from '../application/use-cases/index.js';
 // Controllers
-import { UsersController, AuthController, MovieController } from '../interface/controllers/index.js';
+import { UsersController, AuthController, MovieController, SearchController } from '../interface/controllers/index.js';
 // Repositories
 import { UsersRepositoryImpl, AuthRepositoryImpl } from '../infrastructure/database/repositories/index.js';
 import { MovieRepositoryImpl } from '../infrastructure/tmdb/repositories/index.js';
@@ -33,10 +34,12 @@ container.bind(TYPES.GetNowPlayingMoviesUseCase).to(GetNowPlayingMoviesUseCase);
 container.bind(TYPES.GetUpcomingMoviesUseCase).to(GetUpcomingMoviesUseCase);
 container.bind(TYPES.GetPopularMoviesUseCase).to(GetPopularMoviesUseCase);
 container.bind(TYPES.GetTopRatedMoviesUseCase).to(GetTopRatedMoviesUseCase);
+container.bind(TYPES.SearchMoviesAndActorsUseCase).to(SearchMoviesAndActorsUseCase);
 
 // ? Controllers
 container.bind(TYPES.UsersController).to(UsersController);
 container.bind(TYPES.AuthController).to(AuthController);
 container.bind(TYPES.MovieController).to(MovieController);
+container.bind(TYPES.SearchController).to(SearchController);
 
 export default container;

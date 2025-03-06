@@ -13,9 +13,11 @@ export const TYPES = {
   GetUpcomingMoviesUseCase: Symbol.for('GetUpcomingMoviesUseCase'),
   GetPopularMoviesUseCase: Symbol.for('GetPopularMoviesUseCase'),
   GetTopRatedMoviesUseCase: Symbol.for('GetTopRatedMoviesUseCase'),
+  SearchMoviesAndActorsUseCase: Symbol.for('SearchMoviesAndActorsUseCase'),
 
   // ? Controllers
   UsersController: Symbol.for('UsersController'),
   AuthController: Symbol.for('AuthController'),
   MovieController: Symbol.for('MovieController'),
+  SearchController: Symbol.for('SearchController'),
 };
