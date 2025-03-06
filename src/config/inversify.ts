@@ -15,6 +15,7 @@ import {
   AddToWatchlistUseCase,
   RemoveFromWatchlistUseCase,
   MarkAsSeenUseCase,
+  RemoveSeenMediaUseCase,
 } from '../application/use-cases/index.js';
 // Controllers
 import {
@@ -54,6 +55,7 @@ container.bind(TYPES.GetMoviesByActorUseCase).to(GetMoviesByActorUseCase);
 container.bind(TYPES.AddToWatchlistUseCase).to(AddToWatchlistUseCase);
 container.bind(TYPES.RemoveFromWatchlistUseCase).to(RemoveFromWatchlistUseCase);
 container.bind(TYPES.MarkAsSeenUseCase).to(MarkAsSeenUseCase);
+container.bind(TYPES.RemoveSeenMediaUseCase).to(RemoveSeenMediaUseCase);
 
 // ? Controllers
 container.bind(TYPES.UsersController).to(UsersController);

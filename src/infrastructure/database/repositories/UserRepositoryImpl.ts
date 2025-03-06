@@ -56,7 +56,25 @@ class UserRepositoryImpl implements UserRepositoryInterface {
       throw new ValidationError('Media already in seen list', 'MediaAlreadyInSeenList');
     }
 
-    user.seenMedia.push({ mediaId, type, rating });
+    const watchedAt = new Date();
+
+    user.seenMedia.push({ mediaId, type, rating, watchedAt });
+    await user.save();
+  }
+
+  async removeSeenMedia(userId: string, mediaId: string, type: 'movie' | 'tv'): Promise<void> {
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      throw new NotFoundError('User not found', 'UserNotFound');
+    }
+
+    const initialLength = user.seenMedia.length;
+    user.seenMedia = user.seenMedia.filter((item) => !(item.mediaId === mediaId && item.type === type));
+
+    if (user.seenMedia.length === initialLength) {
+      throw new NotFoundError('Media not found in seen list', 'MediaNotInSeenList');
+    }
+
     await user.save();
   }
 }

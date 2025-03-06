@@ -517,7 +517,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '500':
           $ref: '#/components/responses/DatabaseError'
-  /api/v1/user/watched/add:
+  /api/v1/user/watch/add:
     post:
       summary: mark a media as watched
       requestBody:
@@ -540,6 +540,35 @@ paths:
                   message:
                     type: string
                     example: Media marked as watched successfully
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/DatabaseError'
+  /api/v1/user/watched/remove:
+    delete:
+      summary: Remove a media from the user's watched list
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommonMediaProperties'
+      responses:
+        '200':
+          description: Removed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Media removed successfully
         '400':
           $ref: '#/components/responses/ValidationError'
         '404':
