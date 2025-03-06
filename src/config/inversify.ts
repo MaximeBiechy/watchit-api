@@ -12,11 +12,22 @@ import {
   GetTopRatedMoviesUseCase,
   SearchMoviesAndActorsUseCase,
   GetMoviesByActorUseCase,
+  AddToWatchlistUseCase,
 } from '../application/use-cases/index.js';
 // Controllers
-import { UsersController, AuthController, MovieController, SearchController } from '../interface/controllers/index.js';
+import {
+  UsersController,
+  AuthController,
+  MovieController,
+  SearchController,
+  UserController,
+} from '../interface/controllers/index.js';
 // Repositories
-import { UsersRepositoryImpl, AuthRepositoryImpl } from '../infrastructure/database/repositories/index.js';
+import {
+  UsersRepositoryImpl,
+  AuthRepositoryImpl,
+  UserRepositoryImpl,
+} from '../infrastructure/database/repositories/index.js';
 import { MovieRepositoryImpl } from '../infrastructure/tmdb/repositories/index.js';
 
 const container = new Container();
@@ -25,6 +36,7 @@ const container = new Container();
 container.bind(TYPES.UsersRepository).to(UsersRepositoryImpl);
 container.bind(TYPES.AuthRepository).to(AuthRepositoryImpl);
 container.bind(TYPES.MovieRepository).to(MovieRepositoryImpl);
+container.bind(TYPES.UserRepository).to(UserRepositoryImpl);
 
 // ? Use Cases
 container.bind(TYPES.GetAllUsersUseCase).to(GetAllUsersUseCase);
@@ -37,11 +49,13 @@ container.bind(TYPES.GetPopularMoviesUseCase).to(GetPopularMoviesUseCase);
 container.bind(TYPES.GetTopRatedMoviesUseCase).to(GetTopRatedMoviesUseCase);
 container.bind(TYPES.SearchMoviesAndActorsUseCase).to(SearchMoviesAndActorsUseCase);
 container.bind(TYPES.GetMoviesByActorUseCase).to(GetMoviesByActorUseCase);
+container.bind(TYPES.AddToWatchlistUseCase).to(AddToWatchlistUseCase);
 
 // ? Controllers
 container.bind(TYPES.UsersController).to(UsersController);
 container.bind(TYPES.AuthController).to(AuthController);
 container.bind(TYPES.MovieController).to(MovieController);
 container.bind(TYPES.SearchController).to(SearchController);
+container.bind(TYPES.UserController).to(UserController);
 
 export default container;

@@ -3,6 +3,7 @@ export const TYPES = {
   UsersRepository: Symbol.for('UsersRepository'),
   AuthRepository: Symbol.for('AuthRepository'),
   MovieRepository: Symbol.for('MovieRepository'),
+  UserRepository: Symbol.for('UserRepository'),
 
   // ? Use Cases
   GetAllUsersUseCase: Symbol.for('GetAllUsersUseCase'),
@@ -15,10 +16,12 @@ export const TYPES = {
   GetTopRatedMoviesUseCase: Symbol.for('GetTopRatedMoviesUseCase'),
   SearchMoviesAndActorsUseCase: Symbol.for('SearchMoviesAndActorsUseCase'),
   GetMoviesByActorUseCase: Symbol.for('GetMoviesByActorUseCase'),
+  AddToWatchlistUseCase: Symbol.for('AddToWatchlistUseCase'),
 
   // ? Controllers
   UsersController: Symbol.for('UsersController'),
   AuthController: Symbol.for('AuthController'),
   MovieController: Symbol.for('MovieController'),
   SearchController: Symbol.for('SearchController'),
+  UserController: Symbol.for('UserController'),
 };

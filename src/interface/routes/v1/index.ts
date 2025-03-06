@@ -4,6 +4,7 @@ import { usersRoutes } from './usersRoutes.js';
 import { authRoutes } from './authRoutes.js';
 import { moviesRoutes } from './moviesRoutes.js';
 import { searchRoutes } from './searchRoutes.js';
+import { userRoutes } from './userRoutes.js';
 
 const router = Router();
 
@@ -17,5 +18,6 @@ router.use('/auth', authRoutes);
 router.use('/users', usersRoutes);
 router.use('/movies', moviesRoutes);
 router.use('/search', searchRoutes);
+router.use('/user', userRoutes);
 
 export default router;

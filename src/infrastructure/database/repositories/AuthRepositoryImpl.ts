@@ -11,7 +11,7 @@ class AuthRepositoryImpl implements AuthRepositoryInterface {
   }
 
   async findByEmail(email: string): Promise<User | null> {
-    const user = await UserModel.findOne({
+    const user= await UserModel.findOne({
       email,
     });
     return user ? new User(user.id, user.username, user.email, user.createdAt, user.updatedAt, user.passwordHash) : null;

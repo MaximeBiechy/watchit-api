@@ -11,6 +11,8 @@ import GetPopularMoviesUseCase from './movies/GetPopularMoviesUseCase.js';
 import GetTopRatedMoviesUseCase from './movies/GetTopRatedMoviesUseCase.js';
 import SearchMoviesAndActorsUseCase from './movies/SearchMoviesAndActorsUseCase.js';
 import GetMoviesByActorUseCase from './movies/GetMoviesByActorUseCase.js';
+// User
+import AddToWatchlistUseCase from './user/AddToWatchlistUseCase.js';
 
 export {
   GetAllUsersUseCase,
@@ -23,4 +25,5 @@ export {
   GetTopRatedMoviesUseCase,
   SearchMoviesAndActorsUseCase,
   GetMoviesByActorUseCase,
+  AddToWatchlistUseCase,
 };

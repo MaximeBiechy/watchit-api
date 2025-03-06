@@ -460,7 +460,43 @@ paths:
                         - $ref: '#/components/schemas/ActorDTO'
         '500':
           $ref: '#/components/responses/TMDBServerError'
-
+  /api/v1/user/watchlist:
+    post:
+      summary: Add a media to the user's watchlist
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                  example: 209e7497-a7ce-4a6e-92b7-75bb0deb9a15
+                mediaId:
+                  type: number
+                  example: 500
+                mediaType:
+                  type: string
+                  example: movie
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Media added to watchlist successfully
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/DatabaseError'
 components:
   responses:
     GeneralError:
