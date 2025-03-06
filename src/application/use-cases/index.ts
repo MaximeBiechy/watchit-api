@@ -16,6 +16,9 @@ import AddToWatchlistUseCase from './user/AddToWatchlistUseCase.js';
 import RemoveFromWatchlistUseCase from './user/RemoveFromWatchlistUseCase.js';
 import MarkAsSeenUseCase from './user/MarkAsSeenUseCase.js';
 import RemoveSeenMediaUseCase from './user/RemoveSeenMediaUseCase.js';
+import RateMediaUseCase from './user/RateMediaUseCase.js';
+import UpdateRatingMediaUseCase from './user/UpdateRatingMediaUseCase.js';
+import RemoveMediaRatingUseCase from './user/RemoveMediaRatingUseCase.js';
 
 export {
   GetAllUsersUseCase,
@@ -32,4 +35,7 @@ export {
   RemoveFromWatchlistUseCase,
   MarkAsSeenUseCase,
   RemoveSeenMediaUseCase,
+  RateMediaUseCase,
+  UpdateRatingMediaUseCase,
+  RemoveMediaRatingUseCase,
 };

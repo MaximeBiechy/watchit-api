@@ -40,5 +40,29 @@ router.delete('/watched/remove', async (req: Request, res: Response, next: NextF
   }
 });
 
+router.post('/watched/rate', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await userController.rateMedia(req, res, next);
+  } catch (error: any) {
+    next(error);
+  }
+});
+
+router.patch('/watched/update', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await userController.updateRatingMedia(req, res, next);
+  } catch (error: any) {
+    next(error);
+  }
+});
+
+router.delete('/watched/remove/rating', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await userController.removeMediaRating(req, res, next);
+  } catch (error: any) {
+    next(error);
+  }
+});
+
 
 export { router as userRoutes };

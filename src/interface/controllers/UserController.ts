@@ -6,13 +6,19 @@ import {
   RemoveFromWatchlistUseCase,
   MarkAsSeenUseCase,
   RemoveSeenMediaUseCase,
+  RateMediaUseCase,
+  RemoveMediaRatingUseCase,
+  UpdateRatingMediaUseCase,
 } from '../../application/use-cases/index.js';
 
 class UserController {
   constructor(@inject(TYPES.AddToWatchlistUseCase) private addToWatchlistUseCase: AddToWatchlistUseCase,
               @inject(TYPES.RemoveFromWatchlistUseCase) private removeFromWatchlistUseCase: RemoveFromWatchlistUseCase,
               @inject(TYPES.MarkAsSeenUseCase) private markAsSeenUseCase: MarkAsSeenUseCase,
-              @inject(TYPES.RemoveSeenMediaUseCase) private removeSeenMediaUseCase: RemoveSeenMediaUseCase) {
+              @inject(TYPES.RemoveSeenMediaUseCase) private removeSeenMediaUseCase: RemoveSeenMediaUseCase,
+              @inject(TYPES.RateMediaUseCase) private rateMediaUseCase: RateMediaUseCase,
+              @inject(TYPES.UpdateRatingMediaUseCase) private updateRatingMediaUseCase: UpdateRatingMediaUseCase,
+              @inject(TYPES.RemoveMediaRatingUseCase) private removeMediaRatingUseCase: RemoveMediaRatingUseCase) {
   }
 
   async addToWatchlist(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -61,6 +67,45 @@ class UserController {
       res.status(200).json({
         status: 'success',
         message: 'Removed from seen list successfully',
+      });
+    } catch (error: any) {
+      next(error);
+    }
+  }
+
+  async rateMedia(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { userId, mediaId, mediaType, rating } = req.body;
+      await this.rateMediaUseCase.execute(userId, mediaId, mediaType, rating);
+      res.status(200).json({
+        status: 'success',
+        message: 'Rated media successfully',
+      });
+    } catch (error: any) {
+      next(error);
+    }
+  }
+
+  async updateRatingMedia(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { userId, mediaId, mediaType, rating } = req.body;
+      await this.updateRatingMediaUseCase.execute(userId, mediaId, mediaType, rating);
+      res.status(200).json({
+        status: 'success',
+        message: 'Updated rating successfully',
+      });
+    } catch (error: any) {
+      next(error);
+    }
+  }
+
+  async removeMediaRating(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { userId, mediaId, mediaType } = req.body;
+      await this.removeMediaRatingUseCase.execute(userId, mediaId, mediaType);
+      res.status(200).json({
+        status: 'success',
+        message: 'Removed media rating successfully',
       });
     } catch (error: any) {
       next(error);

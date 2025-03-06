@@ -20,6 +20,9 @@ export const TYPES = {
   RemoveFromWatchlistUseCase: Symbol.for('RemoveFromWatchlistUseCase'),
   MarkAsSeenUseCase: Symbol.for('MarkAsSeenUseCase'),
   RemoveSeenMediaUseCase: Symbol.for('RemoveSeenMediaUseCase'),
+  RateMediaUseCase: Symbol.for('RateMediaUseCase'),
+  UpdateRatingMediaUseCase: Symbol.for('UpdateRatingMediaUseCase'),
+  RemoveMediaRatingUseCase: Symbol.for('RemoveMediaRatingUseCase'),
 
   // ? Controllers
   UsersController: Symbol.for('UsersController'),

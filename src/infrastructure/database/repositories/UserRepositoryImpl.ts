@@ -1,9 +1,8 @@
 import { injectable } from 'inversify';
 import { UserRepositoryInterface } from '../../../domain/repositories/index.js';
-import { Promise } from 'mongoose';
+import { Promise, Schema } from 'mongoose';
 import { NotFoundError, ValidationError } from '../../../shared/errors/index.js';
 import { UserModel } from '../models/index.js';
-import user from '../../../domain/entities/User';
 
 @injectable()
 class UserRepositoryImpl implements UserRepositoryInterface {
@@ -75,6 +74,60 @@ class UserRepositoryImpl implements UserRepositoryInterface {
       throw new NotFoundError('Media not found in seen list', 'MediaNotInSeenList');
     }
 
+    await user.save();
+  }
+
+  async rateMedia(userId: string, mediaId: string, type: 'movie' | 'tv', rating: number): Promise<void> {
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      throw new NotFoundError('User not found', 'UserNotFound');
+    }
+
+    const watchedMedia = user.seenMedia.find((item) => item.mediaId === mediaId && item.type === type);
+
+    if (watchedMedia && watchedMedia.rating === null) {
+      watchedMedia.rating = rating;
+    } else if (!watchedMedia) {
+      const watchedAt = new Date();
+      user.seenMedia.push({ mediaId, type, watchedAt, rating });
+    } else {
+      throw new ValidationError('Media already rated', 'MediaAlreadyRated');
+    }
+
+    await user.save();
+  }
+
+  async updateRatingMedia(userId: string, mediaId: string, type: 'movie' | 'tv', rating: number): Promise<void> {
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      throw new NotFoundError('User not found', 'UserNotFound');
+    }
+
+    const watchedMedia = user.seenMedia.find((item) => item.mediaId === mediaId && item.type === type);
+    if (!watchedMedia) {
+      throw new NotFoundError('Media not found in seen list', 'MediaNotInSeenList');
+    }
+
+    if (watchedMedia.rating !== rating) {
+      watchedMedia.rating = rating;
+      await user.save();
+    }
+  }
+
+  async removeRatingMedia(userId: string, mediaId: string, type: 'movie' | 'tv'): Promise<void> {
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      throw new NotFoundError('User not found', 'UserNotFound');
+    }
+
+    const watchedMedia = user.seenMedia.find((item) => item.mediaId === mediaId && item.type === type);
+    if (!watchedMedia) {
+      throw new NotFoundError('Media not found in seen list', 'MediaNotInSeenList');
+    } else if (watchedMedia.rating === null) {
+      throw new ValidationError('Media not rated', 'MediaNotRated');
+    }
+
+    watchedMedia.rating = null;
     await user.save();
   }
 }
