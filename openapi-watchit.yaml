@@ -616,24 +616,18 @@ components:
         title:
           type: string
           example: The Shawshank Redemption
-        duration:
-          type: number
-          example: 142
         releaseDate:
           type: string
           format: date
           example: 1994-09-23
-        genres:
-          type: array
-          items:
-            type: string
-          example: [ "Drama", "Crime" ]
         voteAverage:
           type: number
           example: 8.7
         posterPath:
           type: string
           example: /9O7gLzmreU0nGkIB6K3BsJbzvNv.jpg
+        self:
+          type: string
 
     ActorDTO:
       type: object

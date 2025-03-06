@@ -23,11 +23,10 @@ class SearchMoviesAndActorsUseCase {
           return new MovieSearchDTO(
             result.id,
             result.title,
-            result.duration,
             result.release_date,
-            result.genres,
             result.vote_average,
             result.poster_path ? `${config.TMDB.IMAGE_BASE_URL}${result.poster_path}` : null,
+            `/movies/${result.id}`,
           );
         } else if (result.media_type === 'person') {
           return new ActorDTO(
