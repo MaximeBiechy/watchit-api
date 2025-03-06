@@ -17,31 +17,35 @@ import {
   MarkAsSeenUseCase,
   RemoveSeenMediaUseCase,
   RateMediaUseCase,
-  UpdateRatingMediaUseCase, RemoveMediaRatingUseCase,
+  UpdateRatingMediaUseCase,
+  RemoveMediaRatingUseCase,
 } from '../application/use-cases/index.js';
 // Controllers
 import {
   UsersController,
   AuthController,
-  MovieController,
+  MoviesController,
   SearchController,
   UserController,
+  ActorsController,
 } from '../interface/controllers/index.js';
 // Repositories
 import {
   UsersRepositoryImpl,
   AuthRepositoryImpl,
   UserRepositoryImpl,
+  ActorsRepositoryImpl,
 } from '../infrastructure/database/repositories/index.js';
-import { MovieRepositoryImpl } from '../infrastructure/tmdb/repositories/index.js';
+import { MoviesRepositoryImpl } from '../infrastructure/tmdb/repositories/index.js';
 
 const container = new Container();
 
 // ? Repositories
 container.bind(TYPES.UsersRepository).to(UsersRepositoryImpl);
 container.bind(TYPES.AuthRepository).to(AuthRepositoryImpl);
-container.bind(TYPES.MovieRepository).to(MovieRepositoryImpl);
+container.bind(TYPES.MoviesRepository).to(MoviesRepositoryImpl);
 container.bind(TYPES.UserRepository).to(UserRepositoryImpl);
+container.bind(TYPES.ActorsRepository).to(ActorsRepositoryImpl);
 
 // ? Use Cases
 container.bind(TYPES.GetAllUsersUseCase).to(GetAllUsersUseCase);
@@ -65,8 +69,9 @@ container.bind(TYPES.RemoveMediaRatingUseCase).to(RemoveMediaRatingUseCase);
 // ? Controllers
 container.bind(TYPES.UsersController).to(UsersController);
 container.bind(TYPES.AuthController).to(AuthController);
-container.bind(TYPES.MovieController).to(MovieController);
+container.bind(TYPES.MoviesController).to(MoviesController);
 container.bind(TYPES.SearchController).to(SearchController);
 container.bind(TYPES.UserController).to(UserController);
+container.bind(TYPES.ActorsController).to(ActorsController);
 
 export default container;

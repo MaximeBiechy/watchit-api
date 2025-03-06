@@ -1,11 +1,11 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { TYPES } from '../../../config/types.js';
-import { MovieController } from '../../../interface/controllers/index.js';
+import { MoviesController } from '../../../interface/controllers/index.js';
 import container from '../../../config/inversify.js';
 
 const router = Router();
 
-const movieController = container.get<MovieController>(TYPES.MovieController);
+const movieController = container.get<MoviesController>(TYPES.MoviesController);
 
 router.get('/now_playing', async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -34,14 +34,6 @@ router.get('/popular', async (req: Request, res: Response, next: NextFunction) =
 router.get('/top_rated', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await movieController.getTopRatedMovies(req, res, next);
-  } catch (error: any) {
-    next(error);
-  }
-});
-
-router.get('/actor/:id/movies', async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    await movieController.getMoviesByActor(req, res, next);
   } catch (error: any) {
     next(error);
   }

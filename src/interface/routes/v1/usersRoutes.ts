@@ -15,7 +15,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   }
 });
 
-router.post('/watchlist', async (req: Request, res: Response, next: NextFunction) => {
+router.post('/:userId/watchlist/:mediaId', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.addToWatchlist(req, res, next);
   } catch (error: any) {
@@ -23,7 +23,7 @@ router.post('/watchlist', async (req: Request, res: Response, next: NextFunction
   }
 });
 
-router.delete('/watchlist', async (req: Request, res: Response, next: NextFunction) => {
+router.delete('/:userId/watchlist/:mediaId', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.removeFromWatchlist(req, res, next);
   } catch (error: any) {
@@ -31,7 +31,7 @@ router.delete('/watchlist', async (req: Request, res: Response, next: NextFuncti
   }
 });
 
-router.post('/watch/add', async (req: Request, res: Response, next: NextFunction) => {
+router.post('/:userId/seen/:mediaId', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.markAsSeen(req, res, next);
   } catch (error: any) {
@@ -39,7 +39,7 @@ router.post('/watch/add', async (req: Request, res: Response, next: NextFunction
   }
 });
 
-router.delete('/watched/remove', async (req: Request, res: Response, next: NextFunction) => {
+router.delete('/:userId/seen/:mediaId', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.removeSeenMedia(req, res, next);
   } catch (error: any) {
@@ -47,7 +47,7 @@ router.delete('/watched/remove', async (req: Request, res: Response, next: NextF
   }
 });
 
-router.post('/watched/rate', async (req: Request, res: Response, next: NextFunction) => {
+router.post('/:userId/ratings/:mediaId', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.rateMedia(req, res, next);
   } catch (error: any) {
@@ -55,7 +55,7 @@ router.post('/watched/rate', async (req: Request, res: Response, next: NextFunct
   }
 });
 
-router.patch('/watched/update', async (req: Request, res: Response, next: NextFunction) => {
+router.patch('/:userId/ratings/:mediaId', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.updateRatingMedia(req, res, next);
   } catch (error: any) {
@@ -63,7 +63,7 @@ router.patch('/watched/update', async (req: Request, res: Response, next: NextFu
   }
 });
 
-router.delete('/watched/remove/rating', async (req: Request, res: Response, next: NextFunction) => {
+router.delete('/:userId/ratings/:mediaId', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.removeMediaRating(req, res, next);
   } catch (error: any) {

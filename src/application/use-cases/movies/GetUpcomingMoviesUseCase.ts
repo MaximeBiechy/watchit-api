@@ -1,13 +1,13 @@
 import { inject, injectable } from 'inversify';
 import { TYPES } from '../../../config/types.js';
-import { MovieRepositoryInterface } from '../../../domain/repositories/index.js';
+import { MoviesRepositoryInterface } from '../../../domain/repositories/index.js';
 import { HomePageMovieDTO } from '../../../domain/dtos/index.js';
 import { ValidationError, TMDBServerError } from '../../../shared/errors/index.js';
 import { config } from '../../../config/config.js';
 
 @injectable()
 class GetUpcomingMoviesUseCase {
-  constructor(@inject(TYPES.MovieRepository) private movieRepository: MovieRepositoryInterface) {}
+  constructor(@inject(TYPES.MoviesRepository) private moviesRepository: MoviesRepositoryInterface) {}
 
   async execute(region: string = 'FR', language: string = 'fr-FR', page: number = 1): Promise<HomePageMovieDTO[]> {
     if (page <= 0) {
@@ -15,7 +15,7 @@ class GetUpcomingMoviesUseCase {
     }
 
     try {
-      const movies = await this.movieRepository.getUpcomingMovies(region, language, page);
+      const movies = await this.moviesRepository.getUpcomingMovies(region, language, page);
 
       return movies.map(
         (movie: any) =>

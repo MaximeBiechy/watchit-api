@@ -4,7 +4,7 @@ import UserDTO from './users/UserDTO.js';
 import RegisterUserDTO from './auth/RegisterUserDTO.js';
 import SigninUserDTO from './auth/SigninUserDTO.js';
 import SigninUserResponseDTO from './auth/SigninUserResponseDTO.js';
-import ActorDTO from './actor/ActorDTO.js';
+import ActorDTO from './actors/ActorDTO.js';
 import MovieSearchDTO from './movies/MovieSearchDTO.js';
 
 export {

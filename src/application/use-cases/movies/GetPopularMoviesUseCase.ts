@@ -1,13 +1,13 @@
 import { inject, injectable } from 'inversify';
 import { TYPES } from '../../../config/types.js';
-import { MovieRepositoryInterface } from '../../../domain/repositories/index.js';
+import { MoviesRepositoryInterface } from '../../../domain/repositories/index.js';
 import { TMDBServerError, ValidationError } from '../../../shared/errors/index.js';
 import { HomePageMovieDTO } from '../../../domain/dtos/index.js';
 import { config } from '../../../config/config.js';
 
 @injectable()
 class GetPopularMoviesUseCase {
-  constructor(@inject(TYPES.MovieRepository) private movieRepository: MovieRepositoryInterface) {}
+  constructor(@inject(TYPES.MoviesRepository) private moviesRepository: MoviesRepositoryInterface) {}
 
   async execute(region: string = 'FR', language: string = 'fr-FR', page: number = 1): Promise<any> {
     if (page <= 0) {
@@ -15,7 +15,7 @@ class GetPopularMoviesUseCase {
     }
 
     try {
-      const movies = await this.movieRepository.getPopularMovies(region, language, page);
+      const movies = await this.moviesRepository.getPopularMovies(region, language, page);
 
       return movies.map(
         (movie: any) =>

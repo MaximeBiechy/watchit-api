@@ -33,7 +33,9 @@ class UsersController {
 
   async addToWatchlist(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { userId, mediaId, mediaType } = req.body;
+      const { userId, mediaId } = req.params;
+      const { mediaType } = req.body;
+      console.log(userId, mediaId, mediaType);
       await this.addToWatchlistUseCase.execute(userId, mediaId, mediaType);
       res.status(201).json({
         status: 'success',
@@ -46,7 +48,8 @@ class UsersController {
 
   async removeFromWatchlist(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { userId, mediaId, mediaType } = req.body;
+      const { userId, mediaId } = req.params;
+      const { mediaType } = req.body;
       await this.removeFromWatchlistUseCase.execute(userId, mediaId, mediaType);
       res.status(200).json({
         status: 'success',
@@ -59,7 +62,8 @@ class UsersController {
 
   async markAsSeen(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { userId, mediaId, mediaType } = req.body;
+      const { userId, mediaId } = req.params;
+      const { mediaType } = req.body;
       await this.markAsSeenUseCase.execute(userId, mediaId, mediaType);
       res.status(200).json({
         status: 'success',
@@ -72,7 +76,8 @@ class UsersController {
 
   async removeSeenMedia(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { userId, mediaId, mediaType } = req.body;
+      const { userId, mediaId } = req.params;
+      const { mediaType } = req.body;
       await this.removeSeenMediaUseCase.execute(userId, mediaId, mediaType);
       res.status(200).json({
         status: 'success',
@@ -85,7 +90,8 @@ class UsersController {
 
   async rateMedia(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { userId, mediaId, mediaType, rating } = req.body;
+      const { userId, mediaId } = req.params;
+      const { mediaType, rating } = req.body;
       await this.rateMediaUseCase.execute(userId, mediaId, mediaType, rating);
       res.status(200).json({
         status: 'success',
@@ -98,7 +104,8 @@ class UsersController {
 
   async updateRatingMedia(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { userId, mediaId, mediaType, rating } = req.body;
+      const { userId, mediaId } = req.params;
+      const { mediaType, rating } = req.body;
       await this.updateRatingMediaUseCase.execute(userId, mediaId, mediaType, rating);
       res.status(200).json({
         status: 'success',
@@ -111,7 +118,8 @@ class UsersController {
 
   async removeMediaRating(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { userId, mediaId, mediaType } = req.body;
+      const { userId, mediaId } = req.params;
+      const { mediaType } = req.body;
       await this.removeMediaRatingUseCase.execute(userId, mediaId, mediaType);
       res.status(200).json({
         status: 'success',

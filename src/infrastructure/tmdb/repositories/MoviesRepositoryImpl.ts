@@ -1,10 +1,10 @@
-import { MovieRepositoryInterface } from '../../../domain/repositories/index.js';
+import { MoviesRepositoryInterface } from '../../../domain/repositories/index.js';
 import { injectable } from 'inversify';
 import { axiosInstance } from '../axiosInstance.js';
 import { Promise } from 'mongoose';
 
 @injectable()
-class MovieRepositoryImpl implements MovieRepositoryInterface {
+class MoviesRepositoryImpl implements MoviesRepositoryInterface {
   async getMovieDetails(movieId: string, language: string): Promise<any> {
     const response: any = await axiosInstance.get(`/movie/${movieId}`, {
       params: {
@@ -98,15 +98,6 @@ class MovieRepositoryImpl implements MovieRepositoryInterface {
     return response.data?.results;
   }
 
-  async getMoviesByActor(actorId: string, language: string): Promise<any> {
-    const response: any = await axiosInstance.get(`/person/${actorId}/movie_credits`, {
-      params: {
-        language,
-      },
-    });
-
-    return response.data?.cast;
-  }
 }
 
-export default MovieRepositoryImpl;
+export default MoviesRepositoryImpl;

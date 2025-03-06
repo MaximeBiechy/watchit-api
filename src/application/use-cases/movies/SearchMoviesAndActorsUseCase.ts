@@ -1,13 +1,13 @@
 import { inject, injectable } from 'inversify';
 import { TYPES } from '../../../config/types.js';
-import { MovieRepositoryInterface } from '../../../domain/repositories/index.js';
+import { MoviesRepositoryInterface } from '../../../domain/repositories/index.js';
 import { ActorDTO, MovieSearchDTO } from '../../../domain/dtos/index.js';
 import { config } from '../../../config/config.js';
 import { TMDBServerError } from '../../../shared/errors/index.js';
 
 @injectable()
 class SearchMoviesAndActorsUseCase {
-  constructor(@inject(TYPES.MovieRepository) private movieRepository: MovieRepositoryInterface) {
+  constructor(@inject(TYPES.MoviesRepository) private moviesRepository: MoviesRepositoryInterface) {
   }
 
   async execute(query: string, language: string = 'fr-FR', include_adult: boolean = true, page: number = 1): Promise<(MovieSearchDTO | ActorDTO)[]> {
@@ -16,7 +16,7 @@ class SearchMoviesAndActorsUseCase {
     }
 
     try {
-      const searchResults = await this.movieRepository.search(query, language, include_adult, page);
+      const searchResults = await this.moviesRepository.search(query, language, include_adult, page);
 
       return searchResults.map((result: any) => {
         if (result.media_type === 'movie') {

@@ -1,3 +1,3 @@
-import MovieRepositoryImpl from './MovieRepositoryImpl.js';
+import MoviesRepositoryImpl from './MoviesRepositoryImpl.js';
 
-export { MovieRepositoryImpl };
+export { MoviesRepositoryImpl };

@@ -1,13 +1,13 @@
 import { inject, injectable } from 'inversify';
 import { TYPES } from '../../../config/types.js';
-import { MovieRepositoryInterface } from '../../../domain/repositories/index.js';
+import { MoviesRepositoryInterface } from '../../../domain/repositories/index.js';
 import { ValidationError, TMDBServerError } from '../../../shared/errors/index.js';
 import { config } from '../../../config/config.js';
 import { MovieDTO } from '../../../domain/dtos/index.js';
 
 @injectable()
 class GetMovieDetailsUseCase {
-  constructor(@inject(TYPES.MovieRepository) private movieRepository: MovieRepositoryInterface) {
+  constructor(@inject(TYPES.MoviesRepository) private moviesRepository: MoviesRepositoryInterface) {
   }
 
   async execute(movieId: string, language: string = 'fr-FR'): Promise<MovieDTO> {
@@ -21,9 +21,9 @@ class GetMovieDetailsUseCase {
 
     try {
       const [details, credits, watchProviders] = await Promise.all([
-        this.movieRepository.getMovieDetails(movieId, language),
-        this.movieRepository.getMovieCredits(movieId, language),
-        this.movieRepository.getMovieWatchProviders(movieId),
+        this.moviesRepository.getMovieDetails(movieId, language),
+        this.moviesRepository.getMovieCredits(movieId, language),
+        this.moviesRepository.getMovieWatchProviders(movieId),
       ]);
 
       const actors = credits.cast.slice(0, 10)?.map((actor: any) => ({

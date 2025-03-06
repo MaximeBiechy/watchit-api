@@ -372,12 +372,12 @@ paths:
           $ref: '#/components/responses/ValidationError'
         '500':
           $ref: '#/components/responses/TMDBServerError'
-  /api/v1/movies/actor/{id}/movies:
+  /api/v1/actors/{actorId}/movies:
     get:
       summary: Get movies by actor ID
       parameters:
         - in: path
-          name: id
+          name: actorId
           required: true
           schema:
             type: number
@@ -460,9 +460,22 @@ paths:
                         - $ref: '#/components/schemas/ActorDTO'
         '500':
           $ref: '#/components/responses/TMDBServerError'
-  /api/v1/users/watchlist:
+  /api/v1/users/{userId}/watchlist/{mediaId}:
     post:
       summary: Add a media to the user's watchlist
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+          description: The user ID
+        - in: path
+          name: mediaId
+          required: true
+          schema:
+            type: string
+          description: The media ID
       requestBody:
         required: true
         content:
@@ -491,6 +504,19 @@ paths:
           $ref: '#/components/responses/DatabaseError'
     delete:
       summary: Remove a media from the user's watchlist
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+          description: The user ID
+        - in: path
+          name: mediaId
+          required: true
+          schema:
+            type: string
+          description: The media ID
       requestBody:
         required: true
         content:
@@ -517,9 +543,22 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '500':
           $ref: '#/components/responses/DatabaseError'
-  /api/v1/users/watch/add:
+  /api/v1/users/{userId}/seen/{mediaId}:
     post:
       summary: mark a media as watched
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+          description: The user ID
+        - in: path
+          name: mediaId
+          required: true
+          schema:
+            type: string
+          description: The media ID
       requestBody:
         required: true
         content:
@@ -546,9 +585,21 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '500':
           $ref: '#/components/responses/DatabaseError'
-  /api/v1/users/watched/remove:
     delete:
       summary: Remove a media from the user's watched list
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+          description: The user ID
+        - in: path
+          name: mediaId
+          required: true
+          schema:
+            type: string
+          description: The media ID
       requestBody:
         required: true
         content:
@@ -575,9 +626,22 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '500':
           $ref: '#/components/responses/DatabaseError'
-  /api/v1/users/watched/rate:
+  /api/v1/users/{userId}/ratings/{mediaId}:
     post:
       summary: Rate a media
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+          description: The user ID
+        - in: path
+          name: mediaId
+          required: true
+          schema:
+            type: string
+          description: The media ID
       requestBody:
         required: true
         content:
@@ -604,9 +668,21 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '500':
           $ref: '#/components/responses/DatabaseError'
-  /api/v1/users/watched/update:
     patch:
       summary: Update a media rate
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+          description: The user ID
+        - in: path
+          name: mediaId
+          required: true
+          schema:
+            type: string
+          description: The media ID
       requestBody:
         required: true
         content:
@@ -633,9 +709,21 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '500':
           $ref: '#/components/responses/DatabaseError'
-  /api/v1/users/watched/remove/rating:
     delete:
       summary: Remove a media rating
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+          description: The user ID
+        - in: path
+          name: mediaId
+          required: true
+          schema:
+            type: string
+          description: The media ID
       requestBody:
         required: true
         content:
@@ -896,12 +984,6 @@ components:
     CommonMediaProperties:
       type: object
       properties:
-        userId:
-          type: string
-          example: 209e7497-a7ce-4a6e-92b7-75bb0deb9a15
-        mediaId:
-          type: number
-          example: 500
         mediaType:
           type: string
           example: movie
