@@ -35,6 +35,15 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
     await user.save();
   }
 
+  async getUserWatchlist(userId: string): Promise<User['watchlist']> {
+    const user = await UserModel.findById(userId).select('watchlist').lean();
+    if (!user) {
+      throw new NotFoundError('User not found', 'UserNotFound');
+    }
+
+    return user.watchlist;
+  }
+
   async addToWatchList(userId: string, mediaId: string, type: 'movie' | 'tv'): Promise<void> {
     const user = await UserModel.findById(userId);
     if (!user) {

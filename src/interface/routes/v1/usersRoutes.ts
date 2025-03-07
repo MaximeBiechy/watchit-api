@@ -31,6 +31,14 @@ router.patch('/:userId/settings', async (req: Request, res: Response, next: Next
   }
 });
 
+router.get('/:userId/watchlist', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await usersController.getUserWatchlist(req, res, next);
+  } catch (error: any) {
+    next(error);
+  }
+});
+
 router.post('/:userId/watchlist/:mediaId', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.addToWatchlist(req, res, next);

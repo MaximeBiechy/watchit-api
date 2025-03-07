@@ -21,6 +21,7 @@ import {
   RemoveMediaRatingUseCase,
   GetUserSettingsUseCase,
   UpdateUserSettingUseCase,
+  GetUserWatchListUseCase,
 } from '../application/use-cases/index.js';
 // Controllers
 import {
@@ -69,6 +70,7 @@ container.bind(TYPES.UpdateRatingMediaUseCase).to(UpdateRatingMediaUseCase);
 container.bind(TYPES.RemoveMediaRatingUseCase).to(RemoveMediaRatingUseCase);
 container.bind(TYPES.GetUserSettingsUseCase).to(GetUserSettingsUseCase);
 container.bind(TYPES.UpdateUserSettingUseCase).to(UpdateUserSettingUseCase);
+container.bind(TYPES.GetUserWatchListUseCase).to(GetUserWatchListUseCase);
 
 // ? Controllers
 container.bind(TYPES.UsersController).to(UsersController);
