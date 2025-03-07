@@ -23,6 +23,18 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
     return user.settings;
   };
 
+  async updateUserSettings(userId: string, settings: User['settings']): Promise<void> {
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      throw new NotFoundError('User not found', 'UserNotFound');
+    }
+
+    console.log('settings', settings);
+
+    user.settings = settings;
+    await user.save();
+  }
+
   async addToWatchList(userId: string, mediaId: string, type: 'movie' | 'tv'): Promise<void> {
     const user = await UserModel.findById(userId);
     if (!user) {

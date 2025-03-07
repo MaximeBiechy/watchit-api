@@ -11,6 +11,7 @@ import {
   RemoveSeenMediaUseCase,
   UpdateRatingMediaUseCase,
   GetUserSettingsUseCase,
+  UpdateUserSettingUseCase,
 } from '../../application/use-cases/index.js';
 import { UserDTO } from '../../domain/dtos/index.js';
 
@@ -22,7 +23,8 @@ class UsersController {
               @inject(TYPES.RateMediaUseCase) private rateMediaUseCase: RateMediaUseCase,
               @inject(TYPES.UpdateRatingMediaUseCase) private updateRatingMediaUseCase: UpdateRatingMediaUseCase,
               @inject(TYPES.RemoveMediaRatingUseCase) private removeMediaRatingUseCase: RemoveMediaRatingUseCase,
-              @inject(TYPES.GetUserSettingsUseCase) private getUserSettingsUseCase: GetUserSettingsUseCase) {
+              @inject(TYPES.GetUserSettingsUseCase) private getUserSettingsUseCase: GetUserSettingsUseCase,
+              @inject(TYPES.UpdateUserSettingUseCase) private updateUserSettingUseCase: UpdateUserSettingUseCase) {
   }
 
   async getAllUsers(req: Request, res: Response, next: NextFunction) {
@@ -46,6 +48,20 @@ class UsersController {
         status: 'success',
         message: 'User settings fetched successfully',
         userSettings,
+      });
+    } catch (error: any) {
+      next(error);
+    }
+  }
+
+  async updateUserSettings(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { userId } = req.params;
+      const { settings } = req.body;
+      await this.updateUserSettingUseCase.execute(userId, settings);
+      res.status(200).json({
+        status: 'success',
+        message: 'User settings updated successfully',
       });
     } catch (error: any) {
       next(error);

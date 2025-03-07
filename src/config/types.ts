@@ -25,6 +25,7 @@ export const TYPES = {
   UpdateRatingMediaUseCase: Symbol.for('UpdateRatingMediaUseCase'),
   RemoveMediaRatingUseCase: Symbol.for('RemoveMediaRatingUseCase'),
   GetUserSettingsUseCase: Symbol.for('GetUserSettingsUseCase'),
+  UpdateUserSettingUseCase: Symbol.for('UpdateUserSettingUseCase'),
 
   // ? Controllers
   UsersController: Symbol.for('UsersController'),

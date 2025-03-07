@@ -8,6 +8,7 @@ import RateMediaUseCase from './users/RateMediaUseCase.js';
 import UpdateRatingMediaUseCase from './users/UpdateRatingMediaUseCase.js';
 import RemoveMediaRatingUseCase from './users/RemoveMediaRatingUseCase.js';
 import GetUserSettingsUseCase from './users/GetUserSettingsUseCase.js';
+import UpdateUserSettingUseCase from './users/UpdateUserSettingUseCase.js';
 // Auth
 import RegisterUserUseCase from './auth/RegisterUserUseCase.js';
 import SigninUserUseCase from './auth/SigninUserUseCase.js';
@@ -40,4 +41,5 @@ export {
   UpdateRatingMediaUseCase,
   RemoveMediaRatingUseCase,
   GetUserSettingsUseCase,
+  UpdateUserSettingUseCase,
 };

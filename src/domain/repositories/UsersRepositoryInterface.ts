@@ -5,6 +5,8 @@ interface UsersRepositoryInterface {
 
   getUserSettings(userId: string): Promise<User['settings']>;
 
+  updateUserSettings(userId: string, settings: User['settings']): Promise<void>;
+
   addToWatchList(userId: string, mediaId: string, type: 'movie' | 'tv'): Promise<void>;
 
   removeFromWatchList(userId: string, mediaId: string, type: 'movie' | 'tv'): Promise<void>;
