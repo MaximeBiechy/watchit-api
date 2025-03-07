@@ -1058,6 +1058,8 @@ components:
         posterPath:
           type: string
           example: /9O7gLzmreU0nGkIB6K3BsJbzvNv.jpg
+        self:
+          type: string
 
     CommonMediaProperties:
       type: object

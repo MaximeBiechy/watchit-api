@@ -23,6 +23,7 @@ class GetUpcomingMoviesUseCase {
             movie.id,
             movie.title,
             movie.poster_path ? `${config.TMDB.IMAGE_BASE_URL}${movie.poster_path}` : null,
+            `/movies/${movie.id}`,
           ),
       );
     } catch (error: any) {

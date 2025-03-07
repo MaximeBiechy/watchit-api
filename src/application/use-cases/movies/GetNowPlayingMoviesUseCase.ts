@@ -7,7 +7,8 @@ import { HomePageMovieDTO } from '../../../domain/dtos/index.js';
 
 @injectable()
 class GetNowPlayingMoviesUseCase {
-  constructor(@inject(TYPES.MoviesRepository) private moviesRepository: MoviesRepositoryInterface) {}
+  constructor(@inject(TYPES.MoviesRepository) private moviesRepository: MoviesRepositoryInterface) {
+  }
 
   async execute(region: string = 'FR', language: string = 'fr-FR', page: number = 1): Promise<HomePageMovieDTO[]> {
     if (page <= 0) {
@@ -23,6 +24,7 @@ class GetNowPlayingMoviesUseCase {
             movie.id,
             movie.title,
             movie.poster_path ? `${config.TMDB.IMAGE_BASE_URL}${movie.poster_path}` : null,
+            `/movies/${movie.id}`,
           ),
       );
     } catch (error: any) {
