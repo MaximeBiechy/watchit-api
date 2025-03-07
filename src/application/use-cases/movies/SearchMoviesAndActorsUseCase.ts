@@ -22,6 +22,7 @@ class SearchMoviesAndActorsUseCase {
         if (result.media_type === 'movie') {
           return new MovieSearchDTO(
             result.id,
+            'movie',
             result.title,
             result.release_date,
             result.vote_average,
@@ -31,6 +32,7 @@ class SearchMoviesAndActorsUseCase {
         } else if (result.media_type === 'person') {
           return new ActorDTO(
             result.id,
+            'actor',
             result.name,
             result.profile_path ? `${config.TMDB.IMAGE_BASE_URL}${result.profile_path}` : null,
           );

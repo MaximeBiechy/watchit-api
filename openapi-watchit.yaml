@@ -1011,6 +1011,9 @@ components:
         id:
           type: number
           example: 500
+        mediaType:
+          type: string
+          example: movie
         title:
           type: string
           example: The Shawshank Redemption
@@ -1033,6 +1036,9 @@ components:
         id:
           type: number
           example: 62
+        mediaType:
+          type: string
+          example: actor
         name:
           type: string
           example: Morgan Freeman

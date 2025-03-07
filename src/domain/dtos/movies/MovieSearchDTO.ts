@@ -1,5 +1,6 @@
 class MovieSearchDTO {
   id: number;
+  mediaType: string = 'movie';
   title: string;
   releaseDate: Date;
   voteAverage: number;
@@ -8,6 +9,7 @@ class MovieSearchDTO {
 
   constructor(
     id: number,
+    mediaType: 'movie' = 'movie',
     title: string,
     releaseDate: Date,
     voteAverage: number,
@@ -15,6 +17,7 @@ class MovieSearchDTO {
     self: string,
   ) {
     this.id = id;
+    this.mediaType = mediaType;
     this.title = title;
     this.releaseDate = releaseDate;
     this.voteAverage = voteAverage;
