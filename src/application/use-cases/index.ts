@@ -1,5 +1,13 @@
 // Users
 import GetAllUsersUseCase from './users/GetAllUsersUseCase.js';
+import AddToWatchlistUseCase from './users/AddToWatchlistUseCase.js';
+import RemoveFromWatchlistUseCase from './users/RemoveFromWatchlistUseCase.js';
+import MarkAsSeenUseCase from './users/MarkAsSeenUseCase.js';
+import RemoveSeenMediaUseCase from './users/RemoveSeenMediaUseCase.js';
+import RateMediaUseCase from './users/RateMediaUseCase.js';
+import UpdateRatingMediaUseCase from './users/UpdateRatingMediaUseCase.js';
+import RemoveMediaRatingUseCase from './users/RemoveMediaRatingUseCase.js';
+import GetUserSettingsUseCase from './users/GetUserSettingsUseCase.js';
 // Auth
 import RegisterUserUseCase from './auth/RegisterUserUseCase.js';
 import SigninUserUseCase from './auth/SigninUserUseCase.js';
@@ -12,13 +20,6 @@ import GetTopRatedMoviesUseCase from './movies/GetTopRatedMoviesUseCase.js';
 import SearchMoviesAndActorsUseCase from './movies/SearchMoviesAndActorsUseCase.js';
 import GetMoviesByActorUseCase from './actors/GetMoviesByActorUseCase.js';
 // User
-import AddToWatchlistUseCase from './users/AddToWatchlistUseCase.js';
-import RemoveFromWatchlistUseCase from './users/RemoveFromWatchlistUseCase.js';
-import MarkAsSeenUseCase from './users/MarkAsSeenUseCase.js';
-import RemoveSeenMediaUseCase from './users/RemoveSeenMediaUseCase.js';
-import RateMediaUseCase from './users/RateMediaUseCase.js';
-import UpdateRatingMediaUseCase from './users/UpdateRatingMediaUseCase.js';
-import RemoveMediaRatingUseCase from './users/RemoveMediaRatingUseCase.js';
 
 export {
   GetAllUsersUseCase,
@@ -38,4 +39,5 @@ export {
   RateMediaUseCase,
   UpdateRatingMediaUseCase,
   RemoveMediaRatingUseCase,
+  GetUserSettingsUseCase,
 };

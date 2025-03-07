@@ -73,29 +73,6 @@ paths:
                   message:
                     type: string
                     example: API is working
-  /api/v1/users:
-    get:
-      summary: Get all users
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: success
-                  message:
-                    type: string
-                    example: Users fetched successfully
-                  users:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/UserDTO'
-        '500':
-          $ref: '#/components/responses/DatabaseError'
   /api/v1/auth/register:
     post:
       summary: Create a new user
@@ -460,6 +437,59 @@ paths:
                         - $ref: '#/components/schemas/ActorDTO'
         '500':
           $ref: '#/components/responses/TMDBServerError'
+  /api/v1/users:
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Users fetched successfully
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/UserDTO'
+        '500':
+          $ref: '#/components/responses/DatabaseError'
+  /api/v1/users/{userId}/settings:
+    get:
+      summary: Get user settings
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+          description: The user ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: User settings fetched successfully
+                  userSettings:
+                    type: object
+                    properties:
+                      language:
+                        type: string
+                        example: en
   /api/v1/users/{userId}/watchlist/{mediaId}:
     post:
       summary: Add a media to the user's watchlist

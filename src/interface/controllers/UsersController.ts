@@ -3,8 +3,14 @@ import { inject } from 'inversify';
 import { TYPES } from '../../config/types.js';
 import {
   AddToWatchlistUseCase,
-  GetAllUsersUseCase, MarkAsSeenUseCase, RateMediaUseCase,
-  RemoveFromWatchlistUseCase, RemoveMediaRatingUseCase, RemoveSeenMediaUseCase, UpdateRatingMediaUseCase,
+  GetAllUsersUseCase,
+  MarkAsSeenUseCase,
+  RateMediaUseCase,
+  RemoveFromWatchlistUseCase,
+  RemoveMediaRatingUseCase,
+  RemoveSeenMediaUseCase,
+  UpdateRatingMediaUseCase,
+  GetUserSettingsUseCase,
 } from '../../application/use-cases/index.js';
 import { UserDTO } from '../../domain/dtos/index.js';
 
@@ -15,7 +21,8 @@ class UsersController {
               @inject(TYPES.RemoveSeenMediaUseCase) private removeSeenMediaUseCase: RemoveSeenMediaUseCase,
               @inject(TYPES.RateMediaUseCase) private rateMediaUseCase: RateMediaUseCase,
               @inject(TYPES.UpdateRatingMediaUseCase) private updateRatingMediaUseCase: UpdateRatingMediaUseCase,
-              @inject(TYPES.RemoveMediaRatingUseCase) private removeMediaRatingUseCase: RemoveMediaRatingUseCase) {
+              @inject(TYPES.RemoveMediaRatingUseCase) private removeMediaRatingUseCase: RemoveMediaRatingUseCase,
+              @inject(TYPES.GetUserSettingsUseCase) private getUserSettingsUseCase: GetUserSettingsUseCase) {
   }
 
   async getAllUsers(req: Request, res: Response, next: NextFunction) {
@@ -25,6 +32,20 @@ class UsersController {
         status: 'success',
         message: 'Users fetched successfully',
         users,
+      });
+    } catch (error: any) {
+      next(error);
+    }
+  }
+
+  async getUserSettings(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { userId } = req.params;
+      const userSettings = await this.getUserSettingsUseCase.execute(userId);
+      return res.status(200).json({
+        status: 'success',
+        message: 'User settings fetched successfully',
+        userSettings,
       });
     } catch (error: any) {
       next(error);

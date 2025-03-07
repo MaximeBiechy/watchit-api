@@ -10,12 +10,17 @@ interface SeenMedia extends MediaItem {
   watchedAt?: Date;
 }
 
+interface Settings {
+  language: string;
+}
+
 interface UserDocument extends Document {
   username: string;
   email: string;
   passwordHash?: string;
   watchlist: MediaItem[];
   seenMedia: SeenMedia[];
+  settings: Settings;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -44,6 +49,9 @@ const UserSchema = new Schema(
         },
       ],
       default: [],
+    },
+    settings: {
+      language: { type: String, required: true, enum: ['en', 'fr'], default: 'en' },
     },
     createdAt: { type: Date, required: true, default: Date.now },
     updatedAt: { type: Date, required: true, default: Date.now },
