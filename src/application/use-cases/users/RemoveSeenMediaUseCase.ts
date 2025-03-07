@@ -18,10 +18,12 @@ class RemoveSeenMediaUseCase {
 
     try {
       await this.usersRepository.removeSeenMedia(userId, String(mediaId), mediaType);
-    } catch (error: NotFoundError) {
-      throw new NotFoundError(error.message, error.code);
     } catch (error: any) {
-      throw new DatabaseError('Error removing from seen list' + error.message, 'RemoveFromSeenListError');
+      if (error instanceof NotFoundError) {
+        throw new NotFoundError(error.message, error.code);
+      } else {
+        throw new DatabaseError('Error removing from seen list' + error.message, 'RemoveFromSeenListError');
+      }
     }
   }
 }

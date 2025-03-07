@@ -18,12 +18,13 @@ class MarkAsSeenUseCase {
 
     try {
       await this.usersRepository.markAsSeen(userId, String(mediaId), mediaType);
-    } catch (error: NotFoundError) {
-      throw new NotFoundError(error.message, error.code);
     } catch (error: any) {
-      throw new DatabaseError('Error marking as seen' + error.message, 'MarkAsSeenError');
+      if (error instanceof NotFoundError) {
+        throw new NotFoundError(error.message, error.code);
+      } else {
+        throw new DatabaseError('Error marking as seen' + error.message, 'MarkAsSeenError');
+      }
     }
-
   }
 }
 

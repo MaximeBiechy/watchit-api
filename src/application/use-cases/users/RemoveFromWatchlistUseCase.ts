@@ -18,10 +18,12 @@ class RemoveFromWatchlistUseCase {
 
     try {
       await this.usersRepository.removeFromWatchList(userId, String(mediaId), mediaType);
-    } catch (error: NotFoundError) {
-      throw new NotFoundError(error.message, error.code);
     } catch (error: any) {
-      throw new DatabaseError('Error removing from watchlist' + error.message, 'RemoveFromWatchlistError');
+      if (error instanceof NotFoundError) {
+        throw new NotFoundError(error.message, error.code);
+      } else {
+        throw new DatabaseError('Error removing from watchlist' + error.message, 'RemoveFromWatchlistError');
+      }
     }
   }
 }

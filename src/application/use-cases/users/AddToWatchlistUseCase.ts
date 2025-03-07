@@ -19,10 +19,12 @@ class AddToWatchlistUseCase {
 
     try {
       await this.usersRepository.addToWatchList(userId, String(mediaId), mediaType);
-    } catch (error: NotFoundError) {
-      throw new NotFoundError(error.message, error.code);
     } catch (error: any) {
-      throw new DatabaseError('Error adding to watchlist' + error.message, 'AddToWatchlistError');
+      if (error instanceof NotFoundError) {
+        throw new NotFoundError(error.message, error.code);
+      } else {
+        throw new DatabaseError('Error adding to watchlist' + error.message, 'AddToWatchlistError');
+      }
     }
   }
 }
