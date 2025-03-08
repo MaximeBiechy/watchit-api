@@ -7,7 +7,7 @@ class RemoveMediaRatingUseCase {
   constructor(@inject(TYPES.UsersRepository) private usersRepository: UsersRepositoryInterface) {
   }
 
-  async execute(userId: string, mediaId: string, mediaType: 'movie' | 'tv'): Promise<void> {
+  async execute(userId: string, mediaId: number, mediaType: 'movie' | 'tv'): Promise<void> {
     if (!userId || !mediaId) {
       throw new ValidationError('Missing required fields', 'MissingRequiredFields');
     }
@@ -17,7 +17,7 @@ class RemoveMediaRatingUseCase {
     }
 
     try {
-      await this.usersRepository.removeRatingMedia(userId, String(mediaId), mediaType);
+      await this.usersRepository.removeRatingMedia(userId, mediaId, mediaType);
     } catch (error: any) {
       if (error instanceof NotFoundError) {
         throw new NotFoundError(error.message, error.code);

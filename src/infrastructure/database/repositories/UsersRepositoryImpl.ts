@@ -44,7 +44,7 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
     return user.watchlist;
   }
 
-  async addToWatchList(userId: string, mediaId: string, type: 'movie' | 'tv'): Promise<void> {
+  async addToWatchList(userId: string, mediaId: number, type: 'movie' | 'tv'): Promise<void> {
     const user = await UserModel.findById(userId);
     if (!user) {
       throw new NotFoundError('User not found', 'UserNotFound');
@@ -65,7 +65,7 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
     await user.save();
   }
 
-  async removeFromWatchList(userId: string, mediaId: string, type: 'movie' | 'tv'): Promise<void> {
+  async removeFromWatchList(userId: string, mediaId: number, type: 'movie' | 'tv'): Promise<void> {
     const user = await UserModel.findById(userId);
     if (!user) {
       throw new NotFoundError('User not found', 'UserNotFound');
@@ -81,7 +81,7 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
     await user.save();
   }
 
-  async markAsSeen(userId: string, mediaId: string, type: 'movie' | 'tv', rating?: number): Promise<void> {
+  async markAsSeen(userId: string, mediaId: number, type: 'movie' | 'tv', rating?: number): Promise<void> {
     const user = await UserModel.findById(userId);
     if (!user) {
       throw new NotFoundError('User not found', 'UserNotFound');
@@ -99,7 +99,7 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
     await user.save();
   }
 
-  async removeSeenMedia(userId: string, mediaId: string, type: 'movie' | 'tv'): Promise<void> {
+  async removeSeenMedia(userId: string, mediaId: number, type: 'movie' | 'tv'): Promise<void> {
     const user = await UserModel.findById(userId);
     if (!user) {
       throw new NotFoundError('User not found', 'UserNotFound');
@@ -115,7 +115,7 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
     await user.save();
   }
 
-  async rateMedia(userId: string, mediaId: string, type: 'movie' | 'tv', rating: number): Promise<void> {
+  async rateMedia(userId: string, mediaId: number, type: 'movie' | 'tv', rating: number): Promise<void> {
     const user = await UserModel.findById(userId);
     if (!user) {
       throw new NotFoundError('User not found', 'UserNotFound');
@@ -135,7 +135,7 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
     await user.save();
   }
 
-  async updateRatingMedia(userId: string, mediaId: string, type: 'movie' | 'tv', rating: number): Promise<void> {
+  async updateRatingMedia(userId: string, mediaId: number, type: 'movie' | 'tv', rating: number): Promise<void> {
     const user = await UserModel.findById(userId);
     if (!user) {
       throw new NotFoundError('User not found', 'UserNotFound');
@@ -152,7 +152,7 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
     }
   }
 
-  async removeRatingMedia(userId: string, mediaId: string, type: 'movie' | 'tv'): Promise<void> {
+  async removeRatingMedia(userId: string, mediaId: number, type: 'movie' | 'tv'): Promise<void> {
     const user = await UserModel.findById(userId);
     if (!user) {
       throw new NotFoundError('User not found', 'UserNotFound');

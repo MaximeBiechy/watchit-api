@@ -9,19 +9,19 @@ interface UsersRepositoryInterface {
 
   getUserWatchlist(userId: string): Promise<User['watchList']>;
 
-  addToWatchList(userId: string, mediaId: string, type: 'movie' | 'tv'): Promise<void>;
+  addToWatchList(userId: string, mediaId: number, type: 'movie' | 'tv'): Promise<void>;
 
-  removeFromWatchList(userId: string, mediaId: string, type: 'movie' | 'tv'): Promise<void>;
+  removeFromWatchList(userId: string, mediaId: number, type: 'movie' | 'tv'): Promise<void>;
 
-  markAsSeen(userId: string, mediaId: string, type: 'movie' | 'tv'): Promise<void>;
+  markAsSeen(userId: string, mediaId: number, type: 'movie' | 'tv'): Promise<void>;
 
-  removeSeenMedia(userId: string, mediaId: string, type: 'movie' | 'tv'): Promise<void>;
+  removeSeenMedia(userId: string, mediaId: number, type: 'movie' | 'tv'): Promise<void>;
 
-  rateMedia(userId: string, mediaId: string, type: 'movie' | 'tv', rating: number): Promise<void>;
+  rateMedia(userId: string, mediaId: number, type: 'movie' | 'tv', rating: number): Promise<void>;
 
-  updateRatingMedia(userId: string, mediaId: string, type: 'movie' | 'tv', rating: number): Promise<void>;
+  updateRatingMedia(userId: string, mediaId: number, type: 'movie' | 'tv', rating: number): Promise<void>;
 
-  removeRatingMedia(userId: string, mediaId: string, type: 'movie' | 'tv'): Promise<void>;
+  removeRatingMedia(userId: string, mediaId: number, type: 'movie' | 'tv'): Promise<void>;
 }
 
 export default UsersRepositoryInterface;

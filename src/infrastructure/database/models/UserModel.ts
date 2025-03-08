@@ -1,7 +1,7 @@
 import { model, Schema, Document } from 'mongoose';
 
 interface MediaItem {
-  mediaId: string;
+  mediaId: number;
   type: 'movie' | 'tv';
 }
 
@@ -33,7 +33,7 @@ const UserSchema = new Schema(
     watchlist: {
       type: [
         {
-          mediaId: { type: String, required: true },
+          mediaId: { type: Number, required: true },
           type: { type: String, enum: ['movie', 'tv'], required: true },
         },
       ],
@@ -42,7 +42,7 @@ const UserSchema = new Schema(
     seenMedia: {
       type: [
         {
-          mediaId: { type: String, required: true },
+          mediaId: { type: Number, required: true },
           type: { type: String, enum: ['movie', 'tv'], required: true },
           rating: { type: Number, min: 1, max: 10, default: null },
           watchedAt: { type: Date, default: Date.now },

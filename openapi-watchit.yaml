@@ -561,7 +561,7 @@ paths:
                     items:
                       properties:
                         mediaId:
-                          type: string
+                          type: number
                           example: 500
                         type:
                           type: string
@@ -586,7 +586,7 @@ paths:
           name: mediaId
           required: true
           schema:
-            type: string
+            type: number
           description: The media ID
       requestBody:
         required: true
@@ -627,7 +627,7 @@ paths:
           name: mediaId
           required: true
           schema:
-            type: string
+            type: number
           description: The media ID
       requestBody:
         required: true
@@ -669,7 +669,7 @@ paths:
           name: mediaId
           required: true
           schema:
-            type: string
+            type: number
           description: The media ID
       requestBody:
         required: true
@@ -710,7 +710,7 @@ paths:
           name: mediaId
           required: true
           schema:
-            type: string
+            type: number
           description: The media ID
       requestBody:
         required: true
@@ -752,7 +752,7 @@ paths:
           name: mediaId
           required: true
           schema:
-            type: string
+            type: number
           description: The media ID
       requestBody:
         required: true
@@ -793,7 +793,7 @@ paths:
           name: mediaId
           required: true
           schema:
-            type: string
+            type: number
           description: The media ID
       requestBody:
         required: true
@@ -834,7 +834,7 @@ paths:
           name: mediaId
           required: true
           schema:
-            type: string
+            type: number
           description: The media ID
       requestBody:
         required: true
