@@ -655,6 +655,46 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '500':
           $ref: '#/components/responses/DatabaseError'
+  /api/v1/users/{userId}/seen:
+    get:
+      summary: Get User Seen Media
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+          description: The user ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Seen Media fetched successfully
+                  seenMedia:
+                    type: array
+                    items:
+                      properties:
+                        mediaId:
+                          type: number
+                          example: 500
+                        type:
+                          type: string
+                          example: movie
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/DatabaseError'
   /api/v1/users/{userId}/seen/{mediaId}:
     post:
       summary: mark a media as watched

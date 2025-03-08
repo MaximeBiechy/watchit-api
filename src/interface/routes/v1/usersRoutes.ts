@@ -55,6 +55,14 @@ router.delete('/:userId/watchlist/:mediaId', async (req: Request, res: Response,
   }
 });
 
+router.get('/:userId/seen', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await usersController.getUserSeenMedia(req, res, next);
+  } catch (error: any) {
+    next(error);
+  }
+});
+
 router.post('/:userId/seen/:mediaId', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.markAsSeen(req, res, next);

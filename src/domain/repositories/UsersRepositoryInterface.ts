@@ -13,6 +13,8 @@ interface UsersRepositoryInterface {
 
   removeFromWatchList(userId: string, mediaId: number, type: 'movie' | 'tv'): Promise<void>;
 
+  getUserSeenMedia(userId: string): Promise<User['seenMedia']>;
+
   markAsSeen(userId: string, mediaId: number, type: 'movie' | 'tv'): Promise<void>;
 
   removeSeenMedia(userId: string, mediaId: number, type: 'movie' | 'tv'): Promise<void>;

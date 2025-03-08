@@ -81,6 +81,15 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
     await user.save();
   }
 
+  async getUserSeenMedia(userId: string): Promise<User['seenMedia']> {
+    const user = await UserModel.findById(userId).select('seenMedia').lean();
+    if (!user) {
+      throw new NotFoundError('User not found', 'UserNotFound');
+    }
+
+    return user.seenMedia;
+  }
+
   async markAsSeen(userId: string, mediaId: number, type: 'movie' | 'tv', rating?: number): Promise<void> {
     const user = await UserModel.findById(userId);
     if (!user) {

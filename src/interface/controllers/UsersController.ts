@@ -13,6 +13,7 @@ import {
   GetUserSettingsUseCase,
   UpdateUserSettingUseCase,
   GetUserWatchListUseCase,
+  GetUserSeenMediaUseCase,
 } from '../../application/use-cases/index.js';
 import { UserDTO } from '../../domain/dtos/index.js';
 
@@ -26,7 +27,8 @@ class UsersController {
               @inject(TYPES.RemoveMediaRatingUseCase) private removeMediaRatingUseCase: RemoveMediaRatingUseCase,
               @inject(TYPES.GetUserSettingsUseCase) private getUserSettingsUseCase: GetUserSettingsUseCase,
               @inject(TYPES.UpdateUserSettingUseCase) private updateUserSettingUseCase: UpdateUserSettingUseCase,
-              @inject(TYPES.GetUserWatchListUseCase) private getUserWatchListUseCase: GetUserWatchListUseCase) {
+              @inject(TYPES.GetUserWatchListUseCase) private getUserWatchListUseCase: GetUserWatchListUseCase,
+              @inject(TYPES.GetUserSeenMediaUseCase) private getUserSeenMediaUseCase: GetUserSeenMediaUseCase) {
   }
 
   async getAllUsers(req: Request, res: Response, next: NextFunction) {
@@ -106,6 +108,20 @@ class UsersController {
       res.status(200).json({
         status: 'success',
         message: 'Removed from watchlist successfully',
+      });
+    } catch (error: any) {
+      next(error);
+    }
+  }
+
+  async getUserSeenMedia(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { userId } = req.params;
+      const seenMedia = await this.getUserSeenMediaUseCase.execute(userId);
+      return res.status(200).json({
+        status: 'success',
+        message: 'User seen media fetched successfully',
+        seenMedia,
       });
     } catch (error: any) {
       next(error);
