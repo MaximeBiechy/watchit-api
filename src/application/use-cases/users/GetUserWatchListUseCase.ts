@@ -13,7 +13,7 @@ class GetUserWatchListUseCase {
     }
 
     try {
-      return await this.usersRepository.getUserWatchlist(userId);
+      return await this.usersRepository.getUserSeenMedia(userId);
     } catch (error: any) {
       if (error instanceof NotFoundError) {
         throw new NotFoundError(error.message, error.code);
