@@ -23,3 +23,5 @@ class GetUserSeenMediaUseCase {
     }
   }
 }
+
+export default GetUserSeenMediaUseCase;

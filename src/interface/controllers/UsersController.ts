@@ -18,7 +18,8 @@ import {
 import { UserDTO } from '../../domain/dtos/index.js';
 
 class UsersController {
-  constructor(@inject(TYPES.GetAllUsersUseCase) private getAllUsersUseCase: GetAllUsersUseCase, @inject(TYPES.AddToWatchlistUseCase) private addToWatchlistUseCase: AddToWatchlistUseCase,
+  constructor(@inject(TYPES.GetAllUsersUseCase) private getAllUsersUseCase: GetAllUsersUseCase,
+              @inject(TYPES.AddToWatchlistUseCase) private addToWatchlistUseCase: AddToWatchlistUseCase,
               @inject(TYPES.RemoveFromWatchlistUseCase) private removeFromWatchlistUseCase: RemoveFromWatchlistUseCase,
               @inject(TYPES.MarkAsSeenUseCase) private markAsSeenUseCase: MarkAsSeenUseCase,
               @inject(TYPES.RemoveSeenMediaUseCase) private removeSeenMediaUseCase: RemoveSeenMediaUseCase,
@@ -28,7 +29,8 @@ class UsersController {
               @inject(TYPES.GetUserSettingsUseCase) private getUserSettingsUseCase: GetUserSettingsUseCase,
               @inject(TYPES.UpdateUserSettingUseCase) private updateUserSettingUseCase: UpdateUserSettingUseCase,
               @inject(TYPES.GetUserWatchListUseCase) private getUserWatchListUseCase: GetUserWatchListUseCase,
-              @inject(TYPES.GetUserSeenMediaUseCase) private getUserSeenMediaUseCase: GetUserSeenMediaUseCase) {
+              @inject(TYPES.GetUserSeenMediaUseCase) private getUserSeenMediaUseCase: GetUserSeenMediaUseCase,
+  ) {
   }
 
   async getAllUsers(req: Request, res: Response, next: NextFunction) {
