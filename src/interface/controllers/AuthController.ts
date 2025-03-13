@@ -1,14 +1,16 @@
 import { NextFunction, Request, Response } from 'express';
 import { inject } from 'inversify';
 import { TYPES } from '../../config/types.js';
-import { SigninUserUseCase, RegisterUserUseCase } from '../../application/use-cases/index.js';
+import { SigninUserUseCase, RegisterUserUseCase, RefreshTokenUseCase } from '../../application/use-cases/index.js';
 import { RegisterUserDTO, SigninUserDTO, SigninUserResponseDTO, UserDTO } from '../../domain/dtos/index.js';
 
 class AuthController {
   constructor(
     @inject(TYPES.RegisterUserUseCase) private registerUserUseCase: RegisterUserUseCase,
     @inject(TYPES.SigninUserUseCase) private signinUserUseCase: SigninUserUseCase,
-  ) {}
+    @inject(TYPES.RefreshTokenUseCase) private refreshTokenUseCase: RefreshTokenUseCase,
+  ) {
+  }
 
   async createUser(req: Request, res: Response, next: NextFunction) {
     try {
@@ -42,6 +44,22 @@ class AuthController {
       return res.status(200).json({
         status: 'success',
         message: 'User signed in successfully',
+        user,
+      });
+    } catch (error: any) {
+      next(error);
+    }
+  }
+
+  async refreshToken(req: Request, res: Response, next: NextFunction) {
+    try {
+      const refreshToken = req.body.refreshToken;
+
+      const user: SigninUserResponseDTO = await this.refreshTokenUseCase.execute(refreshToken);
+
+      return res.status(200).json({
+        status: 'success',
+        message: 'Token refreshed successfully',
         user,
       });
     } catch (error: any) {

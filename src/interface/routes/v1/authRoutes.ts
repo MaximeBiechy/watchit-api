@@ -25,4 +25,12 @@ router.post('/signin', validateDTO(SigninUserDTO), async (req: Request, res: Res
   }
 });
 
+router.get('/refresh-token', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await authController.refreshToken(req, res, next);
+  } catch (error) {
+    next(error);
+  }
+});
+
 export { router as authRoutes };
