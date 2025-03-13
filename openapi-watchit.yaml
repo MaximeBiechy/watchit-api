@@ -132,7 +132,7 @@ paths:
         '500':
           $ref: '#/components/responses/DatabaseError'
   /api/v1/auth/refresh-token:
-    get:
+    post:
       summary: Get new tokens
       requestBody:
         required: true
