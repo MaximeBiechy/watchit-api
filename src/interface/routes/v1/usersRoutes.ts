@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from 'express';
 import { TYPES } from '../../../config/types.js';
 import container from '../../../config/inversify.js';
 import { UsersController } from '../../../interface/controllers/index.js';
+import { authenticateUser } from '../../../app/middlewares/authMiddleware.js';
 
 const router = Router();
 
@@ -15,7 +16,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   }
 });
 
-router.get('/:userId/settings', async (req: Request, res: Response, next: NextFunction) => {
+router.get('/:userId/settings', authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.getUserSettings(req, res, next);
   } catch (error: any) {
@@ -23,7 +24,7 @@ router.get('/:userId/settings', async (req: Request, res: Response, next: NextFu
   }
 });
 
-router.patch('/:userId/settings', async (req: Request, res: Response, next: NextFunction) => {
+router.patch('/:userId/settings', authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.updateUserSettings(req, res, next);
   } catch (error: any) {
@@ -31,7 +32,7 @@ router.patch('/:userId/settings', async (req: Request, res: Response, next: Next
   }
 });
 
-router.get('/:userId/watchlist', async (req: Request, res: Response, next: NextFunction) => {
+router.get('/:userId/watchlist', authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.getUserWatchlist(req, res, next);
   } catch (error: any) {
@@ -39,7 +40,7 @@ router.get('/:userId/watchlist', async (req: Request, res: Response, next: NextF
   }
 });
 
-router.post('/:userId/watchlist/:mediaId', async (req: Request, res: Response, next: NextFunction) => {
+router.post('/:userId/watchlist/:mediaId', authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.addToWatchlist(req, res, next);
   } catch (error: any) {
@@ -47,7 +48,7 @@ router.post('/:userId/watchlist/:mediaId', async (req: Request, res: Response, n
   }
 });
 
-router.delete('/:userId/watchlist/:mediaId', async (req: Request, res: Response, next: NextFunction) => {
+router.delete('/:userId/watchlist/:mediaId', authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.removeFromWatchlist(req, res, next);
   } catch (error: any) {
@@ -55,7 +56,7 @@ router.delete('/:userId/watchlist/:mediaId', async (req: Request, res: Response,
   }
 });
 
-router.get('/:userId/seen', async (req: Request, res: Response, next: NextFunction) => {
+router.get('/:userId/seen', authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.getUserSeenMedia(req, res, next);
   } catch (error: any) {
@@ -63,7 +64,7 @@ router.get('/:userId/seen', async (req: Request, res: Response, next: NextFuncti
   }
 });
 
-router.post('/:userId/seen/:mediaId', async (req: Request, res: Response, next: NextFunction) => {
+router.post('/:userId/seen/:mediaId', authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.markAsSeen(req, res, next);
   } catch (error: any) {
@@ -71,7 +72,7 @@ router.post('/:userId/seen/:mediaId', async (req: Request, res: Response, next: 
   }
 });
 
-router.delete('/:userId/seen/:mediaId', async (req: Request, res: Response, next: NextFunction) => {
+router.delete('/:userId/seen/:mediaId', authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.removeSeenMedia(req, res, next);
   } catch (error: any) {
@@ -79,7 +80,7 @@ router.delete('/:userId/seen/:mediaId', async (req: Request, res: Response, next
   }
 });
 
-router.post('/:userId/ratings/:mediaId', async (req: Request, res: Response, next: NextFunction) => {
+router.post('/:userId/ratings/:mediaId', authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.rateMedia(req, res, next);
   } catch (error: any) {
@@ -87,7 +88,7 @@ router.post('/:userId/ratings/:mediaId', async (req: Request, res: Response, nex
   }
 });
 
-router.patch('/:userId/ratings/:mediaId', async (req: Request, res: Response, next: NextFunction) => {
+router.patch('/:userId/ratings/:mediaId', authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.updateRatingMedia(req, res, next);
   } catch (error: any) {
@@ -95,7 +96,7 @@ router.patch('/:userId/ratings/:mediaId', async (req: Request, res: Response, ne
   }
 });
 
-router.delete('/:userId/ratings/:mediaId', async (req: Request, res: Response, next: NextFunction) => {
+router.delete('/:userId/ratings/:mediaId', authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.removeMediaRating(req, res, next);
   } catch (error: any) {
