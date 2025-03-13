@@ -23,6 +23,7 @@ import GetPopularMoviesUseCase from './movies/GetPopularMoviesUseCase.js';
 import GetTopRatedMoviesUseCase from './movies/GetTopRatedMoviesUseCase.js';
 import SearchMoviesAndActorsUseCase from './movies/SearchMoviesAndActorsUseCase.js';
 import GetMoviesByActorUseCase from './actors/GetMoviesByActorUseCase.js';
+import GetMovieTrailerUseCase from './movies/GetMovieTrailerUseCase.js';
 // User
 
 export {
@@ -48,4 +49,5 @@ export {
   UpdateUserSettingUseCase,
   GetUserWatchListUseCase,
   GetUserSeenMediaUseCase,
+  GetMovieTrailerUseCase,
 };

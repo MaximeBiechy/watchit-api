@@ -39,6 +39,14 @@ router.get('/top_rated', async (req: Request, res: Response, next: NextFunction)
   }
 });
 
+router.get('/:id/trailer', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await movieController.getMovieTrailer(req, res, next);
+  } catch (error: any) {
+    next(error);
+  }
+});
+
 router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await movieController.getMovieDetails(req, res, next);
@@ -46,5 +54,6 @@ router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
     next(error);
   }
 });
+
 
 export { router as moviesRoutes };

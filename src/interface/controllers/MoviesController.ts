@@ -8,6 +8,7 @@ import {
   GetUpcomingMoviesUseCase,
   GetPopularMoviesUseCase,
   GetTopRatedMoviesUseCase,
+  GetMovieTrailerUseCase,
 } from '../../application/use-cases/index.js';
 // DTOs
 import { MovieDTO, HomePageMovieDTO, MovieSearchDTO } from '../../domain/dtos/index.js';
@@ -19,6 +20,7 @@ class MoviesController {
     @inject(TYPES.GetUpcomingMoviesUseCase) private getUpcomingMoviesUseCase: GetUpcomingMoviesUseCase,
     @inject(TYPES.GetPopularMoviesUseCase) private getPopularMoviesUseCase: GetPopularMoviesUseCase,
     @inject(TYPES.GetTopRatedMoviesUseCase) private getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
+    @inject(TYPES.GetMovieTrailerUseCase) private getMovieTrailerUseCase: GetMovieTrailerUseCase,
   ) {
   }
 
@@ -104,6 +106,22 @@ class MoviesController {
         status: 'success',
         message: 'Top Rated Movies retrieved successfully',
         movies,
+      });
+    } catch (error: any) {
+      next(error);
+    }
+  }
+
+  async getMovieTrailer(req: Request, res: Response, next: NextFunction) {
+    try {
+      const movieId = req.params.id;
+      const language = req.query.language as string;
+      const trailer: string = await this.getMovieTrailerUseCase.execute(movieId, language);
+
+      return res.status(200).json({
+        status: 'success',
+        message: 'Movie trailer retrieved successfully',
+        trailer,
       });
     } catch (error: any) {
       next(error);

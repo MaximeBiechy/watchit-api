@@ -98,6 +98,16 @@ class MoviesRepositoryImpl implements MoviesRepositoryInterface {
     return response.data?.results;
   }
 
+  async getMovieTrailer(movieId: string, language: string): Promise<any> {
+    const response: any = await axiosInstance.get(`/movie/${movieId}/videos`, {
+      params: {
+        language,
+      },
+    });
+
+    return response.data.results.find((video: any) => video.type === 'Trailer');
+  }
+
 }
 
 export default MoviesRepositoryImpl;
