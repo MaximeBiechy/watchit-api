@@ -95,7 +95,6 @@ class MoviesRepositoryImpl implements MoviesRepositoryInterface {
         sort_by: 'popularity.desc',
       },
     });
-    console.log('Search results:', response.data.results); // Debugging line to check the results
 
     return response.data?.results;
   }
