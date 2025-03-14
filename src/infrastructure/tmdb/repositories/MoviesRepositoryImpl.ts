@@ -92,8 +92,10 @@ class MoviesRepositoryImpl implements MoviesRepositoryInterface {
         language,
         include_adult,
         page,
+        sort_by: 'popularity.desc',
       },
     });
+    console.log('Search results:', response.data.results); // Debugging line to check the results
 
     return response.data?.results;
   }
