@@ -12,7 +12,7 @@ class MovieDTO {
   releaseDate: Date;
   voteAverage: number;
   actors: Actor[];
-  streamingProviders: string[];
+  streamingProviders: { name: string, id: number }[];
 
   constructor(
     id: number,
@@ -26,7 +26,7 @@ class MovieDTO {
     releaseDate: Date,
     voteAverage: number,
     actors: Actor[],
-    streamingProviders: string[],
+    streamingProviders: { name: string, id: number, logo_path: string }[],
   ) {
     this.id = id;
     this.title = title;

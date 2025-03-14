@@ -1155,8 +1155,17 @@ components:
         streamingProviders:
           type: array
           items:
-            type: string
-            example: [ "Netflix", "Amazon Prime" ]
+            type: object
+            properties:
+              name:
+                type: string
+                example: Netflix
+              id:
+                type: number
+                example: 1
+              logo:
+                type: string
+                example: /9O7gLzmreU0nGkIB6K3BsJbzvNv.jpg
     MovieSearchDTO:
       type: object
       properties:

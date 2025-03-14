@@ -36,7 +36,11 @@ class GetMovieDetailsUseCase {
       const codeCountry = language.split('-')[1].toUpperCase();
 
       const streamingProviders =
-        watchProviders.results?.[codeCountry]?.flatrate?.map((provider: any) => provider.provider_name) || [];
+        watchProviders.results?.[codeCountry]?.flatrate?.map((provider: any) => ({
+          name: provider.provider_name,
+          id: provider.provider_id,
+          logo: provider.logo_path ? `${config.TMDB.IMAGE_BASE_URL}${provider.logo_path}` : null,
+        })) || [];
 
       return new MovieDTO(
         details.id,
