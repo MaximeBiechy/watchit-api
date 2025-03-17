@@ -5,6 +5,7 @@ import {
   RegisterUserUseCase,
   GetAllUsersUseCase,
   SigninUserUseCase,
+  ResetPasswordUseCase,
   GetMovieDetailsUseCase,
   GetNowPlayingMoviesUseCase,
   GetUpcomingMoviesUseCase,
@@ -56,6 +57,7 @@ container.bind(TYPES.ActorsRepository).to(ActorsRepositoryImpl);
 container.bind(TYPES.GetAllUsersUseCase).to(GetAllUsersUseCase);
 container.bind(TYPES.RegisterUserUseCase).to(RegisterUserUseCase);
 container.bind(TYPES.SigninUserUseCase).to(SigninUserUseCase);
+container.bind(TYPES.ResetPasswordUseCase).to(ResetPasswordUseCase);
 container.bind(TYPES.RefreshTokenUseCase).to(RefreshTokenUseCase);
 container.bind(TYPES.GetMovieDetailsUseCase).to(GetMovieDetailsUseCase);
 container.bind(TYPES.GetNowPlayingMoviesUseCase).to(GetNowPlayingMoviesUseCase);

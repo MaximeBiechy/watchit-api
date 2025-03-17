@@ -1,7 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 import { inject } from 'inversify';
 import { TYPES } from '../../config/types.js';
-import { SigninUserUseCase, RegisterUserUseCase, RefreshTokenUseCase } from '../../application/use-cases/index.js';
+import {
+  SigninUserUseCase,
+  RegisterUserUseCase,
+  RefreshTokenUseCase,
+  ResetPasswordUseCase,
+} from '../../application/use-cases/index.js';
 import { RegisterUserDTO, SigninUserDTO, SigninUserResponseDTO, UserDTO } from '../../domain/dtos/index.js';
 
 class AuthController {
@@ -9,6 +14,7 @@ class AuthController {
     @inject(TYPES.RegisterUserUseCase) private registerUserUseCase: RegisterUserUseCase,
     @inject(TYPES.SigninUserUseCase) private signinUserUseCase: SigninUserUseCase,
     @inject(TYPES.RefreshTokenUseCase) private refreshTokenUseCase: RefreshTokenUseCase,
+    @inject(TYPES.ResetPasswordUseCase) private resetPasswordUseCase: ResetPasswordUseCase,
   ) {
   }
 
@@ -61,6 +67,22 @@ class AuthController {
         status: 'success',
         message: 'Token refreshed successfully',
         user,
+      });
+    } catch (error: any) {
+      next(error);
+    }
+  }
+
+  async resetPassword(req: Request, res: Response, next: NextFunction) {
+    try {
+      const email = req.body.email;
+      const newPassword = req.body.newPassword;
+
+      await this.resetPasswordUseCase.execute(email, newPassword);
+
+      return res.status(200).json({
+        status: 'success',
+        message: 'Password reset successfully',
       });
     } catch (error: any) {
       next(error);

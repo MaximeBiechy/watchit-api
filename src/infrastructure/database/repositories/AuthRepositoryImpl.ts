@@ -21,6 +21,10 @@ class AuthRepositoryImpl implements AuthRepositoryInterface {
     const user = await UserModel.findById(id);
     return user ? new User(user.id, user.username, user.email, user.createdAt, user.updatedAt, user.passwordHash) : null;
   }
+
+  async resetPassword(email: string, newPassword: string): Promise<void> {
+    await UserModel.updateOne({ email }, { passwordHash: newPassword });
+  }
 }
 
 export default AuthRepositoryImpl;

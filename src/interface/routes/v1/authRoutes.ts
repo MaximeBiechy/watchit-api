@@ -33,4 +33,12 @@ router.post('/refresh-token', async (req: Request, res: Response, next: NextFunc
   }
 });
 
+router.post('/reset-password', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await authController.resetPassword(req, res, next);
+  } catch (error) {
+    next(error);
+  }
+});
+
 export { router as authRoutes };
