@@ -13,7 +13,7 @@ import {
   GetUserSettingsUseCase,
   UpdateUserSettingUseCase,
   GetUserWatchListUseCase,
-  GetUserSeenMediaUseCase,
+  GetUserSeenMediaUseCase, DeleteAccountUseCase,
 } from '../../application/use-cases/index.js';
 import { UserDTO } from '../../domain/dtos/index.js';
 
@@ -30,6 +30,7 @@ class UsersController {
               @inject(TYPES.UpdateUserSettingUseCase) private updateUserSettingUseCase: UpdateUserSettingUseCase,
               @inject(TYPES.GetUserWatchListUseCase) private getUserWatchListUseCase: GetUserWatchListUseCase,
               @inject(TYPES.GetUserSeenMediaUseCase) private getUserSeenMediaUseCase: GetUserSeenMediaUseCase,
+              @inject(TYPES.DeleteAccountUseCase) private deleteAccountUseCase: DeleteAccountUseCase,
   ) {
   }
 
@@ -40,6 +41,21 @@ class UsersController {
         status: 'success',
         message: 'Users fetched successfully',
         users,
+      });
+    } catch (error: any) {
+      next(error);
+    }
+  }
+
+  async deleteAccount(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { userId } = req.params;
+
+      await this.deleteAccountUseCase.execute(userId);
+
+      return res.status(200).json({
+        status: 'success',
+        message: 'Account delete successfully',
       });
     } catch (error: any) {
       next(error);

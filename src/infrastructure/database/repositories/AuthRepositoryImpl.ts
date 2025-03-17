@@ -25,6 +25,10 @@ class AuthRepositoryImpl implements AuthRepositoryInterface {
   async resetPassword(email: string, newPassword: string): Promise<void> {
     await UserModel.updateOne({ email }, { passwordHash: newPassword });
   }
+
+  async deleteAccount(id: string): Promise<void> {
+    await UserModel.deleteOne({ _id: id });
+  }
 }
 
 export default AuthRepositoryImpl;

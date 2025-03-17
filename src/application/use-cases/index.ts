@@ -16,6 +16,7 @@ import RegisterUserUseCase from './auth/RegisterUserUseCase.js';
 import SigninUserUseCase from './auth/SigninUserUseCase.js';
 import RefreshTokenUseCase from './auth/RefreshTokenUseCase.js';
 import ResetPasswordUseCase from './auth/ResetPasswordUseCase.js';
+import DeleteAccountUseCase from './auth/DeleteAccountUseCase.js'
 // Movies
 import GetMovieDetailsUseCase from './movies/GetMovieDetailsUseCase.js';
 import GetNowPlayingMoviesUseCase from './movies/GetNowPlayingMoviesUseCase.js';
@@ -32,6 +33,7 @@ export {
   RegisterUserUseCase,
   SigninUserUseCase,
   ResetPasswordUseCase,
+  DeleteAccountUseCase,
   RefreshTokenUseCase,
   GetMovieDetailsUseCase,
   GetNowPlayingMoviesUseCase,

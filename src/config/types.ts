@@ -11,6 +11,7 @@ export const TYPES = {
   RegisterUserUseCase: Symbol.for('RegisterUserUseCase'),
   SigninUserUseCase: Symbol.for('SigninUserUseCase'),
   ResetPasswordUseCase: Symbol.for('ResetPasswordUseCase'),
+  DeleteAccountUseCase: Symbol.for('DeleteAccountUseCase'),
   RefreshTokenUseCase: Symbol.for('RefreshTokenUseCase'),
   GetMovieDetailsUseCase: Symbol.for('GetMovieDetailsUseCase'),
   GetNowPlayingMoviesUseCase: Symbol.for('GetNowPlayingMoviesUseCase'),
