@@ -92,7 +92,6 @@ class MoviesRepositoryImpl implements MoviesRepositoryInterface {
         language,
         include_adult,
         page,
-        sort_by: 'popularity.desc',
       },
     });
 
