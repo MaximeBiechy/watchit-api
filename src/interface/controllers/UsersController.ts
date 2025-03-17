@@ -4,6 +4,7 @@ import { TYPES } from '../../config/types.js';
 import {
   AddToWatchlistUseCase,
   GetAllUsersUseCase,
+  GetUserByIdUseCase,
   MarkAsSeenUseCase,
   RateMediaUseCase,
   RemoveFromWatchlistUseCase,
@@ -31,6 +32,7 @@ class UsersController {
               @inject(TYPES.GetUserWatchListUseCase) private getUserWatchListUseCase: GetUserWatchListUseCase,
               @inject(TYPES.GetUserSeenMediaUseCase) private getUserSeenMediaUseCase: GetUserSeenMediaUseCase,
               @inject(TYPES.DeleteAccountUseCase) private deleteAccountUseCase: DeleteAccountUseCase,
+              @inject(TYPES.GetUserByIdUseCase) private getUserByIdUseCase: GetUserByIdUseCase,
   ) {
   }
 
@@ -41,6 +43,21 @@ class UsersController {
         status: 'success',
         message: 'Users fetched successfully',
         users,
+      });
+    } catch (error: any) {
+      next(error);
+    }
+  }
+
+  async getUserById(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { userId } = req.params;
+
+      const user = await this.getUserByIdUseCase.execute(userId);
+      return res.status(200).json({
+        status: 'success',
+        message: 'User fetched successfully',
+        user,
       });
     } catch (error: any) {
       next(error);

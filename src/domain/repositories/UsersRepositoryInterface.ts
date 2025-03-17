@@ -3,6 +3,8 @@ import { User } from '../entities/index.js';
 interface UsersRepositoryInterface {
   getAllUsers(): Promise<User[]>;
 
+  getUserById(userId: string): Promise<User | null>;
+
   getUserSettings(userId: string): Promise<User['settings']>;
 
   updateUserSettings(userId: string, settings: User['settings']): Promise<void>;

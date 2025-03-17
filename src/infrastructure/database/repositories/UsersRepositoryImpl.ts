@@ -4,6 +4,7 @@ import { injectable } from 'inversify';
 import { User } from '../../../domain/entities/index.js';
 import { Promise } from 'mongoose';
 import { NotFoundError, ValidationError } from '../../../shared/errors/index.js';
+import { req } from '@sentry/node/build/types/proxy/helpers';
 
 @injectable()
 class UsersRepositoryImpl implements UsersRepositoryInterface {
@@ -12,6 +13,16 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
     return usersDocs.map((userDoc) => {
       return new User(userDoc.id, userDoc.username, userDoc.email, userDoc.createdAt, userDoc.updatedAt);
     });
+  }
+
+  async getUserById(userId: string): Promise<User | null> {
+    const user = await UserModel.findById(userId);
+
+    if (!user) {
+      throw new NotFoundError('User not found', 'UserNotFound');
+    }
+
+    return new User(user.id, user.username, user.email, user.createdAt, user.updatedAt);
   }
 
   async getUserSettings(userId: string): Promise<User['settings']> {
@@ -28,8 +39,6 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
     if (!user) {
       throw new NotFoundError('User not found', 'UserNotFound');
     }
-
-    console.log('settings', settings);
 
     user.settings = settings;
     await user.save();

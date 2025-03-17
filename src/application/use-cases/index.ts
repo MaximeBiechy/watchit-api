@@ -1,5 +1,6 @@
 // Users
 import GetAllUsersUseCase from './users/GetAllUsersUseCase.js';
+import GetUserByIdUseCase from './users/GetUserByIdUseCase.js';
 import AddToWatchlistUseCase from './users/AddToWatchlistUseCase.js';
 import RemoveFromWatchlistUseCase from './users/RemoveFromWatchlistUseCase.js';
 import MarkAsSeenUseCase from './users/MarkAsSeenUseCase.js';
@@ -30,6 +31,7 @@ import GetMovieTrailerUseCase from './movies/GetMovieTrailerUseCase.js';
 
 export {
   GetAllUsersUseCase,
+  GetUserByIdUseCase,
   RegisterUserUseCase,
   SigninUserUseCase,
   ResetPasswordUseCase,

@@ -8,6 +8,7 @@ export const TYPES = {
 
   // ? Use Cases
   GetAllUsersUseCase: Symbol.for('GetAllUsersUseCase'),
+  GetUserByIdUseCase: Symbol.for('GetUserByIdUseCase'),
   RegisterUserUseCase: Symbol.for('RegisterUserUseCase'),
   SigninUserUseCase: Symbol.for('SigninUserUseCase'),
   ResetPasswordUseCase: Symbol.for('ResetPasswordUseCase'),

@@ -16,6 +16,14 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   }
 });
 
+router.get('/:userId', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await usersController.getUserById(req, res, next);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.delete('/:userId', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.deleteAccount(req, res, next);
