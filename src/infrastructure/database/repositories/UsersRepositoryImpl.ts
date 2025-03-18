@@ -4,13 +4,14 @@ import { injectable } from 'inversify';
 import { User } from '../../../domain/entities/index.js';
 import { Promise } from 'mongoose';
 import { NotFoundError, ValidationError } from '../../../shared/errors/index.js';
+import user from '../../../domain/entities/User';
 
 @injectable()
 class UsersRepositoryImpl implements UsersRepositoryInterface {
   async getAllUsers(): Promise<User[]> {
     const usersDocs = await UserModel.find().select('-password').lean();
     return usersDocs.map((userDoc) => {
-      return new User(userDoc.id, userDoc.username, userDoc.email, userDoc.createdAt, userDoc.updatedAt);
+      return new User(userDoc.id, userDoc.username, userDoc.email, userDoc.avatar, userDoc.createdAt, userDoc.updatedAt);
     });
   }
 
@@ -21,7 +22,7 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
       throw new NotFoundError('User not found', 'UserNotFound');
     }
 
-    return new User(user.id, user.username, user.email, user.createdAt, user.updatedAt);
+    return new User(user.id, user.username, user.email, user.avatar, user.createdAt, user.updatedAt);
   }
 
   async getUserSettings(userId: string): Promise<User['settings']> {

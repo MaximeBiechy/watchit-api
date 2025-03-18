@@ -5,6 +5,7 @@ class User {
     public readonly id: string,
     public username: string,
     public email: string,
+    public avatar: number,
     public createdAt: Date,
     public updatedAt: Date,
     public passwordHash?: string,
@@ -22,7 +23,7 @@ class User {
     const now = new Date();
     const id = crypto.randomUUID();
 
-    return new User(id, username, email, now, now, passwordHash);
+    return new User(id, username, email, 1, now, now, passwordHash);
   }
 }
 

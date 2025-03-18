@@ -1164,6 +1164,9 @@ components:
         email:
           type: string
           example: john.doe@example.com
+        avatar:
+          type: number
+          example: 1
         createdAt:
           type: string
           format: date-time
