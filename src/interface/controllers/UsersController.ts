@@ -14,7 +14,7 @@ import {
   GetUserSettingsUseCase,
   UpdateUserSettingUseCase,
   GetUserWatchListUseCase,
-  GetUserSeenMediaUseCase, DeleteAccountUseCase, UpdateUserAvatarUseCase,
+  GetUserSeenMediaUseCase, DeleteAccountUseCase, UpdateUserAvatarUseCase, UpdateUserProfileUseCase,
 } from '../../application/use-cases/index.js';
 import { UserDTO } from '../../domain/dtos/index.js';
 
@@ -34,6 +34,7 @@ class UsersController {
               @inject(TYPES.DeleteAccountUseCase) private deleteAccountUseCase: DeleteAccountUseCase,
               @inject(TYPES.GetUserByIdUseCase) private getUserByIdUseCase: GetUserByIdUseCase,
               @inject(TYPES.UpdateUserAvatarUseCase) private updateUserAvatarUseCase: UpdateUserAvatarUseCase,
+              @inject(TYPES.UpdateUserProfileUseCase) private updateUserProfileUseCase: UpdateUserProfileUseCase,
   ) {
   }
 
@@ -80,6 +81,36 @@ class UsersController {
     }
   }
 
+  async updateUserProfile(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { userId } = req.params;
+      const { username, email, password } = req.body;
+
+      const updateData: any = {};
+
+      if (username) {
+        updateData.username = username;
+      }
+
+      if (email) {
+        updateData.email = email;
+      }
+
+      if (password) {
+        updateData.password = password;
+      }
+
+      await this.updateUserProfileUseCase.execute(userId, updateData);
+
+      return res.status(200).json({
+        status: 'success',
+        message: 'User profile updated successfully',
+      });
+    } catch (error: any) {
+      next(error);
+    }
+  }
+
   async getUserSettings(req: Request, res: Response, next: NextFunction) {
     try {
       const { userId } = req.params;
@@ -93,6 +124,7 @@ class UsersController {
       next(error);
     }
   }
+
 
   async updateUserSettings(req: Request, res: Response, next: NextFunction) {
     try {

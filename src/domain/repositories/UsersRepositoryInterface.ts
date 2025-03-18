@@ -3,9 +3,13 @@ import { User } from '../entities/index.js';
 interface UsersRepositoryInterface {
   getAllUsers(): Promise<User[]>;
 
+  findByEmail(email: string): Promise<User | null>;
+
   getUserById(userId: string): Promise<User | null>;
 
   getUserSettings(userId: string): Promise<User['settings']>;
+
+  updateUserProfile(userId: string, data: any): Promise<void>;
 
   updateUserAvatar(userId: string, avatar: number): Promise<void>;
 

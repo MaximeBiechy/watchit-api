@@ -13,12 +13,13 @@ import UpdateUserSettingUseCase from './users/UpdateUserSettingUseCase.js';
 import GetUserWatchListUseCase from './users/GetUserWatchListUseCase.js';
 import GetUserSeenMediaUseCase from './users/GetUserSeenMediaUseCase.js';
 import UpdateUserAvatarUseCase from './users/UpdateUserAvatarUseCase.js';
+import UpdateUserProfileUseCase from './users/UpdateUserProfileUseCase.js';
 // Auth
 import RegisterUserUseCase from './auth/RegisterUserUseCase.js';
 import SigninUserUseCase from './auth/SigninUserUseCase.js';
 import RefreshTokenUseCase from './auth/RefreshTokenUseCase.js';
 import ResetPasswordUseCase from './auth/ResetPasswordUseCase.js';
-import DeleteAccountUseCase from './auth/DeleteAccountUseCase.js'
+import DeleteAccountUseCase from './auth/DeleteAccountUseCase.js';
 // Movies
 import GetMovieDetailsUseCase from './movies/GetMovieDetailsUseCase.js';
 import GetNowPlayingMoviesUseCase from './movies/GetNowPlayingMoviesUseCase.js';
@@ -58,4 +59,5 @@ export {
   GetUserSeenMediaUseCase,
   GetMovieTrailerUseCase,
   UpdateUserAvatarUseCase,
+  UpdateUserProfileUseCase,
 };

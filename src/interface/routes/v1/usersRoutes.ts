@@ -32,6 +32,14 @@ router.delete('/:userId', async (req: Request, res: Response, next: NextFunction
   }
 });
 
+router.patch('/:userId', authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await usersController.updateUserProfile(req, res, next);
+  } catch (error: any) {
+    next(error);
+  }
+});
+
 router.get('/:userId/settings', authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.getUserSettings(req, res, next);

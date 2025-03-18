@@ -15,6 +15,13 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
     });
   }
 
+  async findByEmail(email: string): Promise<User | null> {
+    const user = await UserModel.findOne({
+      email,
+    });
+    return user ? new User(user.id, user.username, user.email, user.createdAt, user.updatedAt, user.passwordHash) : null;
+  }
+
   async getUserById(userId: string): Promise<User | null> {
     const user = await UserModel.findById(userId);
 
@@ -33,6 +40,27 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
 
     return user.settings;
   };
+
+  async updateUserProfile(userId: string, data: any): Promise<void> {
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      throw new NotFoundError('User not found', 'UserNotFound');
+    }
+
+    if (data.username) {
+      user.username = data.username;
+    }
+
+    if (data.email) {
+      user.email = data.email;
+    }
+
+    if (data.password) {
+      user.password = data.password;
+    }
+
+    await user.save();
+  }
 
   async updateUserAvatar(userId: string, avatar: number): Promise<void> {
     const user = await UserModel.findById(userId);

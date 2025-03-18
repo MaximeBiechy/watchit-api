@@ -34,6 +34,7 @@ export const TYPES = {
   GetUserSeenMediaUseCase: Symbol.for('GetUserSeenMediaUseCase'),
   GetMovieTrailerUseCase: Symbol.for('GetMovieTrailerUseCase'),
   UpdateUserAvatarUseCase: Symbol.for('UpdateUserAvatarUseCase'),
+  UpdateUserProfileUseCase: Symbol.for('UpdateUserProfileUseCase'),
 
   // ? Controllers
   UsersController: Symbol.for('UsersController'),

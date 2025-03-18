@@ -25,7 +25,7 @@ import {
   UpdateUserSettingUseCase,
   GetUserWatchListUseCase,
   GetUserSeenMediaUseCase,
-  RefreshTokenUseCase, GetMovieTrailerUseCase, GetUserByIdUseCase, UpdateUserAvatarUseCase,
+  RefreshTokenUseCase, GetMovieTrailerUseCase, GetUserByIdUseCase, UpdateUserAvatarUseCase, UpdateUserProfileUseCase,
 } from '../application/use-cases/index.js';
 // Controllers
 import {
@@ -82,6 +82,7 @@ container.bind(TYPES.GetUserWatchListUseCase).to(GetUserWatchListUseCase);
 container.bind(TYPES.GetUserSeenMediaUseCase).to(GetUserSeenMediaUseCase);
 container.bind(TYPES.GetMovieTrailerUseCase).to(GetMovieTrailerUseCase);
 container.bind(TYPES.UpdateUserAvatarUseCase).to(UpdateUserAvatarUseCase);
+container.bind(TYPES.UpdateUserProfileUseCase).to(UpdateUserProfileUseCase);
 
 // ? Controllers
 container.bind(TYPES.UsersController).to(UsersController);
