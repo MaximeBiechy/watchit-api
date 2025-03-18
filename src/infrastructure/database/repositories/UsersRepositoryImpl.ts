@@ -33,7 +33,7 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
     return user.settings;
   };
 
-  async updateUserAvatar(userId: string, avatar: string): Promise<void> {
+  async updateUserAvatar(userId: string, avatar: number): Promise<void> {
     const user = await UserModel.findById(userId);
     if (!user) {
       throw new NotFoundError('User not found', 'UserNotFound');

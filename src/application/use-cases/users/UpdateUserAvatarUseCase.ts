@@ -8,7 +8,7 @@ class UpdateUserAvatarUseCase {
   constructor(@inject(TYPES.UsersRepository) private usersRepository: UsersRepositoryInterface) {
   }
 
-  async execute(userId: string, avatar: string): Promise<void> {
+  async execute(userId: string, avatar: number): Promise<void> {
     if (!userId || !avatar) {
       throw new ValidationError('Invalid data', 'InvalidData');
     }

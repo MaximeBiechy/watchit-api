@@ -7,7 +7,7 @@ interface UsersRepositoryInterface {
 
   getUserSettings(userId: string): Promise<User['settings']>;
 
-  updateUserAvatar(userId: string, avatar: string): Promise<void>;
+  updateUserAvatar(userId: string, avatar: number): Promise<void>;
 
   updateUserSettings(userId: string, settings: User['settings']): Promise<void>;
 

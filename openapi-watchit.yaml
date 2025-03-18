@@ -719,8 +719,8 @@ paths:
               type: object
               properties:
                 avatar:
-                  type: string
-                  example: https://www.example.com/avatar.jpg
+                  type: number
+                  example: 20
       responses:
         '200':
           description: Updated
