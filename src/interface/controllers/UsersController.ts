@@ -14,7 +14,7 @@ import {
   GetUserSettingsUseCase,
   UpdateUserSettingUseCase,
   GetUserWatchListUseCase,
-  GetUserSeenMediaUseCase, DeleteAccountUseCase,
+  GetUserSeenMediaUseCase, DeleteAccountUseCase, UpdateUserAvatarUseCase,
 } from '../../application/use-cases/index.js';
 import { UserDTO } from '../../domain/dtos/index.js';
 
@@ -33,6 +33,7 @@ class UsersController {
               @inject(TYPES.GetUserSeenMediaUseCase) private getUserSeenMediaUseCase: GetUserSeenMediaUseCase,
               @inject(TYPES.DeleteAccountUseCase) private deleteAccountUseCase: DeleteAccountUseCase,
               @inject(TYPES.GetUserByIdUseCase) private getUserByIdUseCase: GetUserByIdUseCase,
+              @inject(TYPES.UpdateUserAvatarUseCase) private updateUserAvatarUseCase: UpdateUserAvatarUseCase,
   ) {
   }
 
@@ -227,6 +228,20 @@ class UsersController {
       res.status(200).json({
         status: 'success',
         message: 'Removed media rating successfully',
+      });
+    } catch (error: any) {
+      next(error);
+    }
+  }
+
+  async updateUserAvatar(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { userId } = req.params;
+      const { avatar } = req.body;
+      await this.updateUserAvatarUseCase.execute(userId, avatar);
+      res.status(200).json({
+        status: 'success',
+        message: 'Updated avatar successfully',
       });
     } catch (error: any) {
       next(error);

@@ -48,6 +48,14 @@ router.patch('/:userId/settings', authenticateUser, async (req: Request, res: Re
   }
 });
 
+router.patch('/:userId/avatar', authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await usersController.updateUserAvatar(req, res, next);
+  } catch (error: any) {
+    next(error);
+  }
+});
+
 router.get('/:userId/watchlist', authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     await usersController.getUserWatchlist(req, res, next);

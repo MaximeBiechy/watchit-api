@@ -18,6 +18,7 @@ interface UserDocument extends Document {
   username: string;
   email: string;
   passwordHash?: string;
+  avatar?: string;
   watchlist: MediaItem[];
   seenMedia: SeenMedia[];
   settings: Settings;
@@ -30,6 +31,7 @@ const UserSchema = new Schema(
     username: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     passwordHash: { type: String, default: null }, // ! Password can be null when user registers with OAuth (Google, Facebook, Apple)
+    avatar: { type: String, default: null },
     watchlist: {
       type: [
         {
