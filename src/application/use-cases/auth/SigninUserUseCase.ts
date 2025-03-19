@@ -8,7 +8,8 @@ import { SigninUserDTO, SigninUserResponseDTO } from '../../../domain/dtos/index
 
 @injectable()
 class SigninUserUseCase {
-  constructor(@inject(TYPES.AuthRepository) private authRepository: AuthRepositoryInterface) {}
+  constructor(@inject(TYPES.AuthRepository) private authRepository: AuthRepositoryInterface) {
+  }
 
   async execute(signinUserDTO: SigninUserDTO): Promise<SigninUserResponseDTO> {
     const { email, password } = signinUserDTO;
@@ -29,6 +30,8 @@ class SigninUserUseCase {
       if (!passwordMatch) {
         throw new ValidationError('Invalid credentials', 'InvalidCredentials');
       }
+    } else {
+      throw new ValidationError('Invalid credentials', 'InvalidCredentials');
     }
 
     const tokens = TokenService.generateTokens(existingUser.id);
