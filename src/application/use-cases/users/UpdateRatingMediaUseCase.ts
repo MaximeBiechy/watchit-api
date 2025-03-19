@@ -8,7 +8,7 @@ class UpdateRatingMediaUseCase {
   }
 
   async execute(userId: string, mediaId: number, mediaType: 'movie' | 'tv', rating: number): Promise<void> {
-    if (!userId || !mediaId || !rating) {
+    if (!userId || !mediaId || rating === null) {
       throw new ValidationError('Missing required fields', 'MissingRequiredFields');
     }
 

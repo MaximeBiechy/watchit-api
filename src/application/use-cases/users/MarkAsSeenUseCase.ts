@@ -21,6 +21,8 @@ class MarkAsSeenUseCase {
     } catch (error: any) {
       if (error instanceof NotFoundError) {
         throw new NotFoundError(error.message, error.code);
+      } else if (error instanceof ValidationError) {
+        throw new ValidationError(error.message, error.code);
       } else {
         throw new DatabaseError('Error marking as seen' + error.message, 'MarkAsSeenError');
       }

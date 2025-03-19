@@ -46,7 +46,7 @@ const UserSchema = new Schema(
         {
           mediaId: { type: Number, required: true },
           type: { type: String, enum: ['movie', 'tv'], required: true },
-          rating: { type: Number, min: 1, max: 10, default: null },
+          rating: { type: Number, min: 0, max: 10, default: null },
           watchedAt: { type: Date, default: Date.now },
         },
       ],
