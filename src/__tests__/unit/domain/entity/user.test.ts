@@ -8,6 +8,7 @@ describe('User Entity', () => {
       fakeUserData._id,
       fakeUserData.username,
       fakeUserData.email,
+      1,
       fakeUserData.createdAt,
       fakeUserData.updatedAt,
       fakeUserData.password,

@@ -1,7 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import { jest } from '@jest/globals';
 import { generateFakeUserWithId } from '../../../helpers/fakeData.js';
-import { SigninUserUseCase, RegisterUserUseCase } from '../../../../application/use-cases/index.js';
+import {
+  SigninUserUseCase,
+  RegisterUserUseCase,
+  RefreshTokenUseCase,
+  ResetPasswordUseCase,
+} from '../../../../application/use-cases/index.js';
 import { AuthController } from '../../../../interface/controllers/index.js';
 import { SigninUserResponseDTO, UserDTO } from '../../../../domain/dtos/index.js';
 
@@ -9,6 +14,8 @@ describe('AuthController', () => {
   let authController: AuthController;
   let registerUserUseCase: RegisterUserUseCase;
   let signinUserUseCase: SigninUserUseCase;
+  let refreshTokenUseCase: RefreshTokenUseCase;
+  let resetPasswordUseCase: ResetPasswordUseCase;
   let req: Partial<Request>;
   let res: Partial<Response>;
   let next: NextFunction;
@@ -16,7 +23,9 @@ describe('AuthController', () => {
   beforeEach(() => {
     registerUserUseCase = new RegisterUserUseCase({} as never);
     signinUserUseCase = new SigninUserUseCase({} as never);
-    authController = new AuthController(registerUserUseCase, signinUserUseCase);
+    refreshTokenUseCase = new RefreshTokenUseCase({} as never);
+    resetPasswordUseCase = new ResetPasswordUseCase({} as never);
+    authController = new AuthController(registerUserUseCase, signinUserUseCase, refreshTokenUseCase, resetPasswordUseCase);
 
     req = {
       body: {
