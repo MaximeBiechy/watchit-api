@@ -1,4 +1,10 @@
-# WatchIt API
+# WatchIt
+
+**WatchIt** is a mobile app that allows users to browse movies, create custom lists, and rate films they wish to track or review later. This project was developed during my studies as a way to explore mobile and backend development while implementing modern and clean code practices.
+
+The purpose of this app was educational, not commercial. It is not intended for app stores and has only been tested on Android devices. The code in this repository is provided for demonstration purposes and should not be reused in other projects.
+
+# API
 
 This repository contains the backend REST API for the WatchIt mobile application.
 
