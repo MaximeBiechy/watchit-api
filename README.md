@@ -31,7 +31,7 @@ The mobile application can be found here:
 - Partial Jest test coverage
 - OpenAPI auto-generated documentation
 - Error tracking with Sentry
-- Docker support for development and deployment
+- Docker 
 
 ---
 
