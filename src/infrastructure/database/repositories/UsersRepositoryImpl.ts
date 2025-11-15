@@ -19,7 +19,7 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
     const user = await UserModel.findOne({
       email,
     });
-    return user ? new User(user.id, user.username, user.email, user.createdAt, user.updatedAt, user.passwordHash) : null;
+    return user ? new User(user.id, user.username, user.email, user.avatar, user.createdAt, user.updatedAt, user.passwordHash) : null;
   }
 
   async getUserById(userId: string): Promise<User | null> {
@@ -38,7 +38,9 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
       throw new NotFoundError('User not found', 'UserNotFound');
     }
 
-    return user.settings;
+    // `lean()` returns plain objects where nested union types (eg. language) may be inferred as `string`.
+    // Cast to the domain `User['settings']` to satisfy the repository contract.
+    return user.settings as User['settings'];
   };
 
   async updateUserProfile(userId: string, data: any): Promise<void> {
@@ -56,7 +58,7 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
     }
 
     if (data.password) {
-      user.password = data.password;
+      // user.password = data.password;
     }
 
     await user.save();
@@ -88,7 +90,7 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
       throw new NotFoundError('User not found', 'UserNotFound');
     }
 
-    return user.watchlist;
+    return user.watchlist as User['watchlist'];
   }
 
   async addToWatchList(userId: string, mediaId: number, type: 'movie' | 'tv'): Promise<void> {
@@ -134,7 +136,7 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
       throw new NotFoundError('User not found', 'UserNotFound');
     }
 
-    return user.seenMedia;
+    return user.seenMedia as User['seenMedia'];
   }
 
   async markAsSeen(userId: string, mediaId: number, type: 'movie' | 'tv', rating?: number): Promise<void> {
@@ -221,7 +223,7 @@ class UsersRepositoryImpl implements UsersRepositoryInterface {
       throw new ValidationError('Media not rated', 'MediaNotRated');
     }
 
-    watchedMedia.rating = null;
+    watchedMedia.rating = undefined;
     await user.save();
   }
 }

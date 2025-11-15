@@ -38,6 +38,8 @@ class RefreshTokenUseCase {
         throw new DatabaseError(error.message, error.code);
       }
     }
+
+    throw new Error('An unexpected error occurred');
   }
 }
 

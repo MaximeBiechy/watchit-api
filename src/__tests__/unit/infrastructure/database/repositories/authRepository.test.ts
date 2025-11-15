@@ -18,16 +18,19 @@ describe('AuthRepositoryImpl', () => {
       username: fakeUser.username,
       email: fakeUser.email,
       avatar: 1,
-      password: fakeUser.password,
+      passwordHash: fakeUser.password,
       createdAt: new Date(),
       updatedAt: new Date(),
+      watchlist: [],
+      seenMedia: [],
+      settings: { language: 'en' },
     };
 
-    const createdUser = await authRepository.createUser(user);
+    const createdUser = await authRepository.createUser(user as unknown as any);
 
     expect(createdUser).toHaveProperty('username', user.username);
     expect(createdUser).toHaveProperty('email', user.email);
-    expect(createdUser).toHaveProperty('password', user.password);
+    expect(createdUser).toHaveProperty('passwordHash', (user as any).passwordHash || (user as any).password);
     expect(createdUser).toHaveProperty('createdAt', user.createdAt);
     expect(createdUser).toHaveProperty('updatedAt', user.updatedAt);
   });
@@ -39,14 +42,17 @@ describe('AuthRepositoryImpl', () => {
       username: fakeUser.username,
       email: fakeUser.email,
       avatar: 1,
-      password: fakeUser.password,
+      passwordHash: fakeUser.password,
       createdAt: new Date(),
       updatedAt: new Date(),
+      watchlist: [],
+      seenMedia: [],
+      settings: { language: 'en' },
     };
 
-    await authRepository.createUser(user);
+    await authRepository.createUser(user as unknown as any);
 
-    const promise = authRepository.createUser(user);
+    const promise = authRepository.createUser(user as unknown as any);
 
     await expect(promise).rejects.toThrow('E11000 duplicate key error collection');
   });
@@ -57,12 +63,15 @@ describe('AuthRepositoryImpl', () => {
       username: '',
       email: '',
       avatar: 1,
-      password: '',
+      passwordHash: '',
       createdAt: new Date(),
       updatedAt: new Date(),
+      watchlist: [],
+      seenMedia: [],
+      settings: { language: 'en' },
     };
 
-    const promise = authRepository.createUser(user);
+    const promise = authRepository.createUser(user as unknown as any);
 
     await expect(promise).rejects.toThrow(ValidationError);
   });

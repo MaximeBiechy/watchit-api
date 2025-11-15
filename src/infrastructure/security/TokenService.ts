@@ -1,4 +1,6 @@
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
+
+export type TokenPayload = JwtPayload & { userId: string };
 
 class TokenService {
   private static readonly ACCESS_SECRET = process.env.ACCESS_SECRET || 'secret';
@@ -13,12 +15,12 @@ class TokenService {
     return { accessToken, refreshToken };
   }
 
-  static verifyAccessToken(accessToken: string) {
-    return jwt.verify(accessToken, this.ACCESS_SECRET);
+  static verifyAccessToken(accessToken: string): TokenPayload {
+    return jwt.verify(accessToken, this.ACCESS_SECRET) as TokenPayload;
   }
 
-  static verifyRefreshToken(refreshToken: string) {
-    return jwt.verify(refreshToken, this.REFRESH_SECRET);
+  static verifyRefreshToken(refreshToken: string): TokenPayload {
+    return jwt.verify(refreshToken, this.REFRESH_SECRET) as TokenPayload;
   }
 }
 

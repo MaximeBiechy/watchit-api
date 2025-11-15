@@ -1,14 +1,34 @@
 import { ValidationError } from '../../shared/errors/index.js';
 
+
+type MediaType = 'movie' | 'tv';
+
+interface MediaItem {
+  mediaId: number;
+  type: MediaType;
+}
+
+interface SeenMedia extends MediaItem {
+  rating?: number | null;
+  watchedAt?: Date | null;
+}
+
+interface Settings {
+  language: 'en' | 'fr';
+}
+
 class User {
   constructor(
     public readonly id: string,
     public username: string,
     public email: string,
-    public avatar: number,
+    public avatar: number | undefined,
     public createdAt: Date,
     public updatedAt: Date,
     public passwordHash?: string,
+    public watchlist: MediaItem[] = [],
+    public seenMedia: SeenMedia[] = [],
+    public settings: Settings = { language: 'en' },
   ) {}
 
   static create(username: string, email: string, passwordHash?: string): User {

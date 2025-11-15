@@ -22,6 +22,7 @@ class GetMoviesByActorUseCase {
         (movie: any) =>
           new MovieSearchDTO(
             movie.id,
+            'movie',
             movie.title,
             movie.release_date,
             movie.vote_average,

@@ -6,7 +6,7 @@ import { DatabaseError, NotFoundError, ValidationError } from '../../../shared/e
 class GetUserSettingsUseCase {
   constructor(@inject(TYPES.UsersRepository) private usersRepository: UsersRepositoryInterface) {}
 
-  async execute(userId: string): Promise<void> {
+  async execute(userId: string): Promise<any> {
     if (!userId) {
       throw new ValidationError('Missing required fields', 'MissingRequiredFields');
     }
