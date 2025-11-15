@@ -1,53 +1,61 @@
-# WatchIt
+# WatchIt API
 
-**WatchIt** is a mobile app that allows users to browse movies, create custom lists, and rate films they wish to track or review later. This project was developed as a side project during my studies as a way to explore mobile and backend development while implementing modern and clean code practices.
+This repository contains the backend REST API for the **WatchIt** mobile application.
 
-The purpose of this app was educational, not commercial. It is not intended for app stores and has only been tested on Android devices. The code in this repository is provided for demonstration purposes and should not be reused in other projects.
+**WatchIt** is a personal learning project built during my studies, designed to explore clean architecture, TypeScript, and modern full-stack practices. The purpose of this project is educational, not commercial.  
+The code is shared for demonstration purposes only and should not be reused in other projects.
 
-# API
+---
 
-This repository contains the backend REST API for the WatchIt mobile application.
+## Overview
 
-## Project Overview
+This API provides data and functionalities for the WatchIt mobile app, including:
 
-The API is built with Node.js, Express, and MongoDB, using TypeScript and clean architecture principles. It provides authentication, movie browsing, list management, rating and other essential data for the mobile app.
+- User authentication
+- Movie browsing via TMDB
+- Watchlist and rating features
+- Data persistence and caching
 
-The repository accompanying this API is the front-end mobile app:  
+It follows clean architecture principles and includes structured DTOs, middleware, and modular design.
+
+The mobile application can be found here:  
 👉 https://github.com/MaximeBiechy/watchit-mobile-app
+
+---
 
 ## Features
 
 - JWT-based authentication
-- TMDB API integration for movie data
-- MongoDB data persistence via Mongoose
+- TMDB API integration
+- MongoDB storage via Mongoose
 - Partial Jest test coverage
-- OpenAPI for documentation
-- Docker support
-- Error logging with Sentry
+- OpenAPI auto-generated documentation
+- Error tracking with Sentry
+- Docker support for development and deployment
+
+---
 
 ## Tech Stack
 
-- Node.js, Express
-- TypeScript
-- MongoDB + Mongoose
-- JWT, Sentry, TMDB API
-- Docker
-- Jest (tests)
+- **Node.js**
+- **Express**
+- **TypeScript**
+- **MongoDB + Mongoose**
+- **JWT**
+- **Sentry**
+- **TMDB API**
+- **Docker**
+- **Jest**
 
-⚠️ The app has not been tested on iOS.  
-⚠️ Code is intended for demonstration purposes only.
+---
 
 ## Installation
 
-For development, you will need [Docker](https://www.docker.com/) installed on your machine.
+You will need **Docker** installed locally.
+
 ```bash
-  docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 ```
-
----
-## Commands
-
----
 
 ## Usage
 
@@ -55,3 +63,8 @@ For development, you will need [Docker](https://www.docker.com/) installed on yo
 - You can also access the documentation at `http://localhost:3000/api-docs`.
 
 ---
+
+## Notes
+
+⚠️ The app has not been tested on iOS.<br>
+⚠️ Code is provided for demonstration purposes only and should not be reused or redistributed.
