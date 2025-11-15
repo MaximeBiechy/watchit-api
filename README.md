@@ -64,7 +64,10 @@ docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 
 ---
 
-## Notes
+ ## Notes
 
+⚠️ This project is not fully complete, but the core features are functional.  
+It may evolve further over time, as additional features could still be developed.
 ⚠️ The app has not been tested on iOS.<br>
-⚠️ Code is provided for demonstration purposes only and should not be reused or redistributed.
+⚠️ This backend was developed as a learning project.<br>  
+⚠️ Code is provided for demonstration purposes only and is not intended for reuse.
